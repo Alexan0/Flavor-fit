@@ -3,8 +3,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
-import { useGetProfileQuery } from "@/__generated__/output";
-
 import { Provider } from "./providers/Provider";
 
 const geistSans = Geist({
@@ -27,9 +25,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { data } = useGetProfileQuery();
-  console.log(data);
-
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>

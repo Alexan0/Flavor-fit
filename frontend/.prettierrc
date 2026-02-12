@@ -16,7 +16,8 @@
 
     "^@/app/(.*)$",
     "^@/features/(.*)$",
-    "^@/shared/ui/(.*)$",
+     "^@/shared/components/(.*)$",
+    "^@/shared/components/ui/(.*)$",
     "^@/shared/config/(.*)$",
     "^@/shared/constants/(.*)$",
     "^@/shared/graphql/(.*)$",

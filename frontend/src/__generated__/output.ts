@@ -1,128 +1,128 @@
-import { gql } from "@apollo/client";
-import * as Apollo from "@apollo/client";
-
+import { gql } from '@apollo/client';
+import * as Apollo from '@apollo/client';
+import * as ApolloReactHooks from '@apollo/client/react';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 const defaultOptions = {} as const;
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
-  DateTime: { input: any; output: any };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
+  DateTime: { input: any; output: any; }
 };
 
 export const ActivityLevel = {
-  Active: "ACTIVE",
-  Light: "LIGHT",
-  Moderate: "MODERATE",
-  Sedentary: "SEDENTARY",
-  VeryActive: "VERY_ACTIVE"
+  Active: 'ACTIVE',
+  Light: 'LIGHT',
+  Moderate: 'MODERATE',
+  Sedentary: 'SEDENTARY',
+  VeryActive: 'VERY_ACTIVE'
 } as const;
 
-export type ActivityLevel = (typeof ActivityLevel)[keyof typeof ActivityLevel];
+export type ActivityLevel = typeof ActivityLevel[keyof typeof ActivityLevel];
 export type AuthInput = {
-  email: Scalars["String"]["input"];
-  password: Scalars["String"]["input"];
+  email: Scalars['String']['input'];
+  password: Scalars['String']['input'];
 };
 
 export type AuthResponse = {
-  __typename?: "AuthResponse";
-  accessToken: Scalars["String"]["output"];
+  __typename?: 'AuthResponse';
+  accessToken: Scalars['String']['output'];
   user: UserModel;
 };
 
 export type BodyMeasurementModel = {
-  __typename?: "BodyMeasurementModel";
+  __typename?: 'BodyMeasurementModel';
   activityLevel?: Maybe<ActivityLevel>;
-  armCm?: Maybe<Scalars["Int"]["output"]>;
-  chestCm?: Maybe<Scalars["Int"]["output"]>;
-  createdAt: Scalars["DateTime"]["output"];
-  goalWeightKg?: Maybe<Scalars["Int"]["output"]>;
-  heightCm?: Maybe<Scalars["Int"]["output"]>;
-  id: Scalars["ID"]["output"];
+  armCm?: Maybe<Scalars['Int']['output']>;
+  chestCm?: Maybe<Scalars['Int']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  goalWeightKg?: Maybe<Scalars['Int']['output']>;
+  heightCm?: Maybe<Scalars['Int']['output']>;
+  id: Scalars['ID']['output'];
   nutritionGoal?: Maybe<NutritionGoal>;
-  thighCm?: Maybe<Scalars["Int"]["output"]>;
-  updatedAt: Scalars["DateTime"]["output"];
-  waistCm?: Maybe<Scalars["Int"]["output"]>;
-  weightCm?: Maybe<Scalars["Int"]["output"]>;
+  thighCm?: Maybe<Scalars['Int']['output']>;
+  updatedAt: Scalars['DateTime']['output'];
+  waistCm?: Maybe<Scalars['Int']['output']>;
+  weightCm?: Maybe<Scalars['Int']['output']>;
 };
 
 export type BodyMeasurementUpdateInput = {
   activityLevel?: InputMaybe<ActivityLevel>;
-  armCm?: InputMaybe<Scalars["Int"]["input"]>;
-  chestCm?: InputMaybe<Scalars["Int"]["input"]>;
-  goalWeightKg?: InputMaybe<Scalars["Int"]["input"]>;
-  heightCm?: InputMaybe<Scalars["Int"]["input"]>;
+  armCm?: InputMaybe<Scalars['Int']['input']>;
+  chestCm?: InputMaybe<Scalars['Int']['input']>;
+  goalWeightKg?: InputMaybe<Scalars['Int']['input']>;
+  heightCm?: InputMaybe<Scalars['Int']['input']>;
   nutritionGoal?: InputMaybe<NutritionGoal>;
-  thighCm?: InputMaybe<Scalars["Int"]["input"]>;
-  waistCm?: InputMaybe<Scalars["Int"]["input"]>;
-  weightCm?: InputMaybe<Scalars["Int"]["input"]>;
+  thighCm?: InputMaybe<Scalars['Int']['input']>;
+  waistCm?: InputMaybe<Scalars['Int']['input']>;
+  weightCm?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type CommentCreateInput = {
-  content: Scalars["String"]["input"];
-  recipeId: Scalars["String"]["input"];
+  content: Scalars['String']['input'];
+  recipeId: Scalars['String']['input'];
 };
 
 export type CommentModel = {
-  __typename?: "CommentModel";
-  content: Scalars["String"]["output"];
-  createdAt: Scalars["DateTime"]["output"];
-  id: Scalars["ID"]["output"];
-  updatedAt: Scalars["DateTime"]["output"];
+  __typename?: 'CommentModel';
+  content: Scalars['String']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type CommentUpdateInput = {
-  content: Scalars["String"]["input"];
+  content: Scalars['String']['input'];
 };
 
 export const Difficulty = {
-  Easy: "EASY",
-  Hard: "HARD",
-  Medium: "MEDIUM"
+  Easy: 'EASY',
+  Hard: 'HARD',
+  Medium: 'MEDIUM'
 } as const;
 
-export type Difficulty = (typeof Difficulty)[keyof typeof Difficulty];
+export type Difficulty = typeof Difficulty[keyof typeof Difficulty];
 export const Gender = {
-  Female: "FEMALE",
-  Male: "MALE"
+  Female: 'FEMALE',
+  Male: 'MALE'
 } as const;
 
-export type Gender = (typeof Gender)[keyof typeof Gender];
+export type Gender = typeof Gender[keyof typeof Gender];
 export type IngredientCreateInput = {
-  content: Scalars["String"]["input"];
+  content: Scalars['String']['input'];
   defaultUnit?: InputMaybe<Unit>;
-  iconUrl: Scalars["String"]["input"];
-  name: Scalars["String"]["input"];
-  price: Scalars["Float"]["input"];
+  iconUrl: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  price: Scalars['Float']['input'];
 };
 
 export type IngredientModel = {
-  __typename?: "IngredientModel";
-  createdAt: Scalars["DateTime"]["output"];
+  __typename?: 'IngredientModel';
+  createdAt: Scalars['DateTime']['output'];
   defaultUnit: Unit;
-  id: Scalars["ID"]["output"];
-  name: Scalars["String"]["output"];
-  updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type Mutation = {
-  __typename?: "Mutation";
+  __typename?: 'Mutation';
   createComment: CommentModel;
   createIngredient: IngredientModel;
   createOrder: OrderModel;
-  deleteComment: Scalars["Boolean"]["output"];
-  deleteIngredientById: Scalars["Boolean"]["output"];
+  deleteComment: Scalars['Boolean']['output'];
+  deleteIngredientById: Scalars['Boolean']['output'];
   login: AuthResponse;
-  logout: Scalars["Boolean"]["output"];
+  logout: Scalars['Boolean']['output'];
   register: AuthResponse;
   toggleLike: ToggleLikeResponse;
   updateComment: CommentModel;
@@ -130,127 +130,138 @@ export type Mutation = {
   updateProfile: UserModel;
 };
 
+
 export type MutationCreateCommentArgs = {
   input: CommentCreateInput;
 };
+
 
 export type MutationCreateIngredientArgs = {
   input: IngredientCreateInput;
 };
 
+
 export type MutationCreateOrderArgs = {
   input: OrderCreateInput;
 };
 
+
 export type MutationDeleteCommentArgs = {
-  commentId: Scalars["String"]["input"];
+  commentId: Scalars['String']['input'];
 };
 
+
 export type MutationDeleteIngredientByIdArgs = {
-  id: Scalars["String"]["input"];
+  id: Scalars['String']['input'];
 };
+
 
 export type MutationLoginArgs = {
   data: AuthInput;
 };
 
+
 export type MutationRegisterArgs = {
   data: AuthInput;
 };
 
+
 export type MutationToggleLikeArgs = {
-  recipeId: Scalars["String"]["input"];
+  recipeId: Scalars['String']['input'];
 };
 
+
 export type MutationUpdateCommentArgs = {
-  commentId: Scalars["String"]["input"];
+  commentId: Scalars['String']['input'];
   input: CommentUpdateInput;
 };
 
+
 export type MutationUpdateIngredientArgs = {
-  id: Scalars["String"]["input"];
+  id: Scalars['String']['input'];
   input: IngredientCreateInput;
 };
+
 
 export type MutationUpdateProfileArgs = {
   data: UserUpdateInput;
 };
 
 export type NutritionFactModel = {
-  __typename?: "NutritionFactModel";
-  carbohydrates: Scalars["Float"]["output"];
-  createdAt: Scalars["DateTime"]["output"];
-  fats: Scalars["Float"]["output"];
-  fiber: Scalars["Float"]["output"];
-  id: Scalars["ID"]["output"];
-  proteins: Scalars["Float"]["output"];
-  updatedAt: Scalars["DateTime"]["output"];
+  __typename?: 'NutritionFactModel';
+  carbohydrates: Scalars['Float']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  fats: Scalars['Float']['output'];
+  fiber: Scalars['Float']['output'];
+  id: Scalars['ID']['output'];
+  proteins: Scalars['Float']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export const NutritionGoal = {
-  Maintenance: "MAINTENANCE",
-  MuscleGain: "MUSCLE_GAIN",
-  WeightLoss: "WEIGHT_LOSS"
+  Maintenance: 'MAINTENANCE',
+  MuscleGain: 'MUSCLE_GAIN',
+  WeightLoss: 'WEIGHT_LOSS'
 } as const;
 
-export type NutritionGoal = (typeof NutritionGoal)[keyof typeof NutritionGoal];
+export type NutritionGoal = typeof NutritionGoal[keyof typeof NutritionGoal];
 export type OrderCreateInput = {
   items: Array<OrderItemInput>;
 };
 
 export type OrderItemInput = {
-  quantity?: Scalars["Float"]["input"];
-  recipeIngredientId: Scalars["ID"]["input"];
+  quantity?: Scalars['Float']['input'];
+  recipeIngredientId: Scalars['ID']['input'];
 };
 
 export type OrderItemModel = {
-  __typename?: "OrderItemModel";
-  createdAt: Scalars["DateTime"]["output"];
-  id: Scalars["ID"]["output"];
-  price: Scalars["String"]["output"];
-  quantity: Scalars["Int"]["output"];
+  __typename?: 'OrderItemModel';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  price: Scalars['String']['output'];
+  quantity: Scalars['Int']['output'];
   recipeIngredient: RecipeIngredientModel;
-  updatedAt: Scalars["DateTime"]["output"];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type OrderModel = {
-  __typename?: "OrderModel";
-  createdAt: Scalars["DateTime"]["output"];
-  id: Scalars["ID"]["output"];
+  __typename?: 'OrderModel';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   items: Array<OrderItemModel>;
-  orderId: Scalars["String"]["output"];
+  orderId: Scalars['String']['output'];
   status: OrderStatus;
-  updatedAt: Scalars["DateTime"]["output"];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export const OrderStatus = {
-  Cancelled: "CANCELLED",
-  Completed: "COMPLETED",
-  Pending: "PENDING",
-  Processing: "PROCESSING"
+  Cancelled: 'CANCELLED',
+  Completed: 'COMPLETED',
+  Pending: 'PENDING',
+  Processing: 'PROCESSING'
 } as const;
 
-export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus];
+export type OrderStatus = typeof OrderStatus[keyof typeof OrderStatus];
 export type ProfileModel = {
-  __typename?: "ProfileModel";
-  age?: Maybe<Scalars["Int"]["output"]>;
-  bio?: Maybe<Scalars["String"]["output"]>;
-  createdAt: Scalars["DateTime"]["output"];
-  fullName?: Maybe<Scalars["String"]["output"]>;
+  __typename?: 'ProfileModel';
+  age?: Maybe<Scalars['Int']['output']>;
+  bio?: Maybe<Scalars['String']['output']>;
+  createdAt: Scalars['DateTime']['output'];
+  fullName?: Maybe<Scalars['String']['output']>;
   gender?: Maybe<Gender>;
-  id: Scalars["ID"]["output"];
-  updatedAt: Scalars["DateTime"]["output"];
+  id: Scalars['ID']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type ProfileUpdateInput = {
-  age?: InputMaybe<Scalars["Int"]["input"]>;
-  bio?: InputMaybe<Scalars["String"]["input"]>;
-  fullName?: InputMaybe<Scalars["String"]["input"]>;
+  age?: InputMaybe<Scalars['Int']['input']>;
+  bio?: InputMaybe<Scalars['String']['input']>;
+  fullName?: InputMaybe<Scalars['String']['input']>;
   gender?: InputMaybe<Gender>;
 };
 
 export type Query = {
-  __typename?: "Query";
+  __typename?: 'Query';
   ingredientById: IngredientModel;
   ingredients: Array<IngredientModel>;
   myOrders: Array<OrderModel>;
@@ -262,122 +273,167 @@ export type Query = {
   users: Array<UserModel>;
 };
 
+
 export type QueryIngredientByIdArgs = {
-  id: Scalars["String"]["input"];
+  id: Scalars['String']['input'];
 };
+
 
 export type QueryRecipeByIdArgs = {
-  id: Scalars["String"]["input"];
+  id: Scalars['String']['input'];
 };
 
+
 export type QueryRecipeBySlugArgs = {
-  slug: Scalars["String"]["input"];
+  slug: Scalars['String']['input'];
 };
 
 export type RecipeIngredientModel = {
-  __typename?: "RecipeIngredientModel";
-  createdAt: Scalars["DateTime"]["output"];
-  id: Scalars["ID"]["output"];
+  __typename?: 'RecipeIngredientModel';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
   ingredient: IngredientModel;
-  name: Scalars["String"]["output"];
-  quantity: Scalars["Float"]["output"];
+  name: Scalars['String']['output'];
+  quantity: Scalars['Float']['output'];
   unit: Unit;
-  updatedAt: Scalars["DateTime"]["output"];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type RecipeModel = {
-  __typename?: "RecipeModel";
+  __typename?: 'RecipeModel';
   author: UserModel;
-  authorId: Scalars["String"]["output"];
-  calories: Scalars["String"]["output"];
-  cookingTime: Scalars["Int"]["output"];
-  createdAt: Scalars["DateTime"]["output"];
-  description: Scalars["String"]["output"];
+  authorId: Scalars['String']['output'];
+  calories: Scalars['String']['output'];
+  cookingTime: Scalars['Int']['output'];
+  createdAt: Scalars['DateTime']['output'];
+  description: Scalars['String']['output'];
   difficulty: Difficulty;
-  id: Scalars["ID"]["output"];
-  likes?: Maybe<Scalars["Int"]["output"]>;
+  id: Scalars['ID']['output'];
+  likes?: Maybe<Scalars['Int']['output']>;
   nutritionFacts?: Maybe<NutritionFactModel>;
   recipeIngredients?: Maybe<Array<RecipeIngredientModel>>;
   recipeSteps?: Maybe<Array<RecipeStepModel>>;
-  slug: Scalars["String"]["output"];
+  slug: Scalars['String']['output'];
   tags?: Maybe<Array<RecipeTagModel>>;
-  title: Scalars["String"]["output"];
-  updatedAt: Scalars["DateTime"]["output"];
+  title: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type RecipeStepModel = {
-  __typename?: "RecipeStepModel";
-  createdAt: Scalars["DateTime"]["output"];
-  description: Scalars["String"]["output"];
-  id: Scalars["ID"]["output"];
-  order: Scalars["Int"]["output"];
-  recipeId: Scalars["String"]["output"];
-  title: Scalars["String"]["output"];
-  updatedAt: Scalars["DateTime"]["output"];
+  __typename?: 'RecipeStepModel';
+  createdAt: Scalars['DateTime']['output'];
+  description: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
+  order: Scalars['Int']['output'];
+  recipeId: Scalars['String']['output'];
+  title: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type RecipeTagModel = {
-  __typename?: "RecipeTagModel";
-  createdAt: Scalars["DateTime"]["output"];
-  id: Scalars["ID"]["output"];
-  name: Scalars["String"]["output"];
-  updatedAt: Scalars["DateTime"]["output"];
+  __typename?: 'RecipeTagModel';
+  createdAt: Scalars['DateTime']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export const Role = {
-  Admin: "ADMIN",
-  User: "USER"
+  Admin: 'ADMIN',
+  User: 'USER'
 } as const;
 
-export type Role = (typeof Role)[keyof typeof Role];
+export type Role = typeof Role[keyof typeof Role];
 export type ToggleLikeResponse = {
-  __typename?: "ToggleLikeResponse";
-  liked: Scalars["Boolean"]["output"];
+  __typename?: 'ToggleLikeResponse';
+  liked: Scalars['Boolean']['output'];
 };
 
 export const Unit = {
-  Cloves: "CLOVES",
-  Gram: "GRAM",
-  Milliliter: "MILLILITER",
-  Piece: "PIECE",
-  Tablespoon: "TABLESPOON",
-  Teaspoon: "TEASPOON"
+  Cloves: 'CLOVES',
+  Gram: 'GRAM',
+  Milliliter: 'MILLILITER',
+  Piece: 'PIECE',
+  Tablespoon: 'TABLESPOON',
+  Teaspoon: 'TEASPOON'
 } as const;
 
-export type Unit = (typeof Unit)[keyof typeof Unit];
+export type Unit = typeof Unit[keyof typeof Unit];
 export type UserModel = {
-  __typename?: "UserModel";
-  createdAt: Scalars["DateTime"]["output"];
-  email: Scalars["String"]["output"];
-  id: Scalars["ID"]["output"];
+  __typename?: 'UserModel';
+  createdAt: Scalars['DateTime']['output'];
+  email: Scalars['String']['output'];
+  id: Scalars['ID']['output'];
   measurements?: Maybe<BodyMeasurementModel>;
   profile?: Maybe<ProfileModel>;
   role: Role;
-  updatedAt: Scalars["DateTime"]["output"];
+  updatedAt: Scalars['DateTime']['output'];
 };
 
 export type UserUpdateInput = {
-  email?: InputMaybe<Scalars["String"]["input"]>;
+  email?: InputMaybe<Scalars['String']['input']>;
   measurements?: InputMaybe<BodyMeasurementUpdateInput>;
-  password?: InputMaybe<Scalars["String"]["input"]>;
+  password?: InputMaybe<Scalars['String']['input']>;
   profile?: InputMaybe<ProfileUpdateInput>;
 };
 
-export type GetProfileQueryVariables = Exact<{ [key: string]: never }>;
+export type LoginMutationVariables = Exact<{
+  data: AuthInput;
+}>;
 
-export type GetProfileQuery = {
-  __typename?: "Query";
-  profile: { __typename?: "UserModel"; id: string; email: string };
-};
 
-export const GetProfileDocument = gql`
-  query GetProfile {
-    profile {
-      id
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'AuthResponse', accessToken: string, user: { __typename?: 'UserModel', email: string } } };
+
+export type GetProfileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetProfileQuery = { __typename?: 'Query', profile: { __typename?: 'UserModel', id: string, email: string } };
+
+
+export const LoginDocument = gql`
+    mutation Login($data: AuthInput!) {
+  login(data: $data) {
+    accessToken
+    user {
       email
     }
   }
-`;
+}
+    `;
+export type LoginMutationFn = Apollo.MutationFunction<LoginMutation, LoginMutationVariables>;
+
+/**
+ * __useLoginMutation__
+ *
+ * To run a mutation, you first call `useLoginMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useLoginMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [loginMutation, { data, loading, error }] = useLoginMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useLoginMutation(baseOptions?: ApolloReactHooks.MutationHookOptions<LoginMutation, LoginMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useMutation<LoginMutation, LoginMutationVariables>(LoginDocument, options);
+      }
+export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
+export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
+export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const GetProfileDocument = gql`
+    query GetProfile {
+  profile {
+    id
+    email
+  }
+}
+    `;
 
 /**
  * __useGetProfileQuery__
@@ -394,29 +450,21 @@ export const GetProfileDocument = gql`
  *   },
  * });
  */
-export function useGetProfileQuery(baseOptions?: Apollo.QueryHookOptions<GetProfileQuery, GetProfileQueryVariables>) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetProfileQuery, GetProfileQueryVariables>(GetProfileDocument, options);
-}
-export function useGetProfileLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<GetProfileQuery, GetProfileQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetProfileQuery, GetProfileQueryVariables>(GetProfileDocument, options);
-}
+export function useGetProfileQuery(baseOptions?: ApolloReactHooks.QueryHookOptions<GetProfileQuery, GetProfileQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<GetProfileQuery, GetProfileQueryVariables>(GetProfileDocument, options);
+      }
+export function useGetProfileLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetProfileQuery, GetProfileQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<GetProfileQuery, GetProfileQueryVariables>(GetProfileDocument, options);
+        }
 // @ts-ignore
-export function useGetProfileSuspenseQuery(
-  baseOptions?: Apollo.SuspenseQueryHookOptions<GetProfileQuery, GetProfileQueryVariables>
-): Apollo.UseSuspenseQueryResult<GetProfileQuery, GetProfileQueryVariables>;
-export function useGetProfileSuspenseQuery(
-  baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetProfileQuery, GetProfileQueryVariables>
-): Apollo.UseSuspenseQueryResult<GetProfileQuery | undefined, GetProfileQueryVariables>;
-export function useGetProfileSuspenseQuery(
-  baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<GetProfileQuery, GetProfileQueryVariables>
-) {
-  const options = baseOptions === Apollo.skipToken ? baseOptions : { ...defaultOptions, ...baseOptions };
-  return Apollo.useSuspenseQuery<GetProfileQuery, GetProfileQueryVariables>(GetProfileDocument, options);
-}
+export function useGetProfileSuspenseQuery(baseOptions?: ApolloReactHooks.SuspenseQueryHookOptions<GetProfileQuery, GetProfileQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<GetProfileQuery, GetProfileQueryVariables>;
+export function useGetProfileSuspenseQuery(baseOptions?: ApolloReactHooks.SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<GetProfileQuery, GetProfileQueryVariables>): ApolloReactHooks.UseSuspenseQueryResult<GetProfileQuery | undefined, GetProfileQueryVariables>;
+export function useGetProfileSuspenseQuery(baseOptions?: ApolloReactHooks.SkipToken | ApolloReactHooks.SuspenseQueryHookOptions<GetProfileQuery, GetProfileQueryVariables>) {
+          const options = baseOptions === ApolloReactHooks.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useSuspenseQuery<GetProfileQuery, GetProfileQueryVariables>(GetProfileDocument, options);
+        }
 export type GetProfileQueryHookResult = ReturnType<typeof useGetProfileQuery>;
 export type GetProfileLazyQueryHookResult = ReturnType<typeof useGetProfileLazyQuery>;
 export type GetProfileSuspenseQueryHookResult = ReturnType<typeof useGetProfileSuspenseQuery>;
