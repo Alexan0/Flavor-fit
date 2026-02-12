@@ -1,0 +1,40 @@
+{
+  "useTabs": false,
+  "semi": true,
+  "tabWidth": 2,
+  "singleQuote": false,
+  "trailingComma": "none",
+  "arrowParens": "always",
+  "singleAttributePerLine": false,
+  "printWidth": 120,
+  "proseWrap": "always",
+  "bracketSpacing": true,
+  "importOrder": [
+    "^\\./globals\\.css$",
+
+    "<THIRD_PARTY_MODULES>",
+
+    "^@/app/(.*)$",
+    "^@/features/(.*)$",
+    "^@/shared/ui/(.*)$",
+    "^@/shared/config/(.*)$",
+    "^@/shared/constants/(.*)$",
+    "^@/shared/graphql/(.*)$",
+    "^@/shared/hooks/(.*)$",
+    "^@/shared/types/(.*)$",
+    "^@/shared/lib/(.*)$",
+    "^@/shared/utils/(.*)$",
+    "^@/shared/api/(.*)$",
+    "^@/__generated__/(.*)$",
+
+    "^@/",
+
+    "^[.]{2}/",
+    "^[.]/",
+
+    ".*\\.scss$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]
+}
