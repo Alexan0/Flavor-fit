@@ -9,12 +9,12 @@ async function bootstrap() {
   app.use(cookieParser());
 
   app.enableCors({
-    origin: ['http://localhost: 3000'],
+    origin: ['http://localhost:3000'],
     credentials: true,
   });
 
   app.disable('x-power-b');
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(process.env.PORT ?? 4200);
 }
 bootstrap();

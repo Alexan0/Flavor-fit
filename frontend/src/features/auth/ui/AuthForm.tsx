@@ -1,14 +1,21 @@
 "use client";
 
 import { useMutation } from "@apollo/client/react";
-import Link from "next/link";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
 
-import { PAGES } from "@/shared/config/page.config";
-
 import { LoginDocument, RegisterDocument } from "@/__generated__/graphql";
+
+import { cn } from "@/shared/utils";
+
+import type { IAuthFormData } from "../types/auth-form.types";
+
+import { AuthChangeTypeForm } from "./AuthChangeTypeForm";
+import { authFormSchema } from "./schema";
 
 interface Props {
   type: "login" | "register";
@@ -16,37 +23,77 @@ interface Props {
 
 export function AuthForm({ type }: Props) {
   const isLogin = type === "login";
-  const [login, { data, loading, error }] = useMutation(isLogin ? LoginDocument : RegisterDocument);
+  const {
+    handleSubmit,
+    control,
+    formState: { isValid, errors }
+  } = useForm<IAuthFormData>({
+    mode: "onChange",
+    defaultValues: { email: "", password: "" },
+    resolver: zodResolver(authFormSchema)
+  });
+
+  const [auth, { loading }] = useMutation(isLogin ? LoginDocument : RegisterDocument, {
+    onCompleted: () => {
+      toast.success(isLogin ? "Logged in successfully" : "Registered successfully", {
+        id: "auth-success",
+        duration: 3000
+      });
+    },
+    onError: (error) => {
+      toast.error(error.message, {
+        id: "auth-error",
+        duration: 3000
+      });
+    }
+  });
+
+  const onSubmit = async (data: IAuthFormData) => {
+    await auth({
+      variables: { data }
+    });
+  };
 
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="w-sm rounded-lg bg-linear-to-tr from-[#8062ee] to-[#a088fc] p-5 text-white shadow-lg">
         <h1 className="mb-4 text-center text-3xl font-bold">{isLogin ? "Login" : "Register"}</h1>
-        <form className="space-y-3">
-          <Input type="email" name="email" placeholder="Email" required />
+        <form className="space-y-3" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+          <Controller
+            control={control}
+            name="email"
+            render={({ field }) => (
+              <Input
+                {...field}
+                type="email"
+                placeholder="Enter email:"
+                className={cn("placeholder:text-gray-300", errors.email && "border-red-400")}
+                errorMessage={errors.email?.message}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
+            name="password"
+            render={({ field }) => (
+              <Input
+                {...field}
+                type="password"
+                placeholder="Enter password:"
+                className={cn("placeholder:text-gray-300", errors.password && "border-red-400")}
+                errorMessage={errors.password?.message}
+              />
+            )}
+          />
+
           <div className="text-center">
-            <Button type="submit" disabled={loading}>
+            <Button type="submit" disabled={!isValid || loading} variant="accent">
               {isLogin ? "Login" : "Register"}
             </Button>
           </div>
         </form>
-        <div className="mt-2 text-center">
-          {isLogin ? (
-            <div>
-              Don&apos;t have an account?{" "}
-              <Link href={PAGES.REGISTER} className="underline">
-                Register
-              </Link>
-            </div>
-          ) : (
-            <div>
-              Already have an account?{" "}
-              <Link href={PAGES.LOGIN} className="underline">
-                Login
-              </Link>
-            </div>
-          )}
-        </div>
+        <AuthChangeTypeForm isLogin={isLogin} />
       </div>
     </div>
   );

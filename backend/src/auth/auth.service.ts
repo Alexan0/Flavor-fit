@@ -26,31 +26,27 @@ export class AuthService {
   REFRESH_TOKEN_NAME = 'refreshToken';
 
   async register(input: AuthInput) {
-    try {
-      const email = input.email.toLowerCase();
-      const existingUser = await this.prisma.user.findFirst({
-        where: {
-          email: { equals: email, mode: 'insensitive' },
-        },
-      });
+    const email = input.email.toLowerCase();
+    const existingUser = await this.prisma.user.findFirst({
+      where: {
+        email: { equals: email, mode: 'insensitive' },
+      },
+    });
 
-      if (existingUser) {
-        throw new BadRequestException('User with this email already exist');
-      }
-
-      const user = await this.prisma.user.create({
-        data: {
-          ...input,
-          password: await hash(input.password),
-        },
-      });
-
-      const tokens = this.generateTokens({ id: user.id, role: user.role });
-
-      return { user, ...tokens };
-    } catch (error) {
-      throw new BadRequestException('Registration failed ' + error);
+    if (existingUser) {
+      throw new BadRequestException('User with this email already exist');
     }
+
+    const user = await this.prisma.user.create({
+      data: {
+        ...input,
+        password: await hash(input.password),
+      },
+    });
+
+    const tokens = this.generateTokens({ id: user.id, role: user.role });
+
+    return { user, ...tokens };
   }
 
   async login(input: AuthInput) {

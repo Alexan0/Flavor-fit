@@ -22,7 +22,7 @@ export const simpleApolloClient = new ApolloClient({
   }
 });
 
-const serverleApolloClient = new ApolloClient({
+const serverApolloClient = new ApolloClient({
   link: ApolloLink.from([httpLink]),
   cache: new InMemoryCache(),
   devtools: {
@@ -37,5 +37,5 @@ const serverleApolloClient = new ApolloClient({
 });
 
 export function getApolloClient() {
-  return IS_CLIENT ? clientApolloClient : serverleApolloClient;
+  return IS_CLIENT ? clientApolloClient : serverApolloClient;
 }
