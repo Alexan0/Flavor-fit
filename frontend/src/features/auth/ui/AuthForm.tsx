@@ -27,7 +27,7 @@ export function AuthForm({ type }: Props) {
     control,
     formState: { isValid, errors }
   } = useForm<IAuthFormData>({
-    mode: "onBlur",
+    mode: "onChange",
     defaultValues: { email: "", password: "" },
     resolver: zodResolver(authFormSchema)
   });
