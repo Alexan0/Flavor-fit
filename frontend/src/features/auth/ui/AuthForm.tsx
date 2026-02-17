@@ -1,21 +1,20 @@
 "use client";
 
-import { useMutation } from "@apollo/client/react";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import Image from "next/image";
+import { useMutation } from "@apollo/client/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
-
-import { LoginDocument, RegisterDocument } from "@/__generated__/graphql";
-
-import { cn } from "@/shared/utils";
 
 import type { IAuthFormData } from "../types/auth-form.types";
 
 import { AuthChangeTypeForm } from "./AuthChangeTypeForm";
 import { authFormSchema } from "./schema";
+
+import { LoginDocument, RegisterDocument } from "@/__generated__/graphql";
 
 interface Props {
   type: "login" | "register";
@@ -28,7 +27,7 @@ export function AuthForm({ type }: Props) {
     control,
     formState: { isValid, errors }
   } = useForm<IAuthFormData>({
-    mode: "onChange",
+    mode: "onBlur",
     defaultValues: { email: "", password: "" },
     resolver: zodResolver(authFormSchema)
   });
@@ -56,8 +55,8 @@ export function AuthForm({ type }: Props) {
 
   return (
     <div className="flex h-screen items-center justify-center">
-      <div className="w-sm rounded-lg bg-linear-to-tr from-[#8062ee] to-[#a088fc] p-5 text-white shadow-lg">
-        <h1 className="mb-4 text-center text-3xl font-bold">{isLogin ? "Login" : "Register"}</h1>
+      <div className="relative w-sm rounded-lg bg-linear-to-tr from-[#8062ee] to-[#a088fc] p-5 text-white shadow-lg">
+        <h1 className="mb-6 text-center text-4xl font-bold">{isLogin ? "Login" : "Register"}</h1>
         <form className="space-y-3" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
           <Controller
             control={control}
@@ -67,12 +66,11 @@ export function AuthForm({ type }: Props) {
                 {...field}
                 type="email"
                 placeholder="Enter email:"
-                className={cn("placeholder:text-gray-300", errors.email && "border-red-400")}
                 errorMessage={errors.email?.message}
+                aria-invalid={!!errors.email}
               />
             )}
           />
-
           <Controller
             control={control}
             name="password"
@@ -81,17 +79,24 @@ export function AuthForm({ type }: Props) {
                 {...field}
                 type="password"
                 placeholder="Enter password:"
-                className={cn("placeholder:text-gray-300", errors.password && "border-red-400")}
                 errorMessage={errors.password?.message}
+                aria-invalid={!!errors.password}
               />
             )}
           />
-
           <div className="text-center">
             <Button type="submit" disabled={!isValid || loading} variant="accent">
               {isLogin ? "Login" : "Register"}
             </Button>
           </div>
+          <Image
+            width={160}
+            height={160}
+            src="/images/salad.png"
+            alt="salad"
+            className="absolute -bottom-14 -left-14 -rotate-12 select-none"
+            draggable={false}
+          />
         </form>
         <AuthChangeTypeForm isLogin={isLogin} />
       </div>

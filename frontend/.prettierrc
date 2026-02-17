@@ -16,7 +16,7 @@
 
     "^@/app/(.*)$",
     "^@/features/(.*)$",
-     "^@/shared/components/(.*)$",
+    "^@/shared/components/(.*)$",
     "^@/shared/components/ui/(.*)$",
     "^@/shared/config/(.*)$",
     "^@/shared/constants/(.*)$",
@@ -37,5 +37,5 @@
   ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true,
-  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-tailwindcss"]
+  "plugins": ["prettier-plugin-tailwindcss"]
 }

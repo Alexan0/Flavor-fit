@@ -1,8 +1,8 @@
 "use client";
 
-import { ApolloProvider } from "@apollo/client/react";
 import type { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
+import { ApolloProvider } from "@apollo/client/react";
 
 import { getApolloClient } from "@/shared/lib/apollo/apollo-client";
 
