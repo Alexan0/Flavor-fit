@@ -1,6 +1,7 @@
 class PageConfig {
   readonly HOME = "/";
   readonly DASHBOARD = "/dashboard";
+  readonly PROFILE = "/profile";
   readonly MEAL_PLANS = this.DASHBOARD + "/meal-plans";
   readonly NUTRITION = this.DASHBOARD + "/nutrition";
   readonly ANALYTICS = this.DASHBOARD + "/analytics";
