@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Bell, Headset } from "lucide-react";
 
+import { useAuth } from "@/features/auth/hooks/useAuth";
+
 import { NavMenu } from "@/shared/components/custom-ui/nav-menu/NavMenu";
 import { UserInfo } from "@/shared/components/custom-ui/user-info/UserInfo";
 import { Button } from "@/shared/components/ui/button";
@@ -11,6 +13,7 @@ import { PAGES } from "@/shared/config/page.config";
 import { HEADER_MENU } from "./nav.data";
 
 export function Header() {
+  const { user } = useAuth();
   return (
     <header className="flex items-center justify-between p-5">
       <div className="flex items-center gap-8">
@@ -29,7 +32,7 @@ export function Header() {
         <Button variant="soft" size="icon" className="mr-6 rounded-full">
           <Bell className="size-5" />
         </Button>
-        <UserInfo avatarUrl="https://avatars.githubusercontent.com/u/0?v=1" name="Alex" email="test@test.ru" />
+        <UserInfo avatarUrl="https://avatars.githubusercontent.com/u/0?v=1" name="Alex" email={user?.email || ""} />
       </div>
     </header>
   );

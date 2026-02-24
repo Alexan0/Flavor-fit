@@ -4,6 +4,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { User } from 'prisma/generated/prisma/client';
 import { PrismaService } from '@prisma/prisma.service';
+import { type Request } from 'express';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -12,7 +13,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     private prisma: PrismaService,
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (request: Request) =>
+          (request?.cookies?.accessToken as string | null) ?? null,
+      ]),
       secretOrKey: configService.getOrThrow<string>('JWT_SECRET'),
       ignoreExpiration: true,
     });

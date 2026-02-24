@@ -3,7 +3,7 @@
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Image from "next/image";
-import { useMutation } from "@apollo/client/react";
+import { useApolloClient, useMutation } from "@apollo/client/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/shared/components/ui/button";
@@ -14,7 +14,16 @@ import type { IAuthFormData } from "../types/auth-form.types";
 import { AuthChangeTypeForm } from "./AuthChangeTypeForm";
 import { authFormSchema } from "./schema";
 
-import { LoginDocument, RegisterDocument } from "@/__generated__/graphql";
+import {
+  LoginDocument,
+  type LoginMutation,
+  type LoginMutationVariables,
+  ProfileDocument,
+  type ProfileQuery,
+  RegisterDocument,
+  type RegisterMutation,
+  type RegisterMutationVariables
+} from "@/__generated__/graphql";
 
 interface Props {
   type: "login" | "register";
@@ -22,6 +31,7 @@ interface Props {
 
 export function AuthForm({ type }: Props) {
   const isLogin = type === "login";
+  const client = useApolloClient();
   const {
     handleSubmit,
     control,
@@ -32,12 +42,23 @@ export function AuthForm({ type }: Props) {
     resolver: zodResolver(authFormSchema)
   });
 
-  const [auth, { loading }] = useMutation(isLogin ? LoginDocument : RegisterDocument, {
-    onCompleted: () => {
+  const [auth, { loading }] = useMutation<
+    LoginMutation | RegisterMutation,
+    LoginMutationVariables | RegisterMutationVariables
+  >(isLogin ? LoginDocument : RegisterDocument, {
+    onCompleted: (data) => {
+      const authData = "login" in data ? data.login : data.register;
+
+      client.writeQuery({
+        query: ProfileDocument,
+        data: { profile: authData.user as ProfileQuery["profile"] }
+      });
+
       toast.success(isLogin ? "Logged in successfully" : "Registered successfully", {
         id: "auth-success",
         duration: 3000
       });
+      client.resetStore();
     },
     onError: (error) => {
       toast.error(error.message, {
