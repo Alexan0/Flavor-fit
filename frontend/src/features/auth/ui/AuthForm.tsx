@@ -3,11 +3,13 @@
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useApolloClient, useMutation } from "@apollo/client/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
+import { PAGES } from "@/shared/config/page.config";
 
 import type { IAuthFormData } from "../types/auth-form.types";
 
@@ -32,6 +34,8 @@ interface Props {
 export function AuthForm({ type }: Props) {
   const isLogin = type === "login";
   const client = useApolloClient();
+  const router = useRouter();
+
   const {
     handleSubmit,
     control,
@@ -58,7 +62,8 @@ export function AuthForm({ type }: Props) {
         id: "auth-success",
         duration: 3000
       });
-      client.resetStore();
+
+      router.replace(PAGES.DASHBOARD);
     },
     onError: (error) => {
       toast.error(error.message, {

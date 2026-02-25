@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Bell, Headset } from "lucide-react";
 
 import { useAuth } from "@/features/auth/hooks/useAuth";
+import { Logout } from "@/features/auth/ui/Logout";
 
 import { NavMenu } from "@/shared/components/custom-ui/nav-menu/NavMenu";
 import { UserInfo } from "@/shared/components/custom-ui/user-info/UserInfo";
@@ -29,9 +30,10 @@ export function Header() {
         <Button variant="soft" size="icon" className="mr-2 rounded-full">
           <Headset className="size-5" />
         </Button>
-        <Button variant="soft" size="icon" className="mr-6 rounded-full">
+        <Button variant="soft" size="icon" className="mr-2 rounded-full">
           <Bell className="size-5" />
         </Button>
+        <Logout />
         <UserInfo avatarUrl="https://avatars.githubusercontent.com/u/0?v=1" name="Alex" email={user?.email || ""} />
       </div>
     </header>
