@@ -1,6 +1,5 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { JwtService } from '@nestjs/jwt';
 import { EmailService } from '@email/email.service';
 import { PrismaService } from '@prisma/prisma.service';
 import { UsersService } from '@users/users.service';
@@ -13,7 +12,6 @@ export class AuthAccountService {
   constructor(
     private prisma: PrismaService,
     private configService: ConfigService,
-    private jwt: JwtService,
     private usersService: UsersService,
     private emailService: EmailService,
   ) {}

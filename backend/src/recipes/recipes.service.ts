@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '@prisma/prisma.service';
 import type { RecipesQueryInput } from './inputs/get-recipes-query.input';
 import { Prisma } from 'prisma/generated/prisma/client';
+import { SortOrder } from './recipes.enums';
 
 @Injectable()
 export class RecipesService {
@@ -64,12 +65,12 @@ export class RecipesService {
     return recipe;
   }
 
-  private getOrderBy(sort?: string) {
+  private getOrderBy(sort?: SortOrder) {
     switch (sort) {
-      case 'recommended':
+      case SortOrder.RECOMMENDED:
         return { likes: { _count: Prisma.SortOrder.desc } };
 
-      case 'popular':
+      case SortOrder.POPULAR:
         return { views: Prisma.SortOrder.desc };
 
       default:
