@@ -32,6 +32,7 @@
       "@ingredients/*": ["src/recipes/ingredients/*"],
       "@reaction/*": ["src/recipes/reaction/*"],
       "@utils/*": ["src/utils/*"]
-    }
+    },
+    "jsx": "react-jsx"
   }
 }
