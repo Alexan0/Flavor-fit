@@ -466,10 +466,6 @@ export type NullableEnumGenderFieldUpdateOperationsInput = {
   set?: $Enums.Gender | null
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type ProfileCreateWithoutUserInput = {
   id?: string
   fullName: string

@@ -1,6 +1,6 @@
 import { ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigService } from '@nestjs/config';
-import { DEVELOPMENT } from '@src/constants/environment';
+import { DEVELOPMENT } from '@constants/environment';
 import { IGqlContext } from 'src/app.interface';
 
 export const getGraphQLconfig = (

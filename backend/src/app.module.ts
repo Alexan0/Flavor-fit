@@ -30,7 +30,7 @@ import { EmailModule } from './email/email.module';
       inject: [ConfigService],
     }),
     ResendModule.forRootAsync({
-      imports: [ConfigService],
+      imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         apiKey: configService.getOrThrow<string>('RESEND_API_KEY'),
       }),

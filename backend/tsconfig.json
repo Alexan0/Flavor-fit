@@ -29,9 +29,11 @@
       "@orders/*": ["src/orders/*"],
       "@config/*": ["src/config/*"],
       "@auth/*": ["src/auth/*"],
+      "@email/*": ["src/email/*"],
       "@ingredients/*": ["src/recipes/ingredients/*"],
       "@reaction/*": ["src/recipes/reaction/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@constants/*": ["src/constants/*"]
     },
     "jsx": "react-jsx"
   }

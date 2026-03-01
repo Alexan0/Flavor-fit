@@ -14,10 +14,7 @@ interface Props {
   appName?: string;
 }
 
-export default function VerificationEmail({
-  url,
-  appName = 'Flavor-fit',
-}: Props) {
+export function VerificationEmail({ url, appName = 'Flavor-fit' }: Props) {
   return (
     <Html>
       <Head />

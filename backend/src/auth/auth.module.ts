@@ -8,6 +8,9 @@ import { getJwtConfig } from '@config/jwt.config';
 import { UsersModule } from '@users/users.module';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
+import { EmailModule } from '@email/email.module';
+import { AuthAccountService } from './auth-account.service';
+import { AuthTokenService } from './auth-token.service';
 
 @Module({
   imports: [
@@ -19,7 +22,14 @@ import { PassportModule } from '@nestjs/passport';
       useFactory: getJwtConfig,
     }),
     UsersModule,
+    EmailModule,
   ],
-  providers: [JwtStrategy, AuthService, AuthResolver],
+  providers: [
+    JwtStrategy,
+    AuthService,
+    AuthTokenService,
+    AuthAccountService,
+    AuthResolver,
+  ],
 })
 export class AuthModule {}

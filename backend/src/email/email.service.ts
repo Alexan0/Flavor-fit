@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { render } from '@react-email/render';
-import type { ResendService } from 'nestjs-resend';
-import VerificationEmail from './templates/VerificationEmail';
-import ResetPassword from './templates/ResetPassword';
+import { ResendService } from 'nestjs-resend';
+import { VerificationEmail } from './templates/VerificationEmail';
+import { ResetPassword } from './templates/ResetPassword';
 
 @Injectable()
 export class EmailService {
@@ -10,7 +10,7 @@ export class EmailService {
 
   private async send(to: string, subject: string, html: string) {
     return this.resend.send({
-      from: 'Flavor-fit <>',
+      from: 'onboarding@resend.dev',
       to,
       subject,
       html,

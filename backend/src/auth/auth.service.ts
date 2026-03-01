@@ -4,29 +4,24 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '@prisma/prisma.service';
 import { AuthInput } from './inputs/auth.input';
 import { hash, verify } from 'argon2';
-import { TAuthTokenData } from './auth.interface';
 import { UsersService } from '@users/users.service';
-import type { Response } from 'express';
-import { isDev } from '@utils/is-dev.util';
+import { generateToken } from '@utils/generate-token.util';
+import { CLIENT_URL } from '@constants/environment';
+import { EmailService } from '@email/email.service';
+import { AuthTokenService } from './auth-token.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     private prisma: PrismaService,
     private configService: ConfigService,
-    private jwt: JwtService,
     private usersService: UsersService,
+    private emailService: EmailService,
+    private authTokenService: AuthTokenService,
   ) {}
-
-  private readonly EXPIRE_HOURS_ACCESS_TOKEN = 1;
-  readonly ACCESS_TOKEN_NAME = 'accessToken' as const;
-
-  private readonly EXPIRE_DAYS_REFRESH_TOKEN = 3;
-  readonly REFRESH_TOKEN_NAME = 'refreshToken' as const;
 
   async register(input: AuthInput) {
     const email = input.email.toLowerCase();
@@ -40,40 +35,31 @@ export class AuthService {
       throw new BadRequestException('User with this email already exist');
     }
 
+    const emailVerificationToken = generateToken();
+
     const user = await this.prisma.user.create({
       data: {
         ...input,
         password: await hash(input.password),
+        emailVerificationToken,
+        emailVerificationTokenExpiresAt: new Date(Date.now() + 1000 * 60 * 60),
       },
     });
 
-    const tokens = this.generateTokens({ id: user.id, role: user.role });
+    const tokens = this.authTokenService.generateTokens({
+      id: user.id,
+      role: user.role,
+    });
+    const verificationUrl = `${this.configService.get(CLIENT_URL as string)}/verify-email?token=${emailVerificationToken}`;
+
+    await this.emailService.sendVerificationEmail(user.email, verificationUrl);
 
     return { user, ...tokens };
   }
 
   async login(input: AuthInput) {
     const user = await this.validateUser(input);
-    const tokens = this.generateTokens({ id: user.id, role: user.role });
-
-    return { user, ...tokens };
-  }
-
-  async getNewTokens(refreshToken: string) {
-    const result =
-      await this.jwt.verifyAsync<Pick<TAuthTokenData, 'id'>>(refreshToken);
-
-    if (!result) {
-      throw new BadRequestException('Invalid refresh token');
-    }
-
-    const user = await this.usersService.getById(result.id);
-
-    if (!user) {
-      throw new BadRequestException('User not found');
-    }
-
-    const tokens = this.generateTokens({
+    const tokens = this.authTokenService.generateTokens({
       id: user.id,
       role: user.role,
     });
@@ -96,63 +82,5 @@ export class AuthService {
     }
 
     return user;
-  }
-
-  private generateTokens(data: TAuthTokenData) {
-    const accessToken = this.jwt.sign(data, {
-      expiresIn: '1h',
-    });
-
-    const refreshToken = this.jwt.sign(
-      { id: data.id },
-      {
-        expiresIn: `${this.EXPIRE_DAYS_REFRESH_TOKEN}d`,
-      },
-    );
-
-    return { accessToken, refreshToken };
-  }
-
-  toggleAccessTokenCookie(res: Response, token: string | null) {
-    this.toggleAuthTokenCookie({
-      response: res,
-      name: this.ACCESS_TOKEN_NAME,
-      token,
-      expires: new Date(Date.now() + this.EXPIRE_HOURS_ACCESS_TOKEN * 3600000),
-    });
-  }
-
-  toggleRefreshTokenCookie(res: Response, token: string | null) {
-    this.toggleAuthTokenCookie({
-      response: res,
-      name: this.REFRESH_TOKEN_NAME,
-      token,
-      expires: new Date(
-        Date.now() + this.EXPIRE_DAYS_REFRESH_TOKEN * 24 * 60 * 60 * 1000,
-      ),
-    });
-  }
-
-  private toggleAuthTokenCookie({
-    response,
-    name,
-    token,
-    expires,
-  }: {
-    response: Response;
-    name: AuthService['ACCESS_TOKEN_NAME'] | AuthService['REFRESH_TOKEN_NAME'];
-    token: string | null;
-    expires: Date;
-  }) {
-    const isRemoveCookie = !token;
-    const expiresIn = isRemoveCookie ? new Date(0) : expires;
-
-    return response.cookie(name, token, {
-      httpOnly: true,
-      domain: 'localhost',
-      secure: true,
-      sameSite: isDev(this.configService) ? 'none' : 'strict',
-      expires: expiresIn,
-    });
   }
 }

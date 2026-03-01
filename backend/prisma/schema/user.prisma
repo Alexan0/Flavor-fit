@@ -4,6 +4,13 @@ model User {
 	password String
 	role Role @default(USER)
 
+	isEmailVerified Boolean @default(false) @map("is_email_verified")
+	emailVerificationToken String? @map("email_verification_token")
+	emailVerificationTokenExpiresAt DateTime? @map("email_verification_token_expires_at")
+
+	resetPasswordToken String? @map("reset_password_token")
+	resetPasswordTokenExpiresAt DateTime? @map("reset_password_token_expires_at")
+
 	profile Profile?
 	measurements BodyMeasurement?
 	recipes Recipe[]

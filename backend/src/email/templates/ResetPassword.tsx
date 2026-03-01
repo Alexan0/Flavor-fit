@@ -14,7 +14,7 @@ interface Props {
   appName?: string;
 }
 
-export default function ResetPassword({ url, appName = 'Flavor-fit' }: Props) {
+export function ResetPassword({ url, appName = 'Flavor-fit' }: Props) {
   return (
     <Html>
       <Head />
