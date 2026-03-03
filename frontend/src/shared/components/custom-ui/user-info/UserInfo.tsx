@@ -19,7 +19,8 @@ export function UserInfo({ avatarUrl = "", name, email }: Props) {
         <Link href={PAGES.PROFILE} className="font-medium">
           {name}
         </Link>
-        <p className="test-xs opacity-60">{email}</p>
+
+        <p className="test-xs max-w-62.5 overflow-hidden text-ellipsis opacity-60">{email}</p>
       </div>
     </div>
   );

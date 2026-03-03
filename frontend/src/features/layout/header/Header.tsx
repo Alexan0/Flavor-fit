@@ -26,7 +26,7 @@ export function Header() {
         </Link>
         <NavMenu menu={HEADER_MENU} />
       </div>
-      <div className="flex items-center">
+      <div className="relative flex items-center">
         <Button variant="soft" size="icon" className="mr-2 rounded-full">
           <Headset className="size-5" />
         </Button>
@@ -35,6 +35,7 @@ export function Header() {
         </Button>
         <Logout />
         <UserInfo avatarUrl="https://avatars.githubusercontent.com/u/0?v=1" name="Alex" email={user?.email || ""} />
+        {!user?.isEmailVerified && <p className="absolute -top-4 left-0 text-sm text-red-400">Email not confirmed!</p>}
       </div>
     </header>
   );

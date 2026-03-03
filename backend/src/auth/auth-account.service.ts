@@ -4,7 +4,6 @@ import { EmailService } from '@email/email.service';
 import { PrismaService } from '@prisma/prisma.service';
 import { UsersService } from '@users/users.service';
 import { generateToken } from '@src/utils/generate-token.util';
-import { CLIENT_URL } from '@src/constants/environment';
 import { hash } from 'argon2';
 
 @Injectable()
@@ -59,7 +58,7 @@ export class AuthAccountService {
       },
     });
 
-    const resetUrl = `${this.configService.get(CLIENT_URL as string)}/reset-password?token=${resetToken}`;
+    const resetUrl = `${this.configService.get('CLIENT_URL' as string)}/reset-password?token=${resetToken}`;
 
     await this.emailService.sendResetPasswordEmail(user.email, resetUrl);
 

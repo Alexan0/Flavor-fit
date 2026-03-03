@@ -11,10 +11,17 @@ export function AuthChangeTypeForm({ isLogin }: Props) {
     <div className="mt-2 text-center text-sm">
       {isLogin ? (
         <div>
-          Don&apos;t have an account?{" "}
-          <Link href={PAGES.REGISTER} className="link-underline">
-            Register
-          </Link>
+          <div>
+            Don&apos;t have an account?{" "}
+            <Link href={PAGES.REGISTER} className="link-underline">
+              Register
+            </Link>
+          </div>
+          <div>
+            <Link href={PAGES.FORGOT_PASSWORD} className="link-underline text-xs">
+              Forgot password?
+            </Link>
+          </div>
         </div>
       ) : (
         <div>

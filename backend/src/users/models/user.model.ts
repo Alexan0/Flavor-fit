@@ -14,6 +14,9 @@ export class UserModel {
   @Field(() => Role, { defaultValue: 'USER', nullable: false })
   role!: `${Role}`;
 
+  @Field(() => Boolean)
+  isEmailVerified!: boolean;
+
   @Field(() => ProfileModel, { nullable: true })
   profile?: ProfileModel | null;
 

@@ -66,7 +66,7 @@ export class AuthResolver {
   }
 
   @Mutation(() => Boolean)
-  async verifyEmail(@Args('token', { type: () => String }) token: string) {
+  async verifyEmail(@Args('token') token: string) {
     return this.authAccountService.verifyEmail(token);
   }
 

@@ -15,6 +15,7 @@
     "@apollo/client": "^4.1.4",
     "@graphql-codegen/cli": "^6.1.1",
     "@hookform/resolvers": "^5.2.2",
+    "@marsidev/react-turnstile": "^1.4.2",
     "@parcel/watcher": "^2.5.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

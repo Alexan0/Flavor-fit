@@ -17,15 +17,19 @@ type Documents = {
     "query GetNewTokens {\n  newTokens {\n    user {\n      id\n    }\n  }\n}": typeof types.GetNewTokensDocument,
     "mutation Login($data: AuthInput!) {\n  login(data: $data) {\n    user {\n      email\n    }\n  }\n}": typeof types.LoginDocument,
     "mutation Logout {\n  logout\n}": typeof types.LogoutDocument,
-    "query Profile {\n  profile {\n    id\n    email\n    role\n  }\n}": typeof types.ProfileDocument,
+    "query Profile {\n  profile {\n    id\n    email\n    role\n    isEmailVerified\n  }\n}": typeof types.ProfileDocument,
     "mutation Register($data: AuthInput!) {\n  register(data: $data) {\n    user {\n      email\n    }\n  }\n}": typeof types.RegisterDocument,
+    "mutation RequestPasswordReset($data: RequestPasswordResetInput!) {\n  requestPasswordReset(data: $data)\n}": typeof types.RequestPasswordResetDocument,
+    "mutation VerifyEmail($token: String!) {\n  verifyEmail(token: $token)\n}": typeof types.VerifyEmailDocument,
 };
 const documents: Documents = {
     "query GetNewTokens {\n  newTokens {\n    user {\n      id\n    }\n  }\n}": types.GetNewTokensDocument,
     "mutation Login($data: AuthInput!) {\n  login(data: $data) {\n    user {\n      email\n    }\n  }\n}": types.LoginDocument,
     "mutation Logout {\n  logout\n}": types.LogoutDocument,
-    "query Profile {\n  profile {\n    id\n    email\n    role\n  }\n}": types.ProfileDocument,
+    "query Profile {\n  profile {\n    id\n    email\n    role\n    isEmailVerified\n  }\n}": types.ProfileDocument,
     "mutation Register($data: AuthInput!) {\n  register(data: $data) {\n    user {\n      email\n    }\n  }\n}": types.RegisterDocument,
+    "mutation RequestPasswordReset($data: RequestPasswordResetInput!) {\n  requestPasswordReset(data: $data)\n}": types.RequestPasswordResetDocument,
+    "mutation VerifyEmail($token: String!) {\n  verifyEmail(token: $token)\n}": types.VerifyEmailDocument,
 };
 
 /**
@@ -57,11 +61,19 @@ export function graphql(source: "mutation Logout {\n  logout\n}"): (typeof docum
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query Profile {\n  profile {\n    id\n    email\n    role\n  }\n}"): (typeof documents)["query Profile {\n  profile {\n    id\n    email\n    role\n  }\n}"];
+export function graphql(source: "query Profile {\n  profile {\n    id\n    email\n    role\n    isEmailVerified\n  }\n}"): (typeof documents)["query Profile {\n  profile {\n    id\n    email\n    role\n    isEmailVerified\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation Register($data: AuthInput!) {\n  register(data: $data) {\n    user {\n      email\n    }\n  }\n}"): (typeof documents)["mutation Register($data: AuthInput!) {\n  register(data: $data) {\n    user {\n      email\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation RequestPasswordReset($data: RequestPasswordResetInput!) {\n  requestPasswordReset(data: $data)\n}"): (typeof documents)["mutation RequestPasswordReset($data: RequestPasswordResetInput!) {\n  requestPasswordReset(data: $data)\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation VerifyEmail($token: String!) {\n  verifyEmail(token: $token)\n}"): (typeof documents)["mutation VerifyEmail($token: String!) {\n  verifyEmail(token: $token)\n}"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

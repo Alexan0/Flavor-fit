@@ -9,7 +9,6 @@ import { AuthInput } from './inputs/auth.input';
 import { hash, verify } from 'argon2';
 import { UsersService } from '@users/users.service';
 import { generateToken } from '@utils/generate-token.util';
-import { CLIENT_URL } from '@constants/environment';
 import { EmailService } from '@email/email.service';
 import { AuthTokenService } from './auth-token.service';
 
@@ -50,7 +49,7 @@ export class AuthService {
       id: user.id,
       role: user.role,
     });
-    const verificationUrl = `${this.configService.get(CLIENT_URL as string)}/verify-email?token=${emailVerificationToken}`;
+    const verificationUrl = `${this.configService.get('CLIENT_URL' as string)}/verify-email?token=${emailVerificationToken}`;
 
     await this.emailService.sendVerificationEmail(user.email, verificationUrl);
 

@@ -3,5 +3,6 @@ query Profile {
     id
     email
     role
+    isEmailVerified
   }
 }
