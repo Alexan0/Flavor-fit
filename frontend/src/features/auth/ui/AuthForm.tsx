@@ -1,21 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useApolloClient, useMutation } from "@apollo/client/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Turnstile } from "@marsidev/react-turnstile";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
 import { PAGES } from "@/shared/config/page.config";
+import { DURATION } from "@/shared/constants/toast.constants";
 
 import type { IAuthFormData } from "../types/auth-form.types";
 
 import { AuthChangeTypeForm } from "./AuthChangeTypeForm";
+import { Captcha } from "./Captcha";
+import { DecorativeImage } from "./DecorativeImage";
+import { FormWrapper } from "./FormWrapper";
 import { authFormSchema } from "./schema";
 
 import {
@@ -37,6 +40,7 @@ export function AuthForm({ type }: Props) {
   const isLogin = type === "login";
   const client = useApolloClient();
   const router = useRouter();
+  const ref = useRef<TurnstileInstance | null>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const {
@@ -63,22 +67,21 @@ export function AuthForm({ type }: Props) {
 
       toast.success(isLogin ? "Logged in successfully" : "Registered successfully", {
         id: "auth-success",
-        duration: 3000
+        duration: DURATION
       });
 
       router.replace(PAGES.DASHBOARD);
     },
     onError: (error) => {
-      toast.error(error.message, {
-        id: "auth-error",
-        duration: 3000
-      });
+      toast.error(error.message, { id: "auth-error", duration: DURATION });
+      ref.current?.reset();
+      setCaptchaToken(null);
     }
   });
 
   const onSubmit = async (data: IAuthFormData) => {
     if (!captchaToken) {
-      toast.error("Please complete the CAPTCHA challenge", { id: "captcha-error" });
+      toast.error("Please complete the CAPTCHA challenge", { id: "captcha-error", duration: DURATION });
       return;
     }
 
@@ -93,60 +96,43 @@ export function AuthForm({ type }: Props) {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="relative w-sm rounded-lg bg-linear-to-tr from-[#8062ee] to-[#a088fc] p-5 text-white shadow-lg">
-        <h1 className="mb-6 text-center text-4xl font-bold">{isLogin ? "Login" : "Register"}</h1>
-        <form className="space-y-3" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-          <Controller
-            control={control}
-            name="email"
-            render={({ field }) => (
-              <Input
-                {...field}
-                type="email"
-                placeholder="Enter email:"
-                errorMessage={errors.email?.message}
-                aria-invalid={!!errors.email}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="password"
-            render={({ field }) => (
-              <Input
-                {...field}
-                type="password"
-                placeholder="Enter password:"
-                errorMessage={errors.password?.message}
-                aria-invalid={!!errors.password}
-              />
-            )}
-          />
-          <div className="flex justify-center pt-2">
-            <Turnstile
-              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-              onSuccess={(token) => setCaptchaToken(token)}
-              onExpire={() => setCaptchaToken(null)}
-              options={{ theme: "light", language: "en" }}
+    <FormWrapper title={isLogin ? "Login" : "Register"}>
+      <form className="space-y-3" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+        <Controller
+          control={control}
+          name="email"
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="email"
+              placeholder="Enter email:"
+              errorMessage={errors.email?.message}
+              aria-invalid={!!errors.email}
             />
-          </div>
-          <div className="text-center">
-            <Button type="submit" disabled={!isValid || loading} variant="accent">
-              {isLogin ? "Login" : "Register"}
-            </Button>
-          </div>
-          <Image
-            width={160}
-            height={160}
-            src="/images/salad.png"
-            alt="salad"
-            className="absolute -bottom-14 -left-14 -rotate-12 select-none"
-            draggable={false}
-          />
-        </form>
-        <AuthChangeTypeForm isLogin={isLogin} />
-      </div>
-    </div>
+          )}
+        />
+        <Controller
+          control={control}
+          name="password"
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="password"
+              placeholder="Enter password:"
+              errorMessage={errors.password?.message}
+              aria-invalid={!!errors.password}
+            />
+          )}
+        />
+        <Captcha ref={ref} setCaptchaToken={setCaptchaToken} />
+        <div className="text-center">
+          <Button type="submit" disabled={!isValid || loading} variant="accent">
+            {isLogin ? "Login" : "Register"}
+          </Button>
+        </div>
+        <DecorativeImage />
+      </form>
+      <AuthChangeTypeForm isLogin={isLogin} />
+    </FormWrapper>
   );
 }

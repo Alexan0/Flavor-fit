@@ -1,16 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import Image from "next/image";
 import { useMutation } from "@apollo/client/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Turnstile } from "@marsidev/react-turnstile";
-import z from "zod";
+import type { TurnstileInstance } from "@marsidev/react-turnstile";
 
 import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
+import { DURATION } from "@/shared/constants/toast.constants";
+
+import { Captcha } from "./Captcha";
+import { DecorativeImage } from "./DecorativeImage";
+import { FormWrapper } from "./FormWrapper";
+import { forgotPasswordSchema } from "./schema";
 
 import { RequestPasswordResetDocument } from "@/__generated__/graphql";
 
@@ -19,6 +23,7 @@ interface FormData {
 }
 
 export function ForgotPassword() {
+  const ref = useRef<TurnstileInstance | null>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const {
     control,
@@ -27,25 +32,23 @@ export function ForgotPassword() {
   } = useForm<FormData>({
     mode: "onChange",
     defaultValues: { email: "" },
-    resolver: zodResolver(
-      z.object({
-        email: z.email("Invalid email")
-      })
-    )
+    resolver: zodResolver(forgotPasswordSchema)
   });
 
   const [requestReset, { loading }] = useMutation(RequestPasswordResetDocument, {
     onCompleted: () => {
-      toast.success("If email exist, reset link was sent");
+      toast.success("If email exist, reset link was sent", { id: "forgot-password-success", duration: DURATION });
     },
     onError: () => {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong", { id: "forgot-password-error", duration: DURATION });
+      ref.current?.reset();
+      setCaptchaToken(null);
     }
   });
 
   const onSubmit = (data: FormData) => {
     if (!captchaToken) {
-      toast.error("Please complete the CAPTCHA challenge", { id: "captcha-error" });
+      toast.error("Please complete the CAPTCHA challenge", { id: "captcha-error", duration: DURATION });
       return;
     }
 
@@ -60,46 +63,29 @@ export function ForgotPassword() {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="relative w-sm rounded-lg bg-linear-to-tr from-[#8062ee] to-[#a088fc] p-5 text-white shadow-lg">
-        <h1 className="mb-6 text-center text-4xl font-bold">Reset password</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-          <Controller
-            control={control}
-            name="email"
-            render={({ field }) => (
-              <Input
-                {...field}
-                type="email"
-                placeholder="Enter email:"
-                errorMessage={errors.email?.message}
-                aria-invalid={!!errors.email}
-              />
-            )}
-          />
-          <div className="flex justify-center pt-2">
-            <Turnstile
-              siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY!}
-              onSuccess={(token) => setCaptchaToken(token)}
-              onExpire={() => setCaptchaToken(null)}
-              options={{ theme: "light", language: "en" }}
+    <FormWrapper title="Forgot password">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+        <Controller
+          control={control}
+          name="email"
+          render={({ field }) => (
+            <Input
+              {...field}
+              type="email"
+              placeholder="Enter email:"
+              errorMessage={errors.email?.message}
+              aria-invalid={!!errors.email}
             />
-          </div>
-          <div className="text-center">
-            <Button type="submit" disabled={!isValid || loading} variant="accent">
-              Send reset link
-            </Button>
-          </div>
-          <Image
-            width={160}
-            height={160}
-            src="/images/salad.png"
-            alt="salad"
-            className="absolute -bottom-14 -left-14 -rotate-12 select-none"
-            draggable={false}
-          />
-        </form>
-      </div>
-    </div>
+          )}
+        />
+        <Captcha ref={ref} setCaptchaToken={setCaptchaToken} />
+        <div className="text-center">
+          <Button type="submit" disabled={!isValid || loading} variant="accent">
+            Send reset link
+          </Button>
+        </div>
+        <DecorativeImage />
+      </form>
+    </FormWrapper>
   );
 }

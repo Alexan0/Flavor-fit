@@ -20,6 +20,7 @@ type Documents = {
     "query Profile {\n  profile {\n    id\n    email\n    role\n    isEmailVerified\n  }\n}": typeof types.ProfileDocument,
     "mutation Register($data: AuthInput!) {\n  register(data: $data) {\n    user {\n      email\n    }\n  }\n}": typeof types.RegisterDocument,
     "mutation RequestPasswordReset($data: RequestPasswordResetInput!) {\n  requestPasswordReset(data: $data)\n}": typeof types.RequestPasswordResetDocument,
+    "mutation ResetPassword($data: ResetPasswordInput!) {\n  resetPassword(data: $data)\n}": typeof types.ResetPasswordDocument,
     "mutation VerifyEmail($token: String!) {\n  verifyEmail(token: $token)\n}": typeof types.VerifyEmailDocument,
 };
 const documents: Documents = {
@@ -29,6 +30,7 @@ const documents: Documents = {
     "query Profile {\n  profile {\n    id\n    email\n    role\n    isEmailVerified\n  }\n}": types.ProfileDocument,
     "mutation Register($data: AuthInput!) {\n  register(data: $data) {\n    user {\n      email\n    }\n  }\n}": types.RegisterDocument,
     "mutation RequestPasswordReset($data: RequestPasswordResetInput!) {\n  requestPasswordReset(data: $data)\n}": types.RequestPasswordResetDocument,
+    "mutation ResetPassword($data: ResetPasswordInput!) {\n  resetPassword(data: $data)\n}": types.ResetPasswordDocument,
     "mutation VerifyEmail($token: String!) {\n  verifyEmail(token: $token)\n}": types.VerifyEmailDocument,
 };
 
@@ -70,6 +72,10 @@ export function graphql(source: "mutation Register($data: AuthInput!) {\n  regis
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation RequestPasswordReset($data: RequestPasswordResetInput!) {\n  requestPasswordReset(data: $data)\n}"): (typeof documents)["mutation RequestPasswordReset($data: RequestPasswordResetInput!) {\n  requestPasswordReset(data: $data)\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "mutation ResetPassword($data: ResetPasswordInput!) {\n  resetPassword(data: $data)\n}"): (typeof documents)["mutation ResetPassword($data: ResetPasswordInput!) {\n  resetPassword(data: $data)\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
