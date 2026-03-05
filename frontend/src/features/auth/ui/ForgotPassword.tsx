@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useMutation } from "@apollo/client/react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -11,6 +11,8 @@ import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
 import { DURATION } from "@/shared/constants/toast.constants";
 
+import type { IForgotPasswordFormData } from "../types/form.types";
+
 import { Captcha } from "./Captcha";
 import { DecorativeImage } from "./DecorativeImage";
 import { FormWrapper } from "./FormWrapper";
@@ -18,18 +20,14 @@ import { forgotPasswordSchema } from "./schema";
 
 import { RequestPasswordResetDocument } from "@/__generated__/graphql";
 
-interface FormData {
-  email: string;
-}
-
 export function ForgotPassword() {
   const ref = useRef<TurnstileInstance | null>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const {
-    control,
     handleSubmit,
+    register,
     formState: { isValid, errors }
-  } = useForm<FormData>({
+  } = useForm<IForgotPasswordFormData>({
     mode: "onChange",
     defaultValues: { email: "" },
     resolver: zodResolver(forgotPasswordSchema)
@@ -46,7 +44,7 @@ export function ForgotPassword() {
     }
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: IForgotPasswordFormData) => {
     if (!captchaToken) {
       toast.error("Please complete the CAPTCHA challenge", { id: "captcha-error", duration: DURATION });
       return;
@@ -65,18 +63,12 @@ export function ForgotPassword() {
   return (
     <FormWrapper title="Forgot password">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-        <Controller
-          control={control}
-          name="email"
-          render={({ field }) => (
-            <Input
-              {...field}
-              type="email"
-              placeholder="Enter email:"
-              errorMessage={errors.email?.message}
-              aria-invalid={!!errors.email}
-            />
-          )}
+        <Input
+          {...register("email")}
+          type="email"
+          placeholder="Enter email:"
+          errorMessage={errors.email?.message}
+          aria-invalid={!!errors.email}
         />
         <Captcha ref={ref} setCaptchaToken={setCaptchaToken} />
         <div className="text-center">

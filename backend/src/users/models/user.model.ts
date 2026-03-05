@@ -17,6 +17,9 @@ export class UserModel {
   @Field(() => Boolean)
   isEmailVerified!: boolean;
 
+  @Field(() => String, { nullable: true })
+  avatarUrl!: string | null;
+
   @Field(() => ProfileModel, { nullable: true })
   profile?: ProfileModel | null;
 

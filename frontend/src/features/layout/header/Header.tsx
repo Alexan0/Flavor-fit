@@ -11,12 +11,12 @@ import { UserInfo } from "@/shared/components/custom-ui/user-info/UserInfo";
 import { Button } from "@/shared/components/ui/button";
 import { PAGES } from "@/shared/config/page.config";
 
-import { HEADER_MENU } from "./nav.data";
+import { HEADER_MENU } from "./nav-menu.data";
 
 export function Header() {
   const { user } = useAuth();
   return (
-    <header className="flex items-center justify-between p-5">
+    <header className="flex items-center justify-between">
       <div className="flex items-center gap-8">
         <Link
           href={PAGES.DASHBOARD}

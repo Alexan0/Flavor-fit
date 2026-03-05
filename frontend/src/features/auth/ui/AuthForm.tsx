@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useApolloClient, useMutation } from "@apollo/client/react";
@@ -13,7 +13,7 @@ import { Input } from "@/shared/components/ui/input";
 import { PAGES } from "@/shared/config/page.config";
 import { DURATION } from "@/shared/constants/toast.constants";
 
-import type { IAuthFormData } from "../types/auth-form.types";
+import type { IAuthFormData } from "../types/form.types";
 
 import { AuthChangeTypeForm } from "./AuthChangeTypeForm";
 import { Captcha } from "./Captcha";
@@ -45,7 +45,7 @@ export function AuthForm({ type }: Props) {
 
   const {
     handleSubmit,
-    control,
+    register,
     formState: { isValid, errors }
   } = useForm<IAuthFormData>({
     mode: "onChange",
@@ -98,31 +98,19 @@ export function AuthForm({ type }: Props) {
   return (
     <FormWrapper title={isLogin ? "Login" : "Register"}>
       <form className="space-y-3" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
-        <Controller
-          control={control}
-          name="email"
-          render={({ field }) => (
-            <Input
-              {...field}
-              type="email"
-              placeholder="Enter email:"
-              errorMessage={errors.email?.message}
-              aria-invalid={!!errors.email}
-            />
-          )}
+        <Input
+          {...register("email")}
+          type="email"
+          placeholder="Enter email:"
+          errorMessage={errors.email?.message}
+          aria-invalid={!!errors.email}
         />
-        <Controller
-          control={control}
-          name="password"
-          render={({ field }) => (
-            <Input
-              {...field}
-              type="password"
-              placeholder="Enter password:"
-              errorMessage={errors.password?.message}
-              aria-invalid={!!errors.password}
-            />
-          )}
+        <Input
+          {...register("password")}
+          type="password"
+          placeholder="Enter password:"
+          errorMessage={errors.password?.message}
+          aria-invalid={!!errors.password}
         />
         <Captcha ref={ref} setCaptchaToken={setCaptchaToken} />
         <div className="text-center">

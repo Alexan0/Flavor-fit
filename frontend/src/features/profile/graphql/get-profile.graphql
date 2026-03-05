@@ -1,0 +1,24 @@
+query GetProfile {
+  profile {
+    id
+    email
+    avatarUrl
+    profile {
+      fullName
+      gender
+      age
+      bio
+    }
+    measurements {
+      heightCm
+      weightCm
+      goalWeightKg
+      chestCm
+      waistCm
+      thighCm
+      armCm
+      activityLevel
+      nutritionGoal
+    }
+  }
+}

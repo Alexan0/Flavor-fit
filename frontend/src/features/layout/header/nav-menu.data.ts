@@ -1,4 +1,4 @@
-import { BookMarked, CalendarDays, ChartColumn, HouseIcon, Store, Users, Utensils } from "lucide-react";
+import { BookMarked, CalendarDays, ChartColumn, HouseIcon, Store, User, Utensils } from "lucide-react";
 
 import type { IMenuItem } from "@/shared/components/custom-ui/nav-menu/nav-menu.types";
 import { PAGES } from "@/shared/config/page.config";
@@ -35,8 +35,8 @@ export const HEADER_MENU: IMenuItem[] = [
     href: PAGES.RECIPES
   },
   {
-    icon: Users,
-    label: "Forum",
-    href: PAGES.FORUM
+    icon: User,
+    label: "Profile",
+    href: PAGES.PROFILE
   }
 ];

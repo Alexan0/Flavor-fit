@@ -1,13 +1,13 @@
 class PageConfig {
   readonly HOME = "/";
   readonly DASHBOARD = "/dashboard";
-  readonly PROFILE = "/profile";
+
   readonly MEAL_PLANS = this.DASHBOARD + "/meal-plans";
   readonly NUTRITION = this.DASHBOARD + "/nutrition";
   readonly ANALYTICS = this.DASHBOARD + "/analytics";
   readonly ORDER_GROCERIES = this.DASHBOARD + "/order-groceries";
   readonly RECIPES = this.DASHBOARD + "/recipes";
-  readonly FORUM = this.DASHBOARD + "/forum";
+  readonly PROFILE = this.DASHBOARD + "/profile";
 
   private readonly AUTH = "/auth";
   readonly LOGIN = this.AUTH + "/login";

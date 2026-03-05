@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMutation } from "@apollo/client/react";
@@ -13,17 +13,14 @@ import { Input } from "@/shared/components/ui/input";
 import { PAGES } from "@/shared/config/page.config";
 import { DURATION } from "@/shared/constants/toast.constants";
 
+import type { IResetPasswordFormData } from "../types/form.types";
+
 import { Captcha } from "./Captcha";
 import { DecorativeImage } from "./DecorativeImage";
 import { FormWrapper } from "./FormWrapper";
 import { resetPasswordSchema } from "./schema";
 
 import { ResetPasswordDocument } from "@/__generated__/graphql";
-
-interface FormData {
-  password: string;
-  repeatPassword: string;
-}
 
 export function ResetPassword() {
   const searchParams = useSearchParams();
@@ -34,10 +31,10 @@ export function ResetPassword() {
   const token = searchParams.get("token");
 
   const {
-    control,
+    register,
     handleSubmit,
     formState: { isValid, errors }
-  } = useForm<FormData>({
+  } = useForm<IResetPasswordFormData>({
     mode: "onChange",
     defaultValues: { password: "", repeatPassword: "" },
     resolver: zodResolver(resetPasswordSchema)
@@ -53,7 +50,7 @@ export function ResetPassword() {
     }
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: IResetPasswordFormData) => {
     if (!captchaToken) {
       toast.error("Please complete the CAPTCHA challenge", { id: "captcha-error", duration: DURATION });
       return;
@@ -74,31 +71,19 @@ export function ResetPassword() {
   return (
     <FormWrapper title="Reset password">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-        <Controller
-          control={control}
-          name="password"
-          render={({ field }) => (
-            <Input
-              {...field}
-              type="password"
-              placeholder="Enter password:"
-              errorMessage={errors.password?.message}
-              aria-invalid={!!errors.password}
-            />
-          )}
+        <Input
+          {...register("password")}
+          type="password"
+          placeholder="Enter password:"
+          errorMessage={errors.password?.message}
+          aria-invalid={!!errors.password}
         />
-        <Controller
-          control={control}
-          name="repeatPassword"
-          render={({ field }) => (
-            <Input
-              {...field}
-              type="password"
-              placeholder="Repeat password:"
-              errorMessage={errors.repeatPassword?.message}
-              aria-invalid={!!errors.repeatPassword}
-            />
-          )}
+        <Input
+          {...register("repeatPassword")}
+          type="password"
+          placeholder="Repeat password:"
+          errorMessage={errors.repeatPassword?.message}
+          aria-invalid={!!errors.repeatPassword}
         />
         <Captcha ref={ref} setCaptchaToken={setCaptchaToken} />
         <div className="text-center">
