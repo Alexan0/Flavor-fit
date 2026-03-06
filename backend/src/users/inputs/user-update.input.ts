@@ -9,6 +9,10 @@ export class UserUpdateInput {
   @IsEmail()
   email?: string;
 
+  @IsString()
+  @Field(() => String, { nullable: true })
+  avatarUrl?: string | null;
+
   @Field(() => String, { nullable: true })
   @IsString()
   @MinLength(6)

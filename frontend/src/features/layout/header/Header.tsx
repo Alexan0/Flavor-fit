@@ -34,7 +34,11 @@ export function Header() {
           <Bell className="size-5" />
         </Button>
         <Logout />
-        <UserInfo avatarUrl="https://avatars.githubusercontent.com/u/0?v=1" name="Alex" email={user?.email || ""} />
+        <UserInfo
+          avatarUrl="https://avatars.githubusercontent.com/u/0?v=1"
+          name="Anonymous"
+          email={user?.email || ""}
+        />
         {!user?.isEmailVerified && <p className="absolute -top-4 left-0 text-sm text-red-400">Email not confirmed!</p>}
       </div>
     </header>

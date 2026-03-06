@@ -29,7 +29,7 @@ export function AvatarUpload({ value, onChange }: Props) {
 
     const data = await res.json();
 
-    onChange(data[0].url);
+    onChange(data.url);
 
     setLoading(false);
   }
@@ -43,22 +43,26 @@ export function AvatarUpload({ value, onChange }: Props) {
   };
 
   return (
-    <div className="flex items-center gap-3">
+    <label className="relative mr-4 h-16 w-16 cursor-pointer rounded-full">
+      <input type="file" hidden accept="image/*" onChange={handleUpload} />
       <Image
         src={value || "/images/avatar-placeholder.png"}
         alt="avatar"
-        width={48}
-        height={48}
-        className="rounded-full object-cover"
+        width={100}
+        height={100}
+        className="rounded-full"
       />
-      <label>
-        <input type="file" hidden accept="image/*" onChange={handleUpload} />
-        <Button variant="soft" size="sm" asChild disabled={loading}>
-          <span>
-            <Edit className={loading ? "animate-spin" : ""} />
-          </span>
-        </Button>
-      </label>
-    </div>
+      <Button
+        variant="soft"
+        size="sm"
+        className="absolute -right-4 -bottom-3 bg-transparent hover:bg-transparent"
+        asChild
+        disabled={loading}
+      >
+        <span>
+          <Edit />
+        </span>
+      </Button>
+    </label>
   );
 }
