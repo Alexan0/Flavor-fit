@@ -13,13 +13,13 @@ import { Input } from "@/shared/components/ui/input";
 import { PAGES } from "@/shared/config/page.config";
 import { DURATION } from "@/shared/constants/toast.constants";
 
+import { authFormSchema } from "../schemas/auth.schema";
 import type { IAuthFormData } from "../types/form.types";
 
 import { AuthChangeTypeForm } from "./AuthChangeTypeForm";
 import { Captcha } from "./Captcha";
 import { DecorativeImage } from "./DecorativeImage";
 import { FormWrapper } from "./FormWrapper";
-import { authFormSchema } from "./schema";
 
 import {
   LoginDocument,
@@ -97,7 +97,7 @@ export function AuthForm({ type }: Props) {
 
   return (
     <FormWrapper title={isLogin ? "Login" : "Register"}>
-      <form className="space-y-3" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
+      <form className="space-y-4" onSubmit={handleSubmit(onSubmit)} autoComplete="off">
         <Input
           {...register("email")}
           type="email"

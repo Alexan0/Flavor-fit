@@ -1,7 +1,7 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { ProfileUpdateInput } from './profile-update.input';
 import { BodyMeasurementUpdateInput } from './body-measurement-update-user.input';
-import { IsEmail, IsString, MinLength } from 'class-validator';
+import { IsEmail, IsString } from 'class-validator';
 
 @InputType()
 export class UserUpdateInput {
@@ -14,8 +14,6 @@ export class UserUpdateInput {
   avatarUrl?: string | null;
 
   @Field(() => String, { nullable: true })
-  @IsString()
-  @MinLength(6)
   password?: string;
 
   @Field(() => ProfileUpdateInput, { nullable: true })

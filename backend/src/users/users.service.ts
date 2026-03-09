@@ -46,8 +46,14 @@ export class UsersService {
 
     const { profile, measurements, password, email } = input;
 
-    if (user.email === email) {
-      throw new ConflictException('Пользователь с таким email уже существует');
+    if (email) {
+      const existingUser = await this.prisma.user.findUnique({
+        where: { email },
+      });
+
+      if (existingUser && existingUser.id !== id) {
+        throw new ConflictException('User with this email already exists');
+      }
     }
 
     const updateData: Prisma.UserUpdateInput = {};
@@ -87,6 +93,8 @@ export class UsersService {
       data: {
         ...hashedPassword,
         ...updateData,
+        email: input.email,
+        avatarUrl: input.avatarUrl,
       },
       include: {
         measurements: true,

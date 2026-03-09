@@ -11,12 +11,12 @@ import { Button } from "@/shared/components/ui/button";
 import { Input } from "@/shared/components/ui/input";
 import { DURATION } from "@/shared/constants/toast.constants";
 
+import { forgotPasswordSchema } from "../schemas/auth.schema";
 import type { IForgotPasswordFormData } from "../types/form.types";
 
 import { Captcha } from "./Captcha";
 import { DecorativeImage } from "./DecorativeImage";
 import { FormWrapper } from "./FormWrapper";
-import { forgotPasswordSchema } from "./schema";
 
 import { RequestPasswordResetDocument } from "@/__generated__/graphql";
 
@@ -62,7 +62,7 @@ export function ForgotPassword() {
 
   return (
     <FormWrapper title="Forgot password">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Input
           {...register("email")}
           type="email"

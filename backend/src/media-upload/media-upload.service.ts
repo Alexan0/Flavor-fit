@@ -14,14 +14,13 @@ export class MediaUploadService {
     await ensureDir(uploadFolder);
 
     const original = iconv.decode(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
       Buffer.from(file.originalname, 'binary'),
       'utf8',
     );
 
     const safeName = original.replace(/[^\w.-]+/g, '-').toLocaleLowerCase();
     const name = `${uuidv4().slice(0, 5)}-${safeName}`;
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+
     await writeFile(`${uploadFolder}/${name}`, file.buffer);
 
     const url = `/uploads/${folder}/${name}`;

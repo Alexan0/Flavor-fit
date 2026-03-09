@@ -13,12 +13,12 @@ import { Input } from "@/shared/components/ui/input";
 import { PAGES } from "@/shared/config/page.config";
 import { DURATION } from "@/shared/constants/toast.constants";
 
+import { resetPasswordSchema } from "../schemas/auth.schema";
 import type { IResetPasswordFormData } from "../types/form.types";
 
 import { Captcha } from "./Captcha";
 import { DecorativeImage } from "./DecorativeImage";
 import { FormWrapper } from "./FormWrapper";
-import { resetPasswordSchema } from "./schema";
 
 import { ResetPasswordDocument } from "@/__generated__/graphql";
 
@@ -70,7 +70,7 @@ export function ResetPassword() {
 
   return (
     <FormWrapper title="Reset password">
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <Input
           {...register("password")}
           type="password"
