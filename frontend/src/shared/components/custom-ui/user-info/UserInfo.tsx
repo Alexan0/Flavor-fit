@@ -12,14 +12,13 @@ interface Props {
 export function UserInfo({ avatarUrl = "", name, email }: Props) {
   return (
     <div className="flex items-center gap-2">
-      <Link href={PAGES.PROFILE}>
-        <Image src={avatarUrl} alt={name} width={36} height={36} className="rounded-full" />
+      <Link href={PAGES.PROFILE} className="h-10 w-10">
+        <Image src={avatarUrl} alt={name} width={40} height={40} className="h-full w-full rounded-full object-cover" />
       </Link>
       <div>
         <Link href={PAGES.PROFILE} className="font-medium">
           {name}
         </Link>
-
         <p className="test-xs max-w-62.5 overflow-hidden text-ellipsis opacity-60">{email}</p>
       </div>
     </div>

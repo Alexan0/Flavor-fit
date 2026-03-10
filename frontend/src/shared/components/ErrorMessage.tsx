@@ -3,5 +3,5 @@ interface Props {
 }
 
 export function ErrorMessage({ message }: Props) {
-  return <p className="absolute top-10 left-0 m-0 text-sm text-red-400">{message}</p>;
+  return <p className="m-0 text-sm text-red-400">{message}</p>;
 }

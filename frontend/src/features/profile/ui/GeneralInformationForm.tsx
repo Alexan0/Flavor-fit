@@ -23,7 +23,7 @@ export function GeneralInformationForm() {
       <div className="mt-5 flex gap-3">
         <AvatarUpload
           value={avatarUrl || "https://avatars.githubusercontent.com/u/0?v=1"}
-          onChange={(url) => setValue("avatarUrl", url)}
+          onChange={(url) => setValue("avatarUrl", url, { shouldDirty: true })}
         />
         <div className="flex-auto">
           <InputLabel label="Full-name" Icon={Contact} placeholder="Full-name" {...register("profile.fullName")} />

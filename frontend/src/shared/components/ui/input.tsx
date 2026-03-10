@@ -19,7 +19,9 @@ function Input({ className, type, errorMessage, ...props }: InputProps) {
           "focus-visible:border-ring focus-visible:ring-[1px] focus-visible:ring-white/50",
           "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive mb-2.5 focus-visible:border-white",
           className,
-          errorMessage && "border-red-400!"
+          errorMessage && "border-red-400!",
+          type === "number" &&
+            "appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         )}
         {...props}
       />

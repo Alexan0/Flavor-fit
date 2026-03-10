@@ -1,6 +1,6 @@
 "use client";
 
-import { FormProvider, useForm } from "react-hook-form";
+import { FormProvider, useForm, useFormState } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useMutation } from "@apollo/client/react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -35,7 +35,9 @@ export function ProfileForm({ data }: Props) {
     resolver: zodResolver(updateProfileSchema)
   });
 
-  const [updateProfile, {}] = useMutation(UpdateProfileDocument, {
+  const { isDirty, isValid } = useFormState({ control: form.control });
+
+  const [updateProfile, { loading }] = useMutation(UpdateProfileDocument, {
     onCompleted: () => {
       toast.success("Profile updated", {
         id: "update-profile-success",
@@ -61,8 +63,10 @@ export function ProfileForm({ data }: Props) {
       <div className="flex items-center justify-between p-6">
         <HeadingWithIcon Icon={UserCog}>Personal Information</HeadingWithIcon>
         <div className="flex items-center gap-2">
-          <Button variant="secondary">Cancel</Button>
-          <Button variant="accent" disabled={!form.formState.isValid}>
+          <Button variant="secondary" type="button">
+            Cancel
+          </Button>
+          <Button variant="accent" type="submit" disabled={!isValid || !isDirty || loading}>
             Save changes
           </Button>
         </div>

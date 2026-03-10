@@ -50,7 +50,7 @@ export function AvatarUpload({ value, onChange }: Props) {
         alt="avatar"
         width={100}
         height={100}
-        className="rounded-full"
+        className="h-full w-full rounded-full object-cover"
       />
       <Button
         variant="soft"

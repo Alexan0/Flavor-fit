@@ -3,6 +3,10 @@ query Profile {
     id
     email
     role
+    avatarUrl
     isEmailVerified
+    profile {
+      fullName
+    }
   }
 }
