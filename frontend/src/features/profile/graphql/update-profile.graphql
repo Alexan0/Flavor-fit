@@ -11,7 +11,7 @@ mutation UpdateProfile($data: UserUpdateInput!) {
     }
     measurements {
       heightCm
-      weightCm
+      weightKg
       goalWeightKg
       chestCm
       waistCm

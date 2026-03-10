@@ -15,7 +15,7 @@ const profileSchema = z
 const bodyMeasurementsSchema = z
   .object({
     heightCm: z.coerce.number<number>().min(0, "Value must be 0 or greater").optional().nullable(),
-    weightCm: z.coerce.number<number>().min(0, "Value must be 0 or greater").optional().nullable(),
+    weightKg: z.coerce.number<number>().min(0, "Value must be 0 or greater").optional().nullable(),
     waistCm: z.coerce.number<number>().min(0, "Value must be 0 or greater").optional().nullable(),
     chestCm: z.coerce.number<number>().min(0, "Value must be 0 or greater").optional().nullable(),
     thighCm: z.coerce.number<number>().min(0, "Value must be 0 or greater").optional().nullable(),

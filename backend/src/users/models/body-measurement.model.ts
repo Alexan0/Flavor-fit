@@ -10,7 +10,7 @@ export class BodyMeasurementModel {
   heightCm?: number | null;
 
   @Field(() => Int, { nullable: true })
-  weightCm?: number | null;
+  weightKg?: number | null;
 
   @Field(() => Int, { nullable: true })
   goalWeightKg?: number | null;

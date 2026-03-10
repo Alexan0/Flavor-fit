@@ -44,7 +44,7 @@ model Profile {
 model BodyMeasurement {
 	id String @id @default(cuid())
 	heightCm Int? @map("height_cm")
-	weightCm Int? @map("weight_cm")
+	weightKg Int? @map("weight_kg")
 	goalWeightKg Int? @map("goal_weight_kg")
 	chestCm Int? @map("chest_cm")
 	waistCm Int? @map("waist_cm")

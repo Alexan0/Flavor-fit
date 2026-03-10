@@ -275,7 +275,7 @@
             "deprecationReason": null
           },
           {
-            "name": "weightCm",
+            "name": "weightKg",
             "description": null,
             "args": [],
             "type": {
@@ -396,7 +396,7 @@
             "deprecationReason": null
           },
           {
-            "name": "weightCm",
+            "name": "weightKg",
             "description": null,
             "type": {
               "kind": "SCALAR",

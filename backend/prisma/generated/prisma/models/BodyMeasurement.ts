@@ -28,7 +28,7 @@ export type AggregateBodyMeasurement = {
 
 export type BodyMeasurementAvgAggregateOutputType = {
   heightCm: number | null
-  weightCm: number | null
+  weightKg: number | null
   goalWeightKg: number | null
   chestCm: number | null
   waistCm: number | null
@@ -38,7 +38,7 @@ export type BodyMeasurementAvgAggregateOutputType = {
 
 export type BodyMeasurementSumAggregateOutputType = {
   heightCm: number | null
-  weightCm: number | null
+  weightKg: number | null
   goalWeightKg: number | null
   chestCm: number | null
   waistCm: number | null
@@ -49,7 +49,7 @@ export type BodyMeasurementSumAggregateOutputType = {
 export type BodyMeasurementMinAggregateOutputType = {
   id: string | null
   heightCm: number | null
-  weightCm: number | null
+  weightKg: number | null
   goalWeightKg: number | null
   chestCm: number | null
   waistCm: number | null
@@ -65,7 +65,7 @@ export type BodyMeasurementMinAggregateOutputType = {
 export type BodyMeasurementMaxAggregateOutputType = {
   id: string | null
   heightCm: number | null
-  weightCm: number | null
+  weightKg: number | null
   goalWeightKg: number | null
   chestCm: number | null
   waistCm: number | null
@@ -81,7 +81,7 @@ export type BodyMeasurementMaxAggregateOutputType = {
 export type BodyMeasurementCountAggregateOutputType = {
   id: number
   heightCm: number
-  weightCm: number
+  weightKg: number
   goalWeightKg: number
   chestCm: number
   waistCm: number
@@ -98,7 +98,7 @@ export type BodyMeasurementCountAggregateOutputType = {
 
 export type BodyMeasurementAvgAggregateInputType = {
   heightCm?: true
-  weightCm?: true
+  weightKg?: true
   goalWeightKg?: true
   chestCm?: true
   waistCm?: true
@@ -108,7 +108,7 @@ export type BodyMeasurementAvgAggregateInputType = {
 
 export type BodyMeasurementSumAggregateInputType = {
   heightCm?: true
-  weightCm?: true
+  weightKg?: true
   goalWeightKg?: true
   chestCm?: true
   waistCm?: true
@@ -119,7 +119,7 @@ export type BodyMeasurementSumAggregateInputType = {
 export type BodyMeasurementMinAggregateInputType = {
   id?: true
   heightCm?: true
-  weightCm?: true
+  weightKg?: true
   goalWeightKg?: true
   chestCm?: true
   waistCm?: true
@@ -135,7 +135,7 @@ export type BodyMeasurementMinAggregateInputType = {
 export type BodyMeasurementMaxAggregateInputType = {
   id?: true
   heightCm?: true
-  weightCm?: true
+  weightKg?: true
   goalWeightKg?: true
   chestCm?: true
   waistCm?: true
@@ -151,7 +151,7 @@ export type BodyMeasurementMaxAggregateInputType = {
 export type BodyMeasurementCountAggregateInputType = {
   id?: true
   heightCm?: true
-  weightCm?: true
+  weightKg?: true
   goalWeightKg?: true
   chestCm?: true
   waistCm?: true
@@ -254,7 +254,7 @@ export type BodyMeasurementGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 export type BodyMeasurementGroupByOutputType = {
   id: string
   heightCm: number | null
-  weightCm: number | null
+  weightKg: number | null
   goalWeightKg: number | null
   chestCm: number | null
   waistCm: number | null
@@ -293,7 +293,7 @@ export type BodyMeasurementWhereInput = {
   NOT?: Prisma.BodyMeasurementWhereInput | Prisma.BodyMeasurementWhereInput[]
   id?: Prisma.StringFilter<"BodyMeasurement"> | string
   heightCm?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
-  weightCm?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
+  weightKg?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
   goalWeightKg?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
   chestCm?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
   waistCm?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
@@ -310,7 +310,7 @@ export type BodyMeasurementWhereInput = {
 export type BodyMeasurementOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   heightCm?: Prisma.SortOrderInput | Prisma.SortOrder
-  weightCm?: Prisma.SortOrderInput | Prisma.SortOrder
+  weightKg?: Prisma.SortOrderInput | Prisma.SortOrder
   goalWeightKg?: Prisma.SortOrderInput | Prisma.SortOrder
   chestCm?: Prisma.SortOrderInput | Prisma.SortOrder
   waistCm?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -331,7 +331,7 @@ export type BodyMeasurementWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.BodyMeasurementWhereInput[]
   NOT?: Prisma.BodyMeasurementWhereInput | Prisma.BodyMeasurementWhereInput[]
   heightCm?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
-  weightCm?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
+  weightKg?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
   goalWeightKg?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
   chestCm?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
   waistCm?: Prisma.IntNullableFilter<"BodyMeasurement"> | number | null
@@ -347,7 +347,7 @@ export type BodyMeasurementWhereUniqueInput = Prisma.AtLeast<{
 export type BodyMeasurementOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   heightCm?: Prisma.SortOrderInput | Prisma.SortOrder
-  weightCm?: Prisma.SortOrderInput | Prisma.SortOrder
+  weightKg?: Prisma.SortOrderInput | Prisma.SortOrder
   goalWeightKg?: Prisma.SortOrderInput | Prisma.SortOrder
   chestCm?: Prisma.SortOrderInput | Prisma.SortOrder
   waistCm?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -371,7 +371,7 @@ export type BodyMeasurementScalarWhereWithAggregatesInput = {
   NOT?: Prisma.BodyMeasurementScalarWhereWithAggregatesInput | Prisma.BodyMeasurementScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"BodyMeasurement"> | string
   heightCm?: Prisma.IntNullableWithAggregatesFilter<"BodyMeasurement"> | number | null
-  weightCm?: Prisma.IntNullableWithAggregatesFilter<"BodyMeasurement"> | number | null
+  weightKg?: Prisma.IntNullableWithAggregatesFilter<"BodyMeasurement"> | number | null
   goalWeightKg?: Prisma.IntNullableWithAggregatesFilter<"BodyMeasurement"> | number | null
   chestCm?: Prisma.IntNullableWithAggregatesFilter<"BodyMeasurement"> | number | null
   waistCm?: Prisma.IntNullableWithAggregatesFilter<"BodyMeasurement"> | number | null
@@ -387,7 +387,7 @@ export type BodyMeasurementScalarWhereWithAggregatesInput = {
 export type BodyMeasurementCreateInput = {
   id?: string
   heightCm?: number | null
-  weightCm?: number | null
+  weightKg?: number | null
   goalWeightKg?: number | null
   chestCm?: number | null
   waistCm?: number | null
@@ -403,7 +403,7 @@ export type BodyMeasurementCreateInput = {
 export type BodyMeasurementUncheckedCreateInput = {
   id?: string
   heightCm?: number | null
-  weightCm?: number | null
+  weightKg?: number | null
   goalWeightKg?: number | null
   chestCm?: number | null
   waistCm?: number | null
@@ -419,7 +419,7 @@ export type BodyMeasurementUncheckedCreateInput = {
 export type BodyMeasurementUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  weightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  weightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   goalWeightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chestCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waistCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -435,7 +435,7 @@ export type BodyMeasurementUpdateInput = {
 export type BodyMeasurementUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  weightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  weightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   goalWeightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chestCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waistCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -451,7 +451,7 @@ export type BodyMeasurementUncheckedUpdateInput = {
 export type BodyMeasurementCreateManyInput = {
   id?: string
   heightCm?: number | null
-  weightCm?: number | null
+  weightKg?: number | null
   goalWeightKg?: number | null
   chestCm?: number | null
   waistCm?: number | null
@@ -467,7 +467,7 @@ export type BodyMeasurementCreateManyInput = {
 export type BodyMeasurementUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  weightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  weightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   goalWeightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chestCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waistCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -482,7 +482,7 @@ export type BodyMeasurementUpdateManyMutationInput = {
 export type BodyMeasurementUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  weightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  weightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   goalWeightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chestCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waistCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -503,7 +503,7 @@ export type BodyMeasurementNullableScalarRelationFilter = {
 export type BodyMeasurementCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
-  weightCm?: Prisma.SortOrder
+  weightKg?: Prisma.SortOrder
   goalWeightKg?: Prisma.SortOrder
   chestCm?: Prisma.SortOrder
   waistCm?: Prisma.SortOrder
@@ -518,7 +518,7 @@ export type BodyMeasurementCountOrderByAggregateInput = {
 
 export type BodyMeasurementAvgOrderByAggregateInput = {
   heightCm?: Prisma.SortOrder
-  weightCm?: Prisma.SortOrder
+  weightKg?: Prisma.SortOrder
   goalWeightKg?: Prisma.SortOrder
   chestCm?: Prisma.SortOrder
   waistCm?: Prisma.SortOrder
@@ -529,7 +529,7 @@ export type BodyMeasurementAvgOrderByAggregateInput = {
 export type BodyMeasurementMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
-  weightCm?: Prisma.SortOrder
+  weightKg?: Prisma.SortOrder
   goalWeightKg?: Prisma.SortOrder
   chestCm?: Prisma.SortOrder
   waistCm?: Prisma.SortOrder
@@ -545,7 +545,7 @@ export type BodyMeasurementMaxOrderByAggregateInput = {
 export type BodyMeasurementMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   heightCm?: Prisma.SortOrder
-  weightCm?: Prisma.SortOrder
+  weightKg?: Prisma.SortOrder
   goalWeightKg?: Prisma.SortOrder
   chestCm?: Prisma.SortOrder
   waistCm?: Prisma.SortOrder
@@ -560,7 +560,7 @@ export type BodyMeasurementMinOrderByAggregateInput = {
 
 export type BodyMeasurementSumOrderByAggregateInput = {
   heightCm?: Prisma.SortOrder
-  weightCm?: Prisma.SortOrder
+  weightKg?: Prisma.SortOrder
   goalWeightKg?: Prisma.SortOrder
   chestCm?: Prisma.SortOrder
   waistCm?: Prisma.SortOrder
@@ -611,7 +611,7 @@ export type NullableEnumNutritionGoalFieldUpdateOperationsInput = {
 export type BodyMeasurementCreateWithoutUserInput = {
   id?: string
   heightCm?: number | null
-  weightCm?: number | null
+  weightKg?: number | null
   goalWeightKg?: number | null
   chestCm?: number | null
   waistCm?: number | null
@@ -626,7 +626,7 @@ export type BodyMeasurementCreateWithoutUserInput = {
 export type BodyMeasurementUncheckedCreateWithoutUserInput = {
   id?: string
   heightCm?: number | null
-  weightCm?: number | null
+  weightKg?: number | null
   goalWeightKg?: number | null
   chestCm?: number | null
   waistCm?: number | null
@@ -657,7 +657,7 @@ export type BodyMeasurementUpdateToOneWithWhereWithoutUserInput = {
 export type BodyMeasurementUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  weightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  weightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   goalWeightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chestCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waistCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -672,7 +672,7 @@ export type BodyMeasurementUpdateWithoutUserInput = {
 export type BodyMeasurementUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   heightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  weightCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  weightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   goalWeightKg?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   chestCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   waistCm?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -689,7 +689,7 @@ export type BodyMeasurementUncheckedUpdateWithoutUserInput = {
 export type BodyMeasurementSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   heightCm?: boolean
-  weightCm?: boolean
+  weightKg?: boolean
   goalWeightKg?: boolean
   chestCm?: boolean
   waistCm?: boolean
@@ -706,7 +706,7 @@ export type BodyMeasurementSelect<ExtArgs extends runtime.Types.Extensions.Inter
 export type BodyMeasurementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   heightCm?: boolean
-  weightCm?: boolean
+  weightKg?: boolean
   goalWeightKg?: boolean
   chestCm?: boolean
   waistCm?: boolean
@@ -723,7 +723,7 @@ export type BodyMeasurementSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
 export type BodyMeasurementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   heightCm?: boolean
-  weightCm?: boolean
+  weightKg?: boolean
   goalWeightKg?: boolean
   chestCm?: boolean
   waistCm?: boolean
@@ -740,7 +740,7 @@ export type BodyMeasurementSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
 export type BodyMeasurementSelectScalar = {
   id?: boolean
   heightCm?: boolean
-  weightCm?: boolean
+  weightKg?: boolean
   goalWeightKg?: boolean
   chestCm?: boolean
   waistCm?: boolean
@@ -753,7 +753,7 @@ export type BodyMeasurementSelectScalar = {
   updatedAt?: boolean
 }
 
-export type BodyMeasurementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "heightCm" | "weightCm" | "goalWeightKg" | "chestCm" | "waistCm" | "thighCm" | "armCm" | "activityLevel" | "nutritionGoal" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["bodyMeasurement"]>
+export type BodyMeasurementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "heightCm" | "weightKg" | "goalWeightKg" | "chestCm" | "waistCm" | "thighCm" | "armCm" | "activityLevel" | "nutritionGoal" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["bodyMeasurement"]>
 export type BodyMeasurementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -772,7 +772,7 @@ export type $BodyMeasurementPayload<ExtArgs extends runtime.Types.Extensions.Int
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     heightCm: number | null
-    weightCm: number | null
+    weightKg: number | null
     goalWeightKg: number | null
     chestCm: number | null
     waistCm: number | null
@@ -1209,7 +1209,7 @@ export interface Prisma__BodyMeasurementClient<T, Null = never, ExtArgs extends 
 export interface BodyMeasurementFieldRefs {
   readonly id: Prisma.FieldRef<"BodyMeasurement", 'String'>
   readonly heightCm: Prisma.FieldRef<"BodyMeasurement", 'Int'>
-  readonly weightCm: Prisma.FieldRef<"BodyMeasurement", 'Int'>
+  readonly weightKg: Prisma.FieldRef<"BodyMeasurement", 'Int'>
   readonly goalWeightKg: Prisma.FieldRef<"BodyMeasurement", 'Int'>
   readonly chestCm: Prisma.FieldRef<"BodyMeasurement", 'Int'>
   readonly waistCm: Prisma.FieldRef<"BodyMeasurement", 'Int'>

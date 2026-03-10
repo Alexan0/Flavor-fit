@@ -1668,7 +1668,7 @@ export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeo
 export const BodyMeasurementScalarFieldEnum = {
   id: 'id',
   heightCm: 'heightCm',
-  weightCm: 'weightCm',
+  weightKg: 'weightKg',
   goalWeightKg: 'goalWeightKg',
   chestCm: 'chestCm',
   waistCm: 'waistCm',

@@ -40,8 +40,8 @@ export function BodyMeasurementsForm() {
           label="Current weight"
           placeholder="Weight Kg"
           type="number"
-          errorMessage={errors.measurements?.weightCm?.message}
-          {...register("measurements.weightCm", { setValueAs: (value) => (value === "" ? undefined : Number(value)) })}
+          errorMessage={errors.measurements?.weightKg?.message}
+          {...register("measurements.weightKg", { setValueAs: (value) => (value === "" ? undefined : Number(value)) })}
         />
         <div className="flex gap-2">
           <div className="flex-auto">

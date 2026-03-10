@@ -10,7 +10,7 @@ export class BodyMeasurementUpdateInput {
 
   @Field(() => Int, { nullable: true })
   @IsPositive()
-  weightCm?: number | null;
+  weightKg?: number | null;
 
   @Field(() => Int, { nullable: true })
   @IsPositive()
