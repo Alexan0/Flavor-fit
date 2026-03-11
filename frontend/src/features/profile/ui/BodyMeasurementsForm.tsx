@@ -35,14 +35,32 @@ export function BodyMeasurementsForm() {
           errorMessage={errors.measurements?.heightCm?.message}
           {...register("measurements.heightCm", { setValueAs: (value) => (value === "" ? undefined : Number(value)) })}
         />
-        <InputLabel
-          Icon={Weight}
-          label="Current weight"
-          placeholder="Weight Kg"
-          type="number"
-          errorMessage={errors.measurements?.weightKg?.message}
-          {...register("measurements.weightKg", { setValueAs: (value) => (value === "" ? undefined : Number(value)) })}
-        />
+        <div className="flex gap-2">
+          <div className="flex-auto">
+            <InputLabel
+              Icon={Weight}
+              label="Current weight"
+              placeholder="Weight Kg"
+              type="number"
+              errorMessage={errors.measurements?.weightKg?.message}
+              {...register("measurements.weightKg", {
+                setValueAs: (value) => (value === "" ? undefined : Number(value))
+              })}
+            />
+          </div>
+          <div className="flex-auto">
+            <InputLabel
+              Icon={Weight}
+              label="Goal weight"
+              placeholder="Weight Kg"
+              type="number"
+              errorMessage={errors.measurements?.goalWeightKg?.message}
+              {...register("measurements.goalWeightKg", {
+                setValueAs: (value) => (value === "" ? undefined : Number(value))
+              })}
+            />
+          </div>
+        </div>
         <div className="flex gap-2">
           <div className="flex-auto">
             <InputLabel
