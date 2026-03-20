@@ -1,0 +1,7 @@
+{
+	"schema": "./frontend/schema.graphql",
+	"documents": [
+		"./frontend/src/shared/graphql/**/*.graphql",
+		"./frontend/src/features/**/*.graphql"
+	]
+}

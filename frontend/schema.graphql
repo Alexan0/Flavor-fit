@@ -1,0 +1,281 @@
+enum ActivityLevel {
+  ACTIVE
+  LIGHT
+  MODERATE
+  SEDENTARY
+  VERY_ACTIVE
+}
+
+input AuthInput {
+  email: String!
+  password: String!
+}
+
+type AuthResponse {
+  user: UserModel!
+}
+
+type BodyMeasurementModel {
+  activityLevel: ActivityLevel
+  armCm: Int
+  chestCm: Int
+  createdAt: DateTime!
+  goalWeightKg: Int
+  heightCm: Int
+  id: ID!
+  nutritionGoal: NutritionGoal
+  thighCm: Int
+  updatedAt: DateTime!
+  waistCm: Int
+  weightKg: Int
+}
+
+input BodyMeasurementUpdateInput {
+  activityLevel: ActivityLevel
+  armCm: Int
+  chestCm: Int
+  goalWeightKg: Int
+  heightCm: Int
+  nutritionGoal: NutritionGoal
+  thighCm: Int
+  waistCm: Int
+  weightKg: Int
+}
+
+input CommentCreateInput {
+  content: String!
+  recipeId: String!
+}
+
+type CommentModel {
+  content: String!
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+input CommentUpdateInput {
+  content: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+enum Difficulty {
+  EASY
+  HARD
+  MEDIUM
+}
+
+enum Gender {
+  FEMALE
+  MALE
+}
+
+input IngredientCreateInput {
+  content: String!
+  defaultUnit: Unit
+  iconUrl: String!
+  name: String!
+  price: Float!
+}
+
+type IngredientModel {
+  createdAt: DateTime!
+  defaultUnit: Unit!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+type Mutation {
+  createComment(input: CommentCreateInput!): CommentModel!
+  createIngredient(input: IngredientCreateInput!): IngredientModel!
+  createOrder(input: OrderCreateInput!): OrderModel!
+  deleteComment(commentId: String!): Boolean!
+  deleteIngredientById(id: String!): Boolean!
+  login(data: AuthInput!): AuthResponse!
+  logout: Boolean!
+  register(data: AuthInput!): AuthResponse!
+  requestPasswordReset(data: RequestPasswordResetInput!): Boolean!
+  resetPassword(data: ResetPasswordInput!): Boolean!
+  toggleLike(recipeId: String!): ToggleLikeResponse!
+  updateComment(commentId: String!, input: CommentUpdateInput!): CommentModel!
+  updateIngredient(id: String!, input: IngredientCreateInput!): IngredientModel!
+  updateProfile(data: UserUpdateInput!): UserModel!
+  verifyEmail(token: String!): Boolean!
+}
+
+type NutritionFactModel {
+  carbohydrates: Float!
+  createdAt: DateTime!
+  fats: Float!
+  fiber: Float!
+  id: ID!
+  proteins: Float!
+  updatedAt: DateTime!
+}
+
+enum NutritionGoal {
+  MAINTENANCE
+  MUSCLE_GAIN
+  WEIGHT_LOSS
+}
+
+input OrderCreateInput {
+  items: [OrderItemInput!]!
+}
+
+input OrderItemInput {
+  quantity: Float! = 1
+  recipeIngredientId: ID!
+}
+
+type OrderItemModel {
+  createdAt: DateTime!
+  id: ID!
+  price: String!
+  quantity: Int!
+  recipeIngredient: RecipeIngredientModel!
+  updatedAt: DateTime!
+}
+
+type OrderModel {
+  createdAt: DateTime!
+  id: ID!
+  items: [OrderItemModel!]!
+  orderId: String!
+  status: OrderStatus!
+  updatedAt: DateTime!
+}
+
+enum OrderStatus {
+  CANCELLED
+  COMPLETED
+  PENDING
+  PROCESSING
+}
+
+type ProfileModel {
+  age: Int
+  bio: String
+  createdAt: DateTime!
+  fullName: String
+  gender: Gender
+  id: ID!
+  updatedAt: DateTime!
+}
+
+input ProfileUpdateInput {
+  age: Int
+  bio: String
+  fullName: String
+  gender: Gender
+}
+
+type Query {
+  ingredientById(id: String!): IngredientModel!
+  ingredients: [IngredientModel!]!
+  myOrders: [OrderModel!]!
+  newTokens: AuthResponse!
+  profile: UserModel!
+  recipeById(id: String!): RecipeModel!
+  recipeBySlug(slug: String!): RecipeModel!
+  recipes: [RecipeModel!]!
+  users: [UserModel!]!
+}
+
+type RecipeIngredientModel {
+  createdAt: DateTime!
+  id: ID!
+  ingredient: IngredientModel!
+  name: String!
+  quantity: Float!
+  unit: Unit!
+  updatedAt: DateTime!
+}
+
+type RecipeModel {
+  author: UserModel!
+  authorId: String!
+  calories: String!
+  cookingTime: Int!
+  createdAt: DateTime!
+  description: String!
+  difficulty: Difficulty!
+  id: ID!
+  likes: Int
+  nutritionFacts: NutritionFactModel
+  recipeIngredients: [RecipeIngredientModel!]
+  recipeSteps: [RecipeStepModel!]
+  slug: String!
+  tags: [RecipeTagModel!]
+  title: String!
+  updatedAt: DateTime!
+}
+
+type RecipeStepModel {
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  order: Int!
+  recipeId: String!
+  title: String!
+  updatedAt: DateTime!
+}
+
+type RecipeTagModel {
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+}
+
+input RequestPasswordResetInput {
+  email: String!
+}
+
+input ResetPasswordInput {
+  newPassword: String!
+  token: String!
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+type ToggleLikeResponse {
+  liked: Boolean!
+}
+
+enum Unit {
+  CLOVES
+  GRAM
+  MILLILITER
+  PIECE
+  TABLESPOON
+  TEASPOON
+}
+
+type UserModel {
+  avatarUrl: String
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  isEmailVerified: Boolean!
+  measurements: BodyMeasurementModel
+  profile: ProfileModel
+  role: Role!
+  updatedAt: DateTime!
+}
+
+input UserUpdateInput {
+  avatarUrl: String
+  email: String
+  measurements: BodyMeasurementUpdateInput
+  password: String
+  profile: ProfileUpdateInput
+}
