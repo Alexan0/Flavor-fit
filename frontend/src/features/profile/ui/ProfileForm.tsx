@@ -24,14 +24,16 @@ interface Props {
 }
 
 export function ProfileForm({ data }: Props) {
+  const initialData = {
+    email: data.profile.email ?? "",
+    avatarUrl: data.profile.avatarUrl ?? "",
+    profile: data.profile.profile ?? {},
+    measurements: data.profile.measurements ?? {}
+  };
+
   const form = useForm<TProfileForm>({
     mode: "onChange",
-    defaultValues: {
-      email: data.profile.email ?? "",
-      avatarUrl: data.profile.avatarUrl ?? "",
-      profile: data.profile.profile ?? {},
-      measurements: data.profile.measurements ?? {}
-    },
+    defaultValues: initialData,
     resolver: zodResolver(updateProfileSchema)
   });
 
@@ -43,6 +45,8 @@ export function ProfileForm({ data }: Props) {
         id: "update-profile-success",
         duration: DURATION
       });
+
+      form.reset(form.getValues());
     },
     onError: (error) => {
       toast.error(error.message, { id: "update-profile-error", duration: DURATION });
@@ -63,8 +67,8 @@ export function ProfileForm({ data }: Props) {
       <div className="flex items-center justify-between p-6">
         <HeadingWithIcon Icon={UserCog}>Personal Information</HeadingWithIcon>
         <div className="flex items-center gap-2">
-          <Button variant="secondary" type="button">
-            Cancel
+          <Button variant="secondary" type="button" disabled={!isDirty} onClick={() => form.reset(initialData)}>
+            Reset
           </Button>
           <Button variant="accent" type="submit" disabled={!isValid || !isDirty || loading}>
             Save changes

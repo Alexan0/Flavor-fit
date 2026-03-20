@@ -11,7 +11,7 @@ import type { TProfileForm } from "../types/profile-update.types";
 import { ACTIVITY_LEVEL_OPTIONS, NUTRITION_GOAL_OPTIONS } from "../utils/profile-form.utils";
 
 export function BodyMeasurementsForm() {
-  const { register, control } = useFormContext<TProfileForm>();
+  const { control } = useFormContext<TProfileForm>();
 
   const gender = useWatch({ control, name: "profile.gender" });
   const { errors } = useFormState({ control });
@@ -27,87 +27,133 @@ export function BodyMeasurementsForm() {
       />
       <div className="w-full space-y-2.5">
         <span className="mb-5 block text-lg font-semibold">Body measurements</span>
-        <InputLabel
-          Icon={Ruler}
-          label="Growth"
-          placeholder="Height Cm"
-          type="number"
-          errorMessage={errors.measurements?.heightCm?.message}
-          {...register("measurements.heightCm", { setValueAs: (value) => (value === "" ? undefined : Number(value)) })}
+        <Controller
+          control={control}
+          name="measurements.heightCm"
+          render={({ field }) => (
+            <InputLabel
+              {...field}
+              value={field.value ?? ""}
+              onChange={(e) => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+              Icon={Ruler}
+              label="Growth"
+              placeholder="Height Cm"
+              type="number"
+              errorMessage={errors.measurements?.heightCm?.message}
+            />
+          )}
         />
         <div className="flex gap-2">
           <div className="flex-auto">
-            <InputLabel
-              Icon={Weight}
-              label="Current weight"
-              placeholder="Weight Kg"
-              type="number"
-              errorMessage={errors.measurements?.weightKg?.message}
-              {...register("measurements.weightKg", {
-                setValueAs: (value) => (value === "" ? undefined : Number(value))
-              })}
+            <Controller
+              control={control}
+              name="measurements.weightKg"
+              render={({ field }) => (
+                <InputLabel
+                  {...field}
+                  value={field.value ?? ""}
+                  onChange={(e) => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+                  Icon={Weight}
+                  label="Current weight"
+                  placeholder="Weight Kg"
+                  type="number"
+                  errorMessage={errors.measurements?.weightKg?.message}
+                />
+              )}
             />
           </div>
           <div className="flex-auto">
-            <InputLabel
-              Icon={Weight}
-              label="Goal weight"
-              placeholder="Weight Kg"
-              type="number"
-              errorMessage={errors.measurements?.goalWeightKg?.message}
-              {...register("measurements.goalWeightKg", {
-                setValueAs: (value) => (value === "" ? undefined : Number(value))
-              })}
-            />
-          </div>
-        </div>
-        <div className="flex gap-2">
-          <div className="flex-auto">
-            <InputLabel
-              Icon={Ruler}
-              label="Waist circumference"
-              placeholder="Waist Cm"
-              type="number"
-              errorMessage={errors.measurements?.waistCm?.message}
-              {...register("measurements.waistCm", {
-                setValueAs: (value) => (value === "" ? undefined : Number(value))
-              })}
-            />
-          </div>
-          <div className="flex-auto">
-            <InputLabel
-              Icon={Ruler}
-              label="Chest weight"
-              placeholder="Chest Cm"
-              type="number"
-              errorMessage={errors.measurements?.chestCm?.message}
-              {...register("measurements.chestCm", {
-                setValueAs: (value) => (value === "" ? undefined : Number(value))
-              })}
+            <Controller
+              control={control}
+              name="measurements.goalWeightKg"
+              render={({ field }) => (
+                <InputLabel
+                  {...field}
+                  value={field.value ?? ""}
+                  onChange={(e) => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+                  Icon={Weight}
+                  label="Goal weight"
+                  placeholder="Weight Kg"
+                  type="number"
+                  errorMessage={errors.measurements?.goalWeightKg?.message}
+                />
+              )}
             />
           </div>
         </div>
         <div className="flex gap-2">
           <div className="flex-auto">
-            <InputLabel
-              Icon={Ruler}
-              label="Thigh circumference"
-              placeholder="Thigh Cm"
-              type="number"
-              errorMessage={errors.measurements?.thighCm?.message}
-              {...register("measurements.thighCm", {
-                setValueAs: (value) => (value === "" ? undefined : Number(value))
-              })}
+            <Controller
+              control={control}
+              name="measurements.waistCm"
+              render={({ field }) => (
+                <InputLabel
+                  {...field}
+                  value={field.value ?? ""}
+                  onChange={(e) => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+                  Icon={Ruler}
+                  label="Waist circumference"
+                  placeholder="Waist Cm"
+                  type="number"
+                  errorMessage={errors.measurements?.waistCm?.message}
+                />
+              )}
             />
           </div>
           <div className="flex-auto">
-            <InputLabel
-              Icon={Ruler}
-              label="Arm circumference"
-              placeholder="Arm Cm"
-              type="number"
-              errorMessage={errors.measurements?.armCm?.message}
-              {...register("measurements.armCm", { setValueAs: (value) => (value === "" ? undefined : Number(value)) })}
+            <Controller
+              control={control}
+              name="measurements.chestCm"
+              render={({ field }) => (
+                <InputLabel
+                  {...field}
+                  value={field.value ?? ""}
+                  onChange={(e) => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+                  Icon={Ruler}
+                  label="Chest weight"
+                  placeholder="Chest Cm"
+                  type="number"
+                  errorMessage={errors.measurements?.chestCm?.message}
+                />
+              )}
+            />
+          </div>
+        </div>
+        <div className="flex gap-2">
+          <div className="flex-auto">
+            <Controller
+              control={control}
+              name="measurements.thighCm"
+              render={({ field }) => (
+                <InputLabel
+                  {...field}
+                  value={field.value ?? ""}
+                  onChange={(e) => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+                  Icon={Ruler}
+                  label="Thigh circumference"
+                  placeholder="Thigh Cm"
+                  type="number"
+                  errorMessage={errors.measurements?.thighCm?.message}
+                />
+              )}
+            />
+          </div>
+          <div className="flex-auto">
+            <Controller
+              control={control}
+              name="measurements.armCm"
+              render={({ field }) => (
+                <InputLabel
+                  {...field}
+                  value={field.value ?? ""}
+                  onChange={(e) => field.onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+                  Icon={Ruler}
+                  label="Arm circumference"
+                  placeholder="Arm Cm"
+                  type="number"
+                  errorMessage={errors.measurements?.armCm?.message}
+                />
+              )}
             />
           </div>
         </div>
