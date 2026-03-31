@@ -1,16 +1,10 @@
 "use server";
 
-import { type NextRequest, NextResponse } from "next/server";
+import { type NextRequest } from "next/server";
 import { CombinedGraphQLErrors } from "@apollo/client";
-import { set } from "zod";
 
 import { GRAPHQL_SERVER_URL } from "@/shared/config/api.config";
-import { PAGES } from "@/shared/config/page.config";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "@/shared/constants/app.constants";
-
-import { getApolloClient } from "../apollo/apollo-client";
-
-import { GetNewTokensDocument, type GetNewTokensQuery } from "@/__generated__/graphql";
 
 export async function getTokens(request: NextRequest) {
   const refreshToken = request.cookies.get(REFRESH_TOKEN)?.value;

@@ -14,9 +14,5 @@ export function Profile() {
     return <ProfileSkeleton />;
   }
 
-  return (
-    <div className="mt-10 h-[calc(100%-108px)] gap-6">
-      <ProfileForm data={data} />
-    </div>
-  );
+  return <ProfileForm data={data} />;
 }

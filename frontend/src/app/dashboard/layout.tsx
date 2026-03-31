@@ -6,7 +6,7 @@ export default function Layout({ children }: PropsWithChildren<unknown>) {
   return (
     <div className="h-screen p-5">
       <Header />
-      {children}
+      <div className="mt-10 h-[calc(100%-108px)] gap-6">{children}</div>
     </div>
   );
 }

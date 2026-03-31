@@ -2,7 +2,7 @@ import * as React from "react";
 
 import { cn } from "@/shared/utils";
 
-import { ErrorMessage } from "../ErrorMessage";
+import { ErrorMessage } from "../custom-ui/error-message/ErrorMessage";
 
 interface InputProps extends React.ComponentProps<"input"> {
   errorMessage?: string;

@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 import { ApolloProvider } from "@apollo/client/react";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 import { getApolloClient } from "@/shared/lib/apollo/apollo-client";
 
@@ -10,9 +11,11 @@ const apollo = getApolloClient();
 
 export function Provider({ children }: { children: ReactNode }) {
   return (
-    <ApolloProvider client={apollo}>
-      {children}
-      <Toaster position="top-center" containerClassName="mt-16 font-mono text-sm" />
-    </ApolloProvider>
+    <NuqsAdapter>
+      <ApolloProvider client={apollo}>
+        {children}
+        <Toaster position="top-center" containerClassName="mt-16 font-mono text-sm" />
+      </ApolloProvider>
+    </NuqsAdapter>
   );
 }
