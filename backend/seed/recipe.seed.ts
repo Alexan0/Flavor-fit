@@ -3,18 +3,16 @@ import { Role } from '../prisma/generated/prisma/enums';
 import { popularRecipes, recommendedRecipes } from './recipe-seed.data';
 import type { ISeedRecipe } from './seed.types';
 
-import { PrismaPg } from '@prisma/adapter-pg';
 import 'dotenv/config';
-import { Pool } from 'pg';
-import { PrismaClient } from '../prisma/generated/prisma/client';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+import { PrismaClient } from '../prisma/generated/prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
+
+const adapter = new PrismaPg({
+  connectionString: process.env.DATABASE_URL!,
 });
 
-const adapter = new PrismaPg(pool);
-
-const prisma = new PrismaClient({ adapter });
+const prisma = new PrismaClient({ adapter, log: ['error', 'warn'] });
 
 async function ensureLikerPool(maxLikesCount: number) {
   const likerEmails = Array.from({ length: maxLikesCount }, (_, index) => ({
@@ -116,7 +114,7 @@ async function upsertRecipe(recipe: ISeedRecipe, authorId: string) {
       title: recipe.title,
       description: recipe.description,
       image: recipe.image,
-      calories: recipe.calories.toString(),
+      calories: recipe.calories,
       cookingTime: recipe.cookingTime,
       difficulty: recipe.difficulty,
       mealType: recipe.mealType,
@@ -170,7 +168,7 @@ async function upsertRecipe(recipe: ISeedRecipe, authorId: string) {
       title: recipe.title,
       description: recipe.description,
       image: recipe.image,
-      calories: recipe.calories.toString(),
+      calories: recipe.calories,
       cookingTime: recipe.cookingTime,
       difficulty: recipe.difficulty,
       mealType: recipe.mealType,
@@ -234,6 +232,29 @@ async function syncRecipeLikes(
   });
 }
 
+async function ensureAuthor() {
+  const authorEmail = 'seed.author@flavorfit.com';
+
+  let author = await prisma.user.findUnique({
+    where: { email: authorEmail },
+    select: { id: true },
+  });
+
+  if (!author) {
+    author = await prisma.user.create({
+      data: {
+        email: authorEmail,
+        password: await hash('author-password'),
+        role: Role.ADMIN,
+        isEmailVerified: true,
+      },
+      select: { id: true },
+    });
+  }
+
+  return author.id;
+}
+
 async function seedRecipes(authorId: string, likerIds: string[]) {
   const recommendedSorted = [...recommendedRecipes].sort(
     (a, b) => b.likesCount - a.likesCount,
@@ -250,28 +271,19 @@ async function seedRecipes(authorId: string, likerIds: string[]) {
 }
 
 async function main() {
-  const authorId = 'cmm00hh7z0000lpmbi74bnnt6';
-
+  const authorId = await ensureAuthor();
   const allRecipes = [...recommendedRecipes, ...popularRecipes];
-  const maxLikesCount = Math.max(
-    ...allRecipes.map((recipe) => recipe.likesCount),
-  );
-
+  const maxLikesCount = Math.max(...allRecipes.map((r) => r.likesCount));
   const likerIds = await ensureLikerPool(maxLikesCount);
-
   await seedRecipes(authorId, likerIds);
-
-  console.log('Seed completed successfully');
 }
 
 main()
   .then(async () => {
     await prisma.$disconnect();
-    await pool.end();
   })
   .catch(async (e) => {
     console.error(e);
     await prisma.$disconnect();
-    await pool.end();
     process.exit(1);
   });
