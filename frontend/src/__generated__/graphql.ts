@@ -82,6 +82,25 @@ export type CommentUpdateInput = {
   content: Scalars['String']['input'];
 };
 
+export const Cuisine = {
+  Chinese: 'CHINESE',
+  French: 'FRENCH',
+  Indian: 'INDIAN',
+  Italian: 'ITALIAN',
+  Mexican: 'MEXICAN',
+  Russian: 'RUSSIAN'
+} as const;
+
+export type Cuisine = typeof Cuisine[keyof typeof Cuisine];
+export const DietaryPreference = {
+  DairyFree: 'DAIRY_FREE',
+  GlutenFree: 'GLUTEN_FREE',
+  Keto: 'KETO',
+  LowCarb: 'LOW_CARB',
+  Vegetarian: 'VEGETARIAN'
+} as const;
+
+export type DietaryPreference = typeof DietaryPreference[keyof typeof DietaryPreference];
 export const Difficulty = {
   Easy: 'EASY',
   Hard: 'HARD',
@@ -95,6 +114,13 @@ export const Gender = {
 } as const;
 
 export type Gender = typeof Gender[keyof typeof Gender];
+export const HealthGoal = {
+  HeartHealth: 'HEART_HEALTH',
+  MuscleGain: 'MUSCLE_GAIN',
+  WeightLoss: 'WEIGHT_LOSS'
+} as const;
+
+export type HealthGoal = typeof HealthGoal[keyof typeof HealthGoal];
 export type IngredientCreateInput = {
   content: Scalars['String']['input'];
   defaultUnit?: InputMaybe<Unit>;
@@ -112,6 +138,16 @@ export type IngredientModel = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export const MealType = {
+  Breakfast: 'BREAKFAST',
+  Dessert: 'DESSERT',
+  Dinner: 'DINNER',
+  Drinks: 'DRINKS',
+  Lunch: 'LUNCH',
+  Snack: 'SNACK'
+} as const;
+
+export type MealType = typeof MealType[keyof typeof MealType];
 export type Mutation = {
   __typename?: 'Mutation';
   createComment: CommentModel;
@@ -278,6 +314,7 @@ export type ProfileUpdateInput = {
 
 export type Query = {
   __typename?: 'Query';
+  adminRecipes: Array<RecipeModel>;
   ingredientById: IngredientModel;
   ingredients: Array<IngredientModel>;
   myOrders: Array<OrderModel>;
@@ -304,6 +341,11 @@ export type QueryRecipeBySlugArgs = {
   slug: Scalars['String']['input'];
 };
 
+
+export type QueryRecipesArgs = {
+  input: RecipesQueryInput;
+};
+
 export type RecipeIngredientModel = {
   __typename?: 'RecipeIngredientModel';
   createdAt: Scalars['DateTime']['output'];
@@ -322,17 +364,24 @@ export type RecipeModel = {
   calories: Scalars['String']['output'];
   cookingTime: Scalars['Int']['output'];
   createdAt: Scalars['DateTime']['output'];
+  cuisine: Cuisine;
   description: Scalars['String']['output'];
+  dietaryPreference: DietaryPreference;
   difficulty: Difficulty;
+  healthGoal: HealthGoal;
   id: Scalars['ID']['output'];
+  image: Scalars['String']['output'];
   likes?: Maybe<Scalars['Int']['output']>;
+  mealType: MealType;
   nutritionFacts?: Maybe<NutritionFactModel>;
   recipeIngredients?: Maybe<Array<RecipeIngredientModel>>;
   recipeSteps?: Maybe<Array<RecipeStepModel>>;
   slug: Scalars['String']['output'];
+  specialOccasion: SpecialOccasion;
   tags?: Maybe<Array<RecipeTagModel>>;
   title: Scalars['String']['output'];
   updatedAt: Scalars['DateTime']['output'];
+  views: Scalars['Int']['output'];
 };
 
 export type RecipeStepModel = {
@@ -354,6 +403,18 @@ export type RecipeTagModel = {
   updatedAt: Scalars['DateTime']['output'];
 };
 
+export type RecipesQueryInput = {
+  cuisine?: InputMaybe<Cuisine>;
+  dietaryPreference?: InputMaybe<DietaryPreference>;
+  healthGoal?: InputMaybe<HealthGoal>;
+  limit?: Scalars['Int']['input'];
+  mealType?: InputMaybe<MealType>;
+  page?: Scalars['Int']['input'];
+  searchTerm?: InputMaybe<Scalars['String']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  specialOccasion?: InputMaybe<SpecialOccasion>;
+};
+
 export type RequestPasswordResetInput = {
   email: Scalars['String']['input'];
 };
@@ -369,6 +430,14 @@ export const Role = {
 } as const;
 
 export type Role = typeof Role[keyof typeof Role];
+export const SpecialOccasion = {
+  Anniversary: 'ANNIVERSARY',
+  Birthday: 'BIRTHDAY',
+  Holiday: 'HOLIDAY',
+  Party: 'PARTY'
+} as const;
+
+export type SpecialOccasion = typeof SpecialOccasion[keyof typeof SpecialOccasion];
 export type ToggleLikeResponse = {
   __typename?: 'ToggleLikeResponse';
   liked: Scalars['Boolean']['output'];
@@ -467,6 +536,13 @@ export type UpdateProfileMutationVariables = Exact<{
 
 export type UpdateProfileMutation = { __typename?: 'Mutation', updateProfile: { __typename?: 'UserModel', id: string, email: string, avatarUrl?: string | null, profile?: { __typename?: 'ProfileModel', fullName?: string | null, gender?: Gender | null, age?: number | null, bio?: string | null } | null, measurements?: { __typename?: 'BodyMeasurementModel', heightCm?: number | null, weightKg?: number | null, goalWeightKg?: number | null, chestCm?: number | null, waistCm?: number | null, thighCm?: number | null, armCm?: number | null, activityLevel?: ActivityLevel | null, nutritionGoal?: NutritionGoal | null } | null } };
 
+export type GetRecipesQueryVariables = Exact<{
+  input: RecipesQueryInput;
+}>;
+
+
+export type GetRecipesQuery = { __typename?: 'Query', recipes: Array<{ __typename?: 'RecipeModel', image: string, title: string, description: string, slug: string, calories: string, cookingTime: number, difficulty: Difficulty, likes?: number | null, views: number, mealType: MealType }> };
+
 
 export const GetNewTokensDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetNewTokens"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newTokens"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}}]}}]}}]} as unknown as DocumentNode<GetNewTokensQuery, GetNewTokensQueryVariables>;
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"data"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"AuthInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"data"},"value":{"kind":"Variable","name":{"kind":"Name","value":"data"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}}]}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
@@ -478,3 +554,4 @@ export const ResetPasswordDocument = {"kind":"Document","definitions":[{"kind":"
 export const VerifyEmailDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"VerifyEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"token"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verifyEmail"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"token"},"value":{"kind":"Variable","name":{"kind":"Name","value":"token"}}}]}]}}]} as unknown as DocumentNode<VerifyEmailMutation, VerifyEmailMutationVariables>;
 export const GetProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetProfile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"avatarUrl"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fullName"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"age"}},{"kind":"Field","name":{"kind":"Name","value":"bio"}}]}},{"kind":"Field","name":{"kind":"Name","value":"measurements"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heightCm"}},{"kind":"Field","name":{"kind":"Name","value":"weightKg"}},{"kind":"Field","name":{"kind":"Name","value":"goalWeightKg"}},{"kind":"Field","name":{"kind":"Name","value":"chestCm"}},{"kind":"Field","name":{"kind":"Name","value":"waistCm"}},{"kind":"Field","name":{"kind":"Name","value":"thighCm"}},{"kind":"Field","name":{"kind":"Name","value":"armCm"}},{"kind":"Field","name":{"kind":"Name","value":"activityLevel"}},{"kind":"Field","name":{"kind":"Name","value":"nutritionGoal"}}]}}]}}]}}]} as unknown as DocumentNode<GetProfileQuery, GetProfileQueryVariables>;
 export const UpdateProfileDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateProfile"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"data"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"UserUpdateInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateProfile"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"data"},"value":{"kind":"Variable","name":{"kind":"Name","value":"data"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"avatarUrl"}},{"kind":"Field","name":{"kind":"Name","value":"profile"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"fullName"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"Field","name":{"kind":"Name","value":"age"}},{"kind":"Field","name":{"kind":"Name","value":"bio"}}]}},{"kind":"Field","name":{"kind":"Name","value":"measurements"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"heightCm"}},{"kind":"Field","name":{"kind":"Name","value":"weightKg"}},{"kind":"Field","name":{"kind":"Name","value":"goalWeightKg"}},{"kind":"Field","name":{"kind":"Name","value":"chestCm"}},{"kind":"Field","name":{"kind":"Name","value":"waistCm"}},{"kind":"Field","name":{"kind":"Name","value":"thighCm"}},{"kind":"Field","name":{"kind":"Name","value":"armCm"}},{"kind":"Field","name":{"kind":"Name","value":"activityLevel"}},{"kind":"Field","name":{"kind":"Name","value":"nutritionGoal"}}]}}]}}]}}]} as unknown as DocumentNode<UpdateProfileMutation, UpdateProfileMutationVariables>;
+export const GetRecipesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetRecipes"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RecipesQueryInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"recipes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"slug"}},{"kind":"Field","name":{"kind":"Name","value":"calories"}},{"kind":"Field","name":{"kind":"Name","value":"cookingTime"}},{"kind":"Field","name":{"kind":"Name","value":"difficulty"}},{"kind":"Field","name":{"kind":"Name","value":"likes"}},{"kind":"Field","name":{"kind":"Name","value":"views"}},{"kind":"Field","name":{"kind":"Name","value":"mealType"}}]}}]}}]} as unknown as DocumentNode<GetRecipesQuery, GetRecipesQueryVariables>;

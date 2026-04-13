@@ -26,7 +26,7 @@ export class RecipesResolver {
     return this.recipesService.getBySlug(slug);
   }
 
-  @Query(() => [RecipeModel], { name: 'recipes' })
+  @Query(() => [RecipeModel], { name: 'adminRecipes' })
   @Auth(Role.ADMIN)
   getAllAdmin() {
     return this.adminRecipesService.getAll();

@@ -1,7 +1,14 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 import { NutritionFactInput } from './nutrition-fact.input';
 import { RecipeStepInput } from './step.input';
-import { Difficulty } from '../recipes.enums';
+import {
+  Difficulty,
+  DietaryPreference,
+  MealType,
+  HealthGoal,
+  Cuisine,
+  SpecialOccasion,
+} from '../recipes.enums';
 import { RecipeIngredientInput } from './recipe-ingredient.input';
 import { IsEnum, IsPositive, IsString, MaxLength } from 'class-validator';
 
@@ -31,6 +38,26 @@ export class RecipeCreateInput {
   @Field(() => Difficulty, { nullable: false })
   @IsEnum(Difficulty)
   difficulty!: Difficulty;
+
+  @Field(() => MealType, { nullable: false })
+  @IsEnum(MealType)
+  mealType!: MealType;
+
+  @Field(() => DietaryPreference, { nullable: false })
+  @IsEnum(DietaryPreference)
+  dietaryPreference!: DietaryPreference;
+
+  @Field(() => HealthGoal, { nullable: false })
+  @IsEnum(HealthGoal)
+  healthGoal!: HealthGoal;
+
+  @Field(() => Cuisine, { nullable: false })
+  @IsEnum(Cuisine)
+  cuisine!: Cuisine;
+
+  @Field(() => SpecialOccasion, { nullable: false })
+  @IsEnum(SpecialOccasion)
+  specialOccasion!: SpecialOccasion;
 
   @Field(() => NutritionFactInput, {
     nullable: true,

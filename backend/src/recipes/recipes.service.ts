@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '@prisma/prisma.service';
-import type { RecipesQueryInput } from './inputs/get-recipes-query.input';
+import { RecipesQueryInput } from './inputs/get-recipes-query.input';
 import { Prisma } from 'prisma/generated/prisma/client';
 import { SortOrder } from './recipes.enums';
 
@@ -8,7 +8,17 @@ import { SortOrder } from './recipes.enums';
 export class RecipesService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getAll({ page, limit, searchTerm, sort }: RecipesQueryInput) {
+  async getAll({
+    page,
+    limit,
+    searchTerm,
+    sort,
+    mealType,
+    dietaryPreference,
+    healthGoal,
+    cuisine,
+    specialOccasion,
+  }: RecipesQueryInput) {
     const skip = (page - 1) * limit;
 
     return this.prisma.recipe.findMany({
@@ -16,11 +26,14 @@ export class RecipesService {
       take: limit,
 
       where: {
+        ...(mealType && { mealType }),
+        ...(dietaryPreference && { dietaryPreference }),
+        ...(healthGoal && { healthGoal }),
+        ...(cuisine && { cuisine }),
+        ...(specialOccasion && { specialOccasion }),
         ...(searchTerm && {
           OR: [
-            {
-              title: { contains: searchTerm, mode: 'insensitive' },
-            },
+            { title: { contains: searchTerm, mode: 'insensitive' } },
             { description: { contains: searchTerm, mode: 'insensitive' } },
             {
               recipeIngredients: {

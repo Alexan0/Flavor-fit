@@ -15,12 +15,15 @@ export function MenuAccordionItem({ item, activeValue, onValueChange }: Props) {
   return (
     <Collapsible defaultOpen={item.isInitialOpen}>
       <CollapsibleTrigger
-        className={cn("group flex w-full items-center justify-between rounded-xl px-2 py-1.5 opacity-80", {
-          "bg-accent": item.children.some((child) => child.value === activeValue)
-        })}
+        className={cn(
+          "group hover:bg-accent flex w-full items-center justify-between rounded-xl px-2 py-1.5 opacity-80 transition-colors duration-200",
+          {
+            "bg-accent": item.children.some((child) => child.value === activeValue)
+          }
+        )}
       >
         <span className="flex items-center gap-1.5 text-sm font-semibold">
-          <item.icon size={22} />
+          <item.icon size={22} className="shrink-0" />
           {item.name}
         </span>
         <ChevronDown
@@ -32,11 +35,17 @@ export function MenuAccordionItem({ item, activeValue, onValueChange }: Props) {
         <ul className="space-y-1 pt-2 pl-4">
           {item.children.map((child) => (
             <li key={child.value}>
-              <button className="flex w-full items-center justify-between" onClick={() => onValueChange?.(child.value)}>
+              <button
+                className="group flex w-full items-center justify-between"
+                onClick={() => onValueChange?.(child.value)}
+              >
                 <span
-                  className={cn("flex items-center gap-1.5 opacity-50", {
-                    "opacity-100": activeValue === child.value
-                  })}
+                  className={cn(
+                    "flex items-center gap-1.5 opacity-50 transition-opacity duration-200 group-hover:opacity-100",
+                    {
+                      "opacity-100": activeValue === child.value
+                    }
+                  )}
                 >
                   <CornerDownRight size={16} />
                   <span>{child.label}</span>

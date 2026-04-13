@@ -8,7 +8,7 @@ import { RECIPES_HEADING } from "./recipes-danners.data";
 
 export function RecipesBanners() {
   return (
-    <div className="mb-6 grid grid-cols-[75%_25%]">
+    <div className="grid grid-cols-[75%_25%]">
       <div className="mr-6 flex justify-between rounded-2xl bg-linear-to-tr from-[#8062ee] to-[#a088fc] px-8 py-4">
         <div className="flex items-center gap-8">
           <Image

@@ -3,9 +3,15 @@ model Recipe {
 	slug String @unique
 	title String
 	description String
-	calories String
+	calories Int
+	image String @default("")
 	cookingTime Int @map("cooking_time")
 	difficulty Difficulty
+	mealType MealType @default(BREAKFAST)
+  dietaryPreference DietaryPreference @default(VEGETARIAN)
+  healthGoal HealthGoal @default(WEIGHT_LOSS)
+  cuisine Cuisine @default(RUSSIAN)
+  specialOccasion SpecialOccasion @default(HOLIDAY)
 
 	views Int @default(0)
 
@@ -97,4 +103,43 @@ enum Difficulty {
 	EASY
 	MEDIUM
 	HARD
+}
+
+enum MealType {
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
+  DESSERT
+  DRINKS
+}
+
+enum DietaryPreference {
+  VEGETARIAN
+  LOW_CARB
+  GLUTEN_FREE
+  KETO
+  DAIRY_FREE
+}
+
+enum HealthGoal {
+  WEIGHT_LOSS
+  MUSCLE_GAIN
+  HEART_HEALTH
+}
+
+enum Cuisine {
+  RUSSIAN
+  ITALIAN
+  CHINESE
+  MEXICAN
+  INDIAN
+  FRENCH
+}
+
+enum SpecialOccasion {
+  HOLIDAY
+  BIRTHDAY
+  ANNIVERSARY
+  PARTY
 }

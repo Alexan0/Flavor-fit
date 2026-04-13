@@ -1,16 +1,32 @@
 import type { LucideIcon } from "lucide-react";
 
 import { HeadingWithIcon } from "@/shared/components/custom-ui/heading-with-icon/HeadingWithIcon";
+import { RecipeCard } from "@/shared/components/custom-ui/recipe-card/RecipeCard";
+import type { TRecipeCardSize } from "@/shared/components/custom-ui/recipe-card/types/recipe-card.types";
+import { Carousel, CarouselContent, CarouselItem } from "@/shared/components/ui/carausel";
+
+import type { GetRecipesQuery } from "@/__generated__/graphql";
 
 interface Props {
   Icon: LucideIcon;
   title: string;
+  size: TRecipeCardSize;
+  recipes: GetRecipesQuery["recipes"];
 }
 
-export function RecipeCarousel({ Icon, title }: Props) {
+export function RecipeCarousel({ Icon, title, size, recipes }: Props) {
   return (
-    <div>
+    <div className="mb-4">
       <HeadingWithIcon Icon={Icon}>{title}</HeadingWithIcon>
+      <Carousel className="mt-2">
+        <CarouselContent>
+          {recipes.map((recipe) => (
+            <CarouselItem key={recipe.slug} className={size === "sm" ? "basis-[20%]" : "basis-[25%]"}>
+              <RecipeCard recipe={recipe} size={size} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
     </div>
   );
 }

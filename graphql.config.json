@@ -1,5 +1,5 @@
 {
-	"schema": "./frontend/schema.graphql",
+	"schema": "./frontend/schema.json",
 	"documents": [
 		"./frontend/src/shared/graphql/**/*.graphql",
 		"./frontend/src/features/**/*.graphql"

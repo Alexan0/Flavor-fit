@@ -42,8 +42,14 @@ export type RecipeMinAggregateOutputType = {
   title: string | null
   description: string | null
   calories: string | null
+  image: string | null
   cookingTime: number | null
   difficulty: $Enums.Difficulty | null
+  mealType: $Enums.MealType | null
+  dietaryPreference: $Enums.DietaryPreference | null
+  healthGoal: $Enums.HealthGoal | null
+  cuisine: $Enums.Cuisine | null
+  specialOccasion: $Enums.SpecialOccasion | null
   views: number | null
   authorId: string | null
   createdAt: Date | null
@@ -56,8 +62,14 @@ export type RecipeMaxAggregateOutputType = {
   title: string | null
   description: string | null
   calories: string | null
+  image: string | null
   cookingTime: number | null
   difficulty: $Enums.Difficulty | null
+  mealType: $Enums.MealType | null
+  dietaryPreference: $Enums.DietaryPreference | null
+  healthGoal: $Enums.HealthGoal | null
+  cuisine: $Enums.Cuisine | null
+  specialOccasion: $Enums.SpecialOccasion | null
   views: number | null
   authorId: string | null
   createdAt: Date | null
@@ -70,8 +82,14 @@ export type RecipeCountAggregateOutputType = {
   title: number
   description: number
   calories: number
+  image: number
   cookingTime: number
   difficulty: number
+  mealType: number
+  dietaryPreference: number
+  healthGoal: number
+  cuisine: number
+  specialOccasion: number
   views: number
   authorId: number
   createdAt: number
@@ -96,8 +114,14 @@ export type RecipeMinAggregateInputType = {
   title?: true
   description?: true
   calories?: true
+  image?: true
   cookingTime?: true
   difficulty?: true
+  mealType?: true
+  dietaryPreference?: true
+  healthGoal?: true
+  cuisine?: true
+  specialOccasion?: true
   views?: true
   authorId?: true
   createdAt?: true
@@ -110,8 +134,14 @@ export type RecipeMaxAggregateInputType = {
   title?: true
   description?: true
   calories?: true
+  image?: true
   cookingTime?: true
   difficulty?: true
+  mealType?: true
+  dietaryPreference?: true
+  healthGoal?: true
+  cuisine?: true
+  specialOccasion?: true
   views?: true
   authorId?: true
   createdAt?: true
@@ -124,8 +154,14 @@ export type RecipeCountAggregateInputType = {
   title?: true
   description?: true
   calories?: true
+  image?: true
   cookingTime?: true
   difficulty?: true
+  mealType?: true
+  dietaryPreference?: true
+  healthGoal?: true
+  cuisine?: true
+  specialOccasion?: true
   views?: true
   authorId?: true
   createdAt?: true
@@ -225,8 +261,14 @@ export type RecipeGroupByOutputType = {
   title: string
   description: string
   calories: string
+  image: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType: $Enums.MealType
+  dietaryPreference: $Enums.DietaryPreference
+  healthGoal: $Enums.HealthGoal
+  cuisine: $Enums.Cuisine
+  specialOccasion: $Enums.SpecialOccasion
   views: number
   authorId: string
   createdAt: Date
@@ -262,8 +304,14 @@ export type RecipeWhereInput = {
   title?: Prisma.StringFilter<"Recipe"> | string
   description?: Prisma.StringFilter<"Recipe"> | string
   calories?: Prisma.StringFilter<"Recipe"> | string
+  image?: Prisma.StringFilter<"Recipe"> | string
   cookingTime?: Prisma.IntFilter<"Recipe"> | number
   difficulty?: Prisma.EnumDifficultyFilter<"Recipe"> | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFilter<"Recipe"> | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFilter<"Recipe"> | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFilter<"Recipe"> | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFilter<"Recipe"> | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFilter<"Recipe"> | $Enums.SpecialOccasion
   views?: Prisma.IntFilter<"Recipe"> | number
   authorId?: Prisma.StringFilter<"Recipe"> | string
   createdAt?: Prisma.DateTimeFilter<"Recipe"> | Date | string
@@ -283,8 +331,14 @@ export type RecipeOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   calories?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   cookingTime?: Prisma.SortOrder
   difficulty?: Prisma.SortOrder
+  mealType?: Prisma.SortOrder
+  dietaryPreference?: Prisma.SortOrder
+  healthGoal?: Prisma.SortOrder
+  cuisine?: Prisma.SortOrder
+  specialOccasion?: Prisma.SortOrder
   views?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -307,8 +361,14 @@ export type RecipeWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Recipe"> | string
   description?: Prisma.StringFilter<"Recipe"> | string
   calories?: Prisma.StringFilter<"Recipe"> | string
+  image?: Prisma.StringFilter<"Recipe"> | string
   cookingTime?: Prisma.IntFilter<"Recipe"> | number
   difficulty?: Prisma.EnumDifficultyFilter<"Recipe"> | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFilter<"Recipe"> | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFilter<"Recipe"> | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFilter<"Recipe"> | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFilter<"Recipe"> | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFilter<"Recipe"> | $Enums.SpecialOccasion
   views?: Prisma.IntFilter<"Recipe"> | number
   authorId?: Prisma.StringFilter<"Recipe"> | string
   createdAt?: Prisma.DateTimeFilter<"Recipe"> | Date | string
@@ -328,8 +388,14 @@ export type RecipeOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   calories?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   cookingTime?: Prisma.SortOrder
   difficulty?: Prisma.SortOrder
+  mealType?: Prisma.SortOrder
+  dietaryPreference?: Prisma.SortOrder
+  healthGoal?: Prisma.SortOrder
+  cuisine?: Prisma.SortOrder
+  specialOccasion?: Prisma.SortOrder
   views?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -350,8 +416,14 @@ export type RecipeScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Recipe"> | string
   description?: Prisma.StringWithAggregatesFilter<"Recipe"> | string
   calories?: Prisma.StringWithAggregatesFilter<"Recipe"> | string
+  image?: Prisma.StringWithAggregatesFilter<"Recipe"> | string
   cookingTime?: Prisma.IntWithAggregatesFilter<"Recipe"> | number
   difficulty?: Prisma.EnumDifficultyWithAggregatesFilter<"Recipe"> | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeWithAggregatesFilter<"Recipe"> | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceWithAggregatesFilter<"Recipe"> | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalWithAggregatesFilter<"Recipe"> | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineWithAggregatesFilter<"Recipe"> | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionWithAggregatesFilter<"Recipe"> | $Enums.SpecialOccasion
   views?: Prisma.IntWithAggregatesFilter<"Recipe"> | number
   authorId?: Prisma.StringWithAggregatesFilter<"Recipe"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Recipe"> | Date | string
@@ -364,8 +436,14 @@ export type RecipeCreateInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -384,8 +462,14 @@ export type RecipeUncheckedCreateInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   authorId: string
   createdAt?: Date | string
@@ -404,8 +488,14 @@ export type RecipeUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -424,8 +514,14 @@ export type RecipeUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -444,8 +540,14 @@ export type RecipeCreateManyInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   authorId: string
   createdAt?: Date | string
@@ -458,8 +560,14 @@ export type RecipeUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -471,8 +579,14 @@ export type RecipeUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -490,8 +604,14 @@ export type RecipeCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   calories?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   cookingTime?: Prisma.SortOrder
   difficulty?: Prisma.SortOrder
+  mealType?: Prisma.SortOrder
+  dietaryPreference?: Prisma.SortOrder
+  healthGoal?: Prisma.SortOrder
+  cuisine?: Prisma.SortOrder
+  specialOccasion?: Prisma.SortOrder
   views?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -509,8 +629,14 @@ export type RecipeMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   calories?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   cookingTime?: Prisma.SortOrder
   difficulty?: Prisma.SortOrder
+  mealType?: Prisma.SortOrder
+  dietaryPreference?: Prisma.SortOrder
+  healthGoal?: Prisma.SortOrder
+  cuisine?: Prisma.SortOrder
+  specialOccasion?: Prisma.SortOrder
   views?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -523,8 +649,14 @@ export type RecipeMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
   calories?: Prisma.SortOrder
+  image?: Prisma.SortOrder
   cookingTime?: Prisma.SortOrder
   difficulty?: Prisma.SortOrder
+  mealType?: Prisma.SortOrder
+  dietaryPreference?: Prisma.SortOrder
+  healthGoal?: Prisma.SortOrder
+  cuisine?: Prisma.SortOrder
+  specialOccasion?: Prisma.SortOrder
   views?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -584,6 +716,26 @@ export type IntFieldUpdateOperationsInput = {
 
 export type EnumDifficultyFieldUpdateOperationsInput = {
   set?: $Enums.Difficulty
+}
+
+export type EnumMealTypeFieldUpdateOperationsInput = {
+  set?: $Enums.MealType
+}
+
+export type EnumDietaryPreferenceFieldUpdateOperationsInput = {
+  set?: $Enums.DietaryPreference
+}
+
+export type EnumHealthGoalFieldUpdateOperationsInput = {
+  set?: $Enums.HealthGoal
+}
+
+export type EnumCuisineFieldUpdateOperationsInput = {
+  set?: $Enums.Cuisine
+}
+
+export type EnumSpecialOccasionFieldUpdateOperationsInput = {
+  set?: $Enums.SpecialOccasion
 }
 
 export type RecipeCreateNestedOneWithoutRecipeIngredientsInput = {
@@ -714,8 +866,14 @@ export type RecipeCreateWithoutCommentsInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -733,8 +891,14 @@ export type RecipeUncheckedCreateWithoutCommentsInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   authorId: string
   createdAt?: Date | string
@@ -768,8 +932,14 @@ export type RecipeUpdateWithoutCommentsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -787,8 +957,14 @@ export type RecipeUncheckedUpdateWithoutCommentsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -806,8 +982,14 @@ export type RecipeCreateWithoutLikesInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -825,8 +1007,14 @@ export type RecipeUncheckedCreateWithoutLikesInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   authorId: string
   createdAt?: Date | string
@@ -860,8 +1048,14 @@ export type RecipeUpdateWithoutLikesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -879,8 +1073,14 @@ export type RecipeUncheckedUpdateWithoutLikesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -898,8 +1098,14 @@ export type RecipeCreateWithoutRecipeIngredientsInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -917,8 +1123,14 @@ export type RecipeUncheckedCreateWithoutRecipeIngredientsInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   authorId: string
   createdAt?: Date | string
@@ -952,8 +1164,14 @@ export type RecipeUpdateWithoutRecipeIngredientsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -971,8 +1189,14 @@ export type RecipeUncheckedUpdateWithoutRecipeIngredientsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -990,8 +1214,14 @@ export type RecipeCreateWithoutRecipeStepsInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1009,8 +1239,14 @@ export type RecipeUncheckedCreateWithoutRecipeStepsInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   authorId: string
   createdAt?: Date | string
@@ -1044,8 +1280,14 @@ export type RecipeUpdateWithoutRecipeStepsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1063,8 +1305,14 @@ export type RecipeUncheckedUpdateWithoutRecipeStepsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1082,8 +1330,14 @@ export type RecipeCreateWithoutNutritionFactsInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1101,8 +1355,14 @@ export type RecipeUncheckedCreateWithoutNutritionFactsInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   authorId: string
   createdAt?: Date | string
@@ -1136,8 +1396,14 @@ export type RecipeUpdateWithoutNutritionFactsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1155,8 +1421,14 @@ export type RecipeUncheckedUpdateWithoutNutritionFactsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1174,8 +1446,14 @@ export type RecipeCreateWithoutTagsInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1193,8 +1471,14 @@ export type RecipeUncheckedCreateWithoutTagsInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   authorId: string
   createdAt?: Date | string
@@ -1236,8 +1520,14 @@ export type RecipeScalarWhereInput = {
   title?: Prisma.StringFilter<"Recipe"> | string
   description?: Prisma.StringFilter<"Recipe"> | string
   calories?: Prisma.StringFilter<"Recipe"> | string
+  image?: Prisma.StringFilter<"Recipe"> | string
   cookingTime?: Prisma.IntFilter<"Recipe"> | number
   difficulty?: Prisma.EnumDifficultyFilter<"Recipe"> | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFilter<"Recipe"> | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFilter<"Recipe"> | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFilter<"Recipe"> | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFilter<"Recipe"> | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFilter<"Recipe"> | $Enums.SpecialOccasion
   views?: Prisma.IntFilter<"Recipe"> | number
   authorId?: Prisma.StringFilter<"Recipe"> | string
   createdAt?: Prisma.DateTimeFilter<"Recipe"> | Date | string
@@ -1250,8 +1540,14 @@ export type RecipeCreateWithoutAuthorInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1269,8 +1565,14 @@ export type RecipeUncheckedCreateWithoutAuthorInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1314,8 +1616,14 @@ export type RecipeUpdateWithoutTagsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1333,8 +1641,14 @@ export type RecipeUncheckedUpdateWithoutTagsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1352,8 +1666,14 @@ export type RecipeUncheckedUpdateManyWithoutTagsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1366,8 +1686,14 @@ export type RecipeCreateManyAuthorInput = {
   title: string
   description: string
   calories: string
+  image?: string
   cookingTime: number
   difficulty: $Enums.Difficulty
+  mealType?: $Enums.MealType
+  dietaryPreference?: $Enums.DietaryPreference
+  healthGoal?: $Enums.HealthGoal
+  cuisine?: $Enums.Cuisine
+  specialOccasion?: $Enums.SpecialOccasion
   views?: number
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -1379,8 +1705,14 @@ export type RecipeUpdateWithoutAuthorInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1398,8 +1730,14 @@ export type RecipeUncheckedUpdateWithoutAuthorInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1417,8 +1755,14 @@ export type RecipeUncheckedUpdateManyWithoutAuthorInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.StringFieldUpdateOperationsInput | string
   calories?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.StringFieldUpdateOperationsInput | string
   cookingTime?: Prisma.IntFieldUpdateOperationsInput | number
   difficulty?: Prisma.EnumDifficultyFieldUpdateOperationsInput | $Enums.Difficulty
+  mealType?: Prisma.EnumMealTypeFieldUpdateOperationsInput | $Enums.MealType
+  dietaryPreference?: Prisma.EnumDietaryPreferenceFieldUpdateOperationsInput | $Enums.DietaryPreference
+  healthGoal?: Prisma.EnumHealthGoalFieldUpdateOperationsInput | $Enums.HealthGoal
+  cuisine?: Prisma.EnumCuisineFieldUpdateOperationsInput | $Enums.Cuisine
+  specialOccasion?: Prisma.EnumSpecialOccasionFieldUpdateOperationsInput | $Enums.SpecialOccasion
   views?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1497,8 +1841,14 @@ export type RecipeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   title?: boolean
   description?: boolean
   calories?: boolean
+  image?: boolean
   cookingTime?: boolean
   difficulty?: boolean
+  mealType?: boolean
+  dietaryPreference?: boolean
+  healthGoal?: boolean
+  cuisine?: boolean
+  specialOccasion?: boolean
   views?: boolean
   authorId?: boolean
   createdAt?: boolean
@@ -1519,8 +1869,14 @@ export type RecipeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   title?: boolean
   description?: boolean
   calories?: boolean
+  image?: boolean
   cookingTime?: boolean
   difficulty?: boolean
+  mealType?: boolean
+  dietaryPreference?: boolean
+  healthGoal?: boolean
+  cuisine?: boolean
+  specialOccasion?: boolean
   views?: boolean
   authorId?: boolean
   createdAt?: boolean
@@ -1534,8 +1890,14 @@ export type RecipeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   title?: boolean
   description?: boolean
   calories?: boolean
+  image?: boolean
   cookingTime?: boolean
   difficulty?: boolean
+  mealType?: boolean
+  dietaryPreference?: boolean
+  healthGoal?: boolean
+  cuisine?: boolean
+  specialOccasion?: boolean
   views?: boolean
   authorId?: boolean
   createdAt?: boolean
@@ -1549,15 +1911,21 @@ export type RecipeSelectScalar = {
   title?: boolean
   description?: boolean
   calories?: boolean
+  image?: boolean
   cookingTime?: boolean
   difficulty?: boolean
+  mealType?: boolean
+  dietaryPreference?: boolean
+  healthGoal?: boolean
+  cuisine?: boolean
+  specialOccasion?: boolean
   views?: boolean
   authorId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type RecipeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "title" | "description" | "calories" | "cookingTime" | "difficulty" | "views" | "authorId" | "createdAt" | "updatedAt", ExtArgs["result"]["recipe"]>
+export type RecipeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "slug" | "title" | "description" | "calories" | "image" | "cookingTime" | "difficulty" | "mealType" | "dietaryPreference" | "healthGoal" | "cuisine" | "specialOccasion" | "views" | "authorId" | "createdAt" | "updatedAt", ExtArgs["result"]["recipe"]>
 export type RecipeInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   recipeIngredients?: boolean | Prisma.Recipe$recipeIngredientsArgs<ExtArgs>
@@ -1592,8 +1960,14 @@ export type $RecipePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     title: string
     description: string
     calories: string
+    image: string
     cookingTime: number
     difficulty: $Enums.Difficulty
+    mealType: $Enums.MealType
+    dietaryPreference: $Enums.DietaryPreference
+    healthGoal: $Enums.HealthGoal
+    cuisine: $Enums.Cuisine
+    specialOccasion: $Enums.SpecialOccasion
     views: number
     authorId: string
     createdAt: Date
@@ -2033,8 +2407,14 @@ export interface RecipeFieldRefs {
   readonly title: Prisma.FieldRef<"Recipe", 'String'>
   readonly description: Prisma.FieldRef<"Recipe", 'String'>
   readonly calories: Prisma.FieldRef<"Recipe", 'String'>
+  readonly image: Prisma.FieldRef<"Recipe", 'String'>
   readonly cookingTime: Prisma.FieldRef<"Recipe", 'Int'>
   readonly difficulty: Prisma.FieldRef<"Recipe", 'Difficulty'>
+  readonly mealType: Prisma.FieldRef<"Recipe", 'MealType'>
+  readonly dietaryPreference: Prisma.FieldRef<"Recipe", 'DietaryPreference'>
+  readonly healthGoal: Prisma.FieldRef<"Recipe", 'HealthGoal'>
+  readonly cuisine: Prisma.FieldRef<"Recipe", 'Cuisine'>
+  readonly specialOccasion: Prisma.FieldRef<"Recipe", 'SpecialOccasion'>
   readonly views: Prisma.FieldRef<"Recipe", 'Int'>
   readonly authorId: Prisma.FieldRef<"Recipe", 'String'>
   readonly createdAt: Prisma.FieldRef<"Recipe", 'DateTime'>
