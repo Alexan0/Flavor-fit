@@ -5,10 +5,10 @@ import { IsEmail, IsString, MinLength } from 'class-validator';
 export class AuthInput {
   @Field()
   @IsEmail()
-  email: string;
+  email!: string;
 
   @Field()
   @IsString()
   @MinLength(6)
-  password: string;
+  password!: string;
 }

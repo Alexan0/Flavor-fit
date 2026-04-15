@@ -1,17 +1,22 @@
 import { MenuAccordionItem } from "./MenuAccordionItem";
 import type { ISidebarMenuAccordionItem } from "./sidebar-menu-accordion.types";
 
-interface Props {
-  data: ISidebarMenuAccordionItem[];
-  activeValue?: string;
-  onValueChange?: (value: string) => void;
+interface Props<K extends string = string> {
+  data: ISidebarMenuAccordionItem<K>[];
+  values: Record<K, string | null>;
+  onValueChange?: (key: K, value: string) => void;
 }
 
-export function SidebarMenuAccordion({ data, activeValue, onValueChange }: Props) {
+export function SidebarMenuAccordion<K extends string = string>({ data, values, onValueChange }: Props<K>) {
   return (
     <div className="space-y-4">
       {data.map((item) => (
-        <MenuAccordionItem key={item.name} item={item} activeValue={activeValue} onValueChange={onValueChange} />
+        <MenuAccordionItem<K>
+          key={item.key}
+          item={item}
+          activeValue={values[item.key]}
+          onValueChange={(value) => onValueChange?.(item.key, value)}
+        />
       ))}
     </div>
   );

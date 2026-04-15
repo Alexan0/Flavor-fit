@@ -10,7 +10,7 @@ export class IngredientCreateInput {
 
   @Field(() => Unit, { nullable: true })
   @IsEnum(Unit)
-  defaultUnit: Unit;
+  defaultUnit!: Unit;
 
   @Field(() => Float, { nullable: false })
   @IsPositive()

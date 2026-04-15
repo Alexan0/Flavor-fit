@@ -20,9 +20,9 @@ export enum Difficulty {
 registerEnumType(Difficulty, { name: 'Difficulty', description: undefined });
 
 export enum SortOrder {
-  NEW = 'new',
-  RECOMMENDED = 'recommended',
-  POPULAR = 'popular',
+  NEW = 'NEW',
+  RECOMMENDED = 'RECOMMENDED',
+  POPULAR = 'POPULAR',
 }
 
 registerEnumType(SortOrder, { name: 'SortOrder', description: undefined });

@@ -6,13 +6,13 @@ import { IsEnum, IsPositive, IsString } from 'class-validator';
 export class RecipeIngredientInput {
   @Field(() => ID)
   @IsString()
-  ingredientId: string;
+  ingredientId!: string;
 
   @Field(() => Number)
   @IsPositive()
-  quantity: number;
+  quantity!: number;
 
   @Field(() => Unit)
   @IsEnum(Unit)
-  unit: Unit;
+  unit!: Unit;
 }

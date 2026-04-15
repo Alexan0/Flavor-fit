@@ -12,5 +12,5 @@ export type TAuthTokenData = Pick<UserModel, 'id' | 'role'>;
 @ObjectType()
 export class AuthResponse {
   @Field(() => UserModel)
-  user: UserModel;
+  user!: UserModel;
 }

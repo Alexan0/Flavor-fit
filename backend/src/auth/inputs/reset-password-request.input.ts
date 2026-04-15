@@ -4,5 +4,5 @@ import { IsEmail } from 'class-validator';
 export class RequestPasswordResetInput {
   @Field()
   @IsEmail()
-  email: string;
+  email!: string;
 }

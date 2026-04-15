@@ -5,10 +5,10 @@ import { IsString, MinLength } from 'class-validator';
 export class ResetPasswordInput {
   @Field()
   @IsString()
-  token: string;
+  token!: string;
 
   @Field()
   @IsString()
   @MinLength(6)
-  newPassword: string;
+  newPassword!: string;
 }

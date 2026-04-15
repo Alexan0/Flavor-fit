@@ -24,9 +24,9 @@ interface Props {
 export function RecipeCard({ recipe, size }: Props) {
   return (
     <div className={recipeCardVariants({ size })}>
-      <RecipeCardImage image={"/images/burger.png"} name={recipe.title} size={size} slug={recipe.slug} />
+      <RecipeCardImage image={recipe.image} name={recipe.title} size={size} slug={recipe.slug} />
 
-      <div className="mt-4 flex items-center justify-between gap-3">
+      <div className="mt-2.5 flex items-center justify-between gap-3">
         <Link
           href={PAGES.RECIPE_DETAIL(recipe.slug)}
           className={cn(`min-w-0 flex-1 ${recipeCardTitleVariants({ size })}`)}
@@ -48,7 +48,7 @@ export function RecipeCard({ recipe, size }: Props) {
 
       <RecipeCardMetaBadges recipe={recipe} size={size} />
 
-      <RecipeCardFooter difficultyLevel={recipe.difficulty} likes={recipe.likes} views={156100} size={size} />
+      <RecipeCardFooter difficultyLevel={recipe.difficulty} likes={recipe.likes} views={recipe.views} size={size} />
     </div>
   );
 }

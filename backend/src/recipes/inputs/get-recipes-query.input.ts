@@ -1,5 +1,5 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
-import { IsEnum, IsPositive, IsString } from 'class-validator';
+import { IsEnum, IsOptional, IsPositive, IsString } from 'class-validator';
 import {
   SortOrder,
   MealType,
@@ -28,22 +28,27 @@ export class RecipesQueryInput {
   sort?: SortOrder;
 
   @Field(() => MealType, { nullable: true })
+  @IsOptional()
   @IsEnum(MealType)
   mealType?: MealType;
 
   @Field(() => DietaryPreference, { nullable: true })
+  @IsOptional()
   @IsEnum(DietaryPreference)
   dietaryPreference?: DietaryPreference;
 
   @Field(() => HealthGoal, { nullable: true })
+  @IsOptional()
   @IsEnum(HealthGoal)
   healthGoal?: HealthGoal;
 
   @Field(() => Cuisine, { nullable: true })
+  @IsOptional()
   @IsEnum(Cuisine)
   cuisine?: Cuisine;
 
   @Field(() => SpecialOccasion, { nullable: true })
+  @IsOptional()
   @IsEnum(SpecialOccasion)
   specialOccasion?: SpecialOccasion;
 }

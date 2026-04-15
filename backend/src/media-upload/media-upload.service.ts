@@ -1,13 +1,13 @@
 import { path } from 'app-root-path';
 import * as iconv from 'iconv-lite';
-import { v4 as uuidv4 } from 'uuid';
 import { ensureDir, writeFile } from 'fs-extra';
 import type { IUploadResponse } from './upload-response.types';
 import { Injectable } from '@nestjs/common';
+import type { IUploadedFile } from './media-uploaded-file.types';
 
 @Injectable()
 export class MediaUploadService {
-  async saveAvatar(file: Express.Multer.File): Promise<IUploadResponse> {
+  async saveAvatar(file: IUploadedFile): Promise<IUploadResponse> {
     const folder = 'avatars';
     const uploadFolder = `${path}/uploads/${folder}`;
 
@@ -19,7 +19,7 @@ export class MediaUploadService {
     );
 
     const safeName = original.replace(/[^\w.-]+/g, '-').toLocaleLowerCase();
-    const name = `${uuidv4().slice(0, 5)}-${safeName}`;
+    const name = `${crypto.randomUUID().slice(0, 5)}-${safeName}`;
 
     await writeFile(`${uploadFolder}/${name}`, file.buffer);
 

@@ -21,6 +21,7 @@
     "db:seed": "ts-node seed/recipe.seed.ts"
   },
   "dependencies": {
+    "@apollo/server": "^5.5.0",
     "@as-integrations/express5": "^1.1.2",
     "@nestjs/apollo": "^13.2.3",
     "@nestjs/common": "^11.0.1",
@@ -46,6 +47,7 @@
     "graphql-type-json": "^0.3.2",
     "nest-cloudflare-turnstile": "^0.0.14",
     "nestjs-resend": "^1.1.0",
+    "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "prisma": "^7.3.0",
     "react": "^19.2.4",
@@ -63,7 +65,6 @@
     "@types/express": "^5.0.0",
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^30.0.0",
-    "@types/multer": "^2.0.0",
     "@types/node": "^22.19.17",
     "@types/supertest": "^6.0.2",
     "dotenv": "^17.2.3",

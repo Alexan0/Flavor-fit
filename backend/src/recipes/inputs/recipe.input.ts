@@ -28,8 +28,8 @@ export class RecipeCreateInput {
   description!: string;
 
   @Field(() => String, { nullable: false })
-  @IsString()
-  calories!: string;
+  @IsPositive()
+  calories!: number;
 
   @Field(() => Int, { nullable: false })
   @IsPositive()

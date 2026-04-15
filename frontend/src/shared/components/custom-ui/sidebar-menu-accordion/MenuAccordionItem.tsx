@@ -5,13 +5,13 @@ import { cn } from "@/shared/utils";
 
 import type { ISidebarMenuAccordionItem } from "./sidebar-menu-accordion.types";
 
-interface Props {
-  item: ISidebarMenuAccordionItem;
-  activeValue?: string;
+interface Props<K extends string = string> {
+  item: ISidebarMenuAccordionItem<K>;
+  activeValue?: string | null;
   onValueChange?: (value: string) => void;
 }
 
-export function MenuAccordionItem({ item, activeValue, onValueChange }: Props) {
+export function MenuAccordionItem<K extends string = string>({ item, activeValue, onValueChange }: Props<K>) {
   return (
     <Collapsible defaultOpen={item.isInitialOpen}>
       <CollapsibleTrigger

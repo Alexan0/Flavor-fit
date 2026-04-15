@@ -16,7 +16,6 @@ export class RecipesResolver {
   ) {}
 
   @Query(() => [RecipeModel], { name: 'recipes' })
-  @Auth(Role.ADMIN)
   getAll(@Args('input') input: RecipesQueryInput) {
     return this.recipesService.getAll(input);
   }

@@ -8,6 +8,7 @@ import {
 import { MediaUploadService } from './media-upload.service';
 import { Auth } from '@src/auth/decorators/auth.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
+import type { IUploadedFile } from './media-uploaded-file.types';
 
 @Controller('media-upload')
 export class MediaUploadController {
@@ -19,7 +20,7 @@ export class MediaUploadController {
   @UseInterceptors(
     FileInterceptor('file', { limits: { fieldSize: 5 * 1024 * 1024 } }),
   )
-  async uploadAvatar(@UploadedFile() file: Express.Multer.File) {
+  async uploadAvatar(@UploadedFile() file: IUploadedFile) {
     return await this.mediaService.saveAvatar(file);
   }
 }

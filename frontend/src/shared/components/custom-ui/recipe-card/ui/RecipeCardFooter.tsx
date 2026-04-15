@@ -18,7 +18,7 @@ export function RecipeCardFooter({ views, likes, difficultyLevel, size }: Props)
   const hatCount = Difficulty.Easy === difficultyLevel ? 1 : difficultyLevel === Difficulty.Medium ? 2 : 3;
 
   return (
-    <div className="mt-4 flex items-center justify-between">
+    <div className="mt-2.5 flex items-center justify-between">
       <div className={recipeCardDifficultyBadgeVariants({ tone: difficultyLevel, size })}>
         <span className="flex items-center gap-0.5">
           {Array.from({ length: hatCount }).map((_, index) => (
@@ -27,7 +27,7 @@ export function RecipeCardFooter({ views, likes, difficultyLevel, size }: Props)
           {size !== "sm" && <span className="capitalize">{difficultyLevel}</span>}
         </span>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <div className={recipeCardFooterTextVariants({ size })}>
           <Heart className={size === "sm" ? "size-3.5" : "size-4"} />
           <span className="capitalize">{formatCompactNumber(likes)}</span>

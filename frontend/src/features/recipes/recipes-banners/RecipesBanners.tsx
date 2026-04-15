@@ -40,7 +40,7 @@ export function RecipesBanners() {
       </div>
       <div className="rounded-2xl bg-white px-8 py-4">
         <HeadingWithIcon Icon={Utensils} className="text-sm">
-          Your Receipts
+          Your Recipes
         </HeadingWithIcon>
         <div className="mt-8 flex items-center justify-between">
           <div>

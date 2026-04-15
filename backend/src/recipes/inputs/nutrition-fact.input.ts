@@ -5,17 +5,17 @@ import { IsPositive } from 'class-validator';
 export class NutritionFactInput {
   @Field(() => Float, { nullable: false })
   @IsPositive()
-  proteins: number;
+  proteins!: number;
 
   @Field(() => Float, { nullable: false })
   @IsPositive()
-  fats: number;
+  fats!: number;
 
   @Field(() => Float, { nullable: false })
   @IsPositive()
-  carbohydrates: number;
+  carbohydrates!: number;
 
   @Field(() => Float, { nullable: false })
   @IsPositive()
-  fiber: number;
+  fiber!: number;
 }

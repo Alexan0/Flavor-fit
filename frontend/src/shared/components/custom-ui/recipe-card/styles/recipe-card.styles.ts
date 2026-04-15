@@ -13,12 +13,12 @@ export const recipeCardVariants = cva("bg-white rounded-xl", {
 });
 
 export const recipeCardBadgeVariants = cva(
-  "flex items-center gap-1.5 rounded-md bg-gray-200 font-medium text-black/70",
+  "flex items-center gap-0.5 rounded-md bg-gray-200 font-medium text-black/70 text-xs py-1 px-2",
   {
     variants: {
       size: {
-        default: "py-1.5 px-2 text-sm",
-        sm: "h-8 px-2.5 text-xs"
+        default: "",
+        sm: ""
       }
     },
     defaultVariants: {
@@ -27,11 +27,11 @@ export const recipeCardBadgeVariants = cva(
   }
 );
 
-export const recipeCardImageVariants = cva("relative w-full overflow-hidden rounded-2xl", {
+export const recipeCardImageVariants = cva("relative w-full overflow-hidden rounded-2xl block", {
   variants: {
     size: {
-      default: "aspect-[1.45/1]",
-      sm: "aspect-[1.42/1]"
+      default: "w-88 h-50 block",
+      sm: "w-69 h-40"
     }
   },
   defaultVariants: {
@@ -54,8 +54,8 @@ export const recipeCardTitleVariants = cva("line-clamp-1 font-semibold tracking-
 export const recipeCardDescriptionVariants = cva("line-clamp-2 text-black/55", {
   variants: {
     size: {
-      default: "mt-2 text-sm leading-5",
-      sm: "mt-1.5 text-xs leading-4"
+      default: "mt-1.5 text-sm leading-5",
+      sm: "mt-1 text-xs leading-4"
     }
   },
   defaultVariants: {

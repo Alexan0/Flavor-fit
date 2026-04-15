@@ -1,25 +1,70 @@
 "use client";
 
-import { useQueryState } from "nuqs";
+import { useQuery } from "@apollo/client/react";
+import { parseAsStringEnum, useQueryState, useQueryStates } from "nuqs";
 
 import { useDebounce } from "@/shared/hooks/useDebounce";
 
 import { RecipesBanners } from "./recipes-banners/RecipesBanners";
+import { RecipeCatalogSkeleton } from "./recipes-catalog/RecipeCatalogSkeleton";
 import { RecipesCatalog } from "./recipes-catalog/RecipesCatalog";
 import { RecipesSidebar } from "./recipes-sidebar/RecipesSidebar";
 
+import {
+  Cuisine,
+  DietaryPreference,
+  GetRecipesDocument,
+  HealthGoal,
+  MealType,
+  SpecialOccasion
+} from "@/__generated__/graphql";
+
 export function RecipesDashboard() {
   const [searchTerm, setSearchTerm] = useQueryState("q", { defaultValue: "" });
-  const [filter, setFilter] = useQueryState("f", { defaultValue: "" });
+  const [filters, setFilters] = useQueryStates({
+    mealType: parseAsStringEnum(Object.values(MealType)),
+    dietaryPreference: parseAsStringEnum(Object.values(DietaryPreference)),
+    healthGoal: parseAsStringEnum(Object.values(HealthGoal)),
+    cuisine: parseAsStringEnum(Object.values(Cuisine)),
+    specialOccasion: parseAsStringEnum(Object.values(SpecialOccasion))
+  });
 
   const debouncedSearchTerm = useDebounce(searchTerm, 400);
 
+  const { data: recommended, loading: recommendedLoading } = useQuery(GetRecipesDocument, {
+    variables: {
+      input: {
+        ...filters,
+        searchTerm: debouncedSearchTerm,
+        page: 1,
+        limit: 10,
+        sort: "RECOMMENDED"
+      }
+    }
+  });
+
+  const { data: popular, loading: popularLoading } = useQuery(GetRecipesDocument, {
+    variables: {
+      input: {
+        ...filters,
+        searchTerm: debouncedSearchTerm,
+        page: 1,
+        limit: 10,
+        sort: "POPULAR"
+      }
+    }
+  });
+
   return (
     <div className="flex h-full gap-6">
-      <RecipesSidebar searchTerm={searchTerm} setSearchTerm={setSearchTerm} filter={filter} setFilter={setFilter} />
-      <main className="w-full">
+      <RecipesSidebar searchTerm={searchTerm} setSearchTerm={setSearchTerm} filters={filters} setFilters={setFilters} />
+      <main className="w-full overflow-hidden">
         <RecipesBanners />
-        <RecipesCatalog />
+        {recommendedLoading || popularLoading ? (
+          <RecipeCatalogSkeleton />
+        ) : (
+          <RecipesCatalog recommended={recommended?.recipes || []} popular={popular?.recipes || []} />
+        )}
       </main>
     </div>
   );
