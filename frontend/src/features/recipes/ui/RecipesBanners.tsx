@@ -4,7 +4,7 @@ import { Plus, Utensils } from "lucide-react";
 import { HeadingWithIcon } from "@/shared/components/custom-ui/heading-with-icon/HeadingWithIcon";
 import { Button } from "@/shared/components/ui/button";
 
-import { RECIPES_HEADING } from "./recipes-danners.data";
+import { RECIPES_HEADING } from "../data/recipes-danners.data";
 
 export function RecipesBanners() {
   return (

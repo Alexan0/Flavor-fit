@@ -5,10 +5,10 @@ import { parseAsStringEnum, useQueryState, useQueryStates } from "nuqs";
 
 import { useDebounce } from "@/shared/hooks/useDebounce";
 
-import { RecipesBanners } from "./recipes-banners/RecipesBanners";
-import { RecipeCatalogSkeleton } from "./recipes-catalog/RecipeCatalogSkeleton";
-import { RecipesCatalog } from "./recipes-catalog/RecipesCatalog";
-import { RecipesSidebar } from "./recipes-sidebar/RecipesSidebar";
+import { RecipeCatalogSkeleton } from "./RecipeCatalogSkeleton";
+import { RecipesBanners } from "./RecipesBanners";
+import { RecipesCatalog } from "./RecipesCatalog";
+import { RecipesSidebar } from "./RecipesSidebar";
 
 import {
   Cuisine,

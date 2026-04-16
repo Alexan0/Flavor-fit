@@ -6,8 +6,8 @@ import { CalendarDays, CircleIcon, Contact, Mail } from "lucide-react";
 import { InputLabel } from "@/shared/components/custom-ui/with-label/InputLabel";
 import { SelectLabel } from "@/shared/components/custom-ui/with-label/SelectLabel";
 
+import { GENDER_OPTIONS } from "../data/profile-form.data";
 import type { TProfileForm } from "../types/profile-update.types";
-import { GENDER_OPTIONS } from "../utils/profile-form.utils";
 
 import { AvatarUpload } from "./AvatarUpload";
 

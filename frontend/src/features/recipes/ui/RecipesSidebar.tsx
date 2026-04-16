@@ -5,8 +5,8 @@ import { Search } from "lucide-react";
 import { SidebarMenuAccordion } from "@/shared/components/custom-ui/sidebar-menu-accordion/SidebarMenuAccordion";
 import { InputLabel } from "@/shared/components/custom-ui/with-label/InputLabel";
 
-import { recipeSidebarMenuData } from "./recipe-sidebar-menu.data";
-import type { TRecipeFilters } from "./recipe-sidebar-menu.types";
+import { recipeSidebarMenuData } from "../data/recipe-sidebar-menu.data";
+import type { TRecipeFilters } from "../types/recipe-sidebar-menu.types";
 
 interface Props {
   searchTerm: string;

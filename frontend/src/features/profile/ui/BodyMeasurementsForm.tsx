@@ -7,8 +7,8 @@ import { Activity, Goal, Ruler, Weight } from "lucide-react";
 import { InputLabel } from "@/shared/components/custom-ui/with-label/InputLabel";
 import { SelectLabel } from "@/shared/components/custom-ui/with-label/SelectLabel";
 
+import { ACTIVITY_LEVEL_OPTIONS, NUTRITION_GOAL_OPTIONS } from "../data/profile-form.data";
 import type { TProfileForm } from "../types/profile-update.types";
-import { ACTIVITY_LEVEL_OPTIONS, NUTRITION_GOAL_OPTIONS } from "../utils/profile-form.utils";
 
 export function BodyMeasurementsForm() {
   const { control } = useFormContext<TProfileForm>();

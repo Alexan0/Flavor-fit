@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { RecipesDashboard } from "@/features/recipes/RecipesDashboard";
+import { RecipesDashboard } from "@/features/recipes/ui/RecipesDashboard";
 
 import { NO_INDEX_PAGE } from "@/constants/seo.constants";
 

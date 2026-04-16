@@ -1,6 +1,6 @@
 import { BookHeart, Star } from "lucide-react";
 
-import { RecipeCarousel } from "@/features/recipes/recipe-carousel/RecipeCarousel";
+import { RecipeCarousel } from "@/features/recipes/ui/RecipeCarousel";
 
 import { type GetRecipesQuery } from "@/__generated__/graphql";
 
