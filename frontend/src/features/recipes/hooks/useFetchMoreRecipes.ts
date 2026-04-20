@@ -1,3 +1,5 @@
+"use client";
+
 import { type Dispatch, type SetStateAction, useCallback, useState } from "react";
 import type { useQuery } from "@apollo/client/react";
 

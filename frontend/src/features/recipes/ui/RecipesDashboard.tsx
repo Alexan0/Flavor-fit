@@ -8,9 +8,9 @@ import { useDebounce } from "@/shared/hooks/useDebounce";
 
 import { useFetchMoreRecipes } from "../hooks/useFetchMoreRecipes";
 
-import { RecipeCatalogSkeleton } from "./RecipeCatalogSkeleton";
 import { RecipesBanners } from "./RecipesBanners";
 import { RecipesCatalog } from "./RecipesCatalog";
+import { RecipeCatalogSkeleton } from "./RecipesCatalogSkeleton";
 import { RecipesSidebar } from "./RecipesSidebar";
 
 import {
@@ -98,7 +98,7 @@ export function RecipesDashboard() {
   return (
     <div className="flex h-full gap-6">
       <RecipesSidebar searchTerm={searchTerm} setSearchTerm={setSearchTerm} filters={filters} setFilters={setFilters} />
-      <main className="w-full overflow-hidden">
+      <main className="w-full">
         <RecipesBanners />
         {isInitialLoading ? (
           <RecipeCatalogSkeleton />

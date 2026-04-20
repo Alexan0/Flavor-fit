@@ -2,7 +2,7 @@ import { Apple, ChefHat, CookingPot, MonitorCog, Pill } from "lucide-react";
 
 import type { ISidebarMenuAccordionItem } from "@/shared/components/custom-ui/sidebar-menu-accordion/sidebar-menu-accordion.types";
 
-import type { TRecipeFilters } from "../types/recipe-sidebar-menu.types";
+import type { TRecipeFilters } from "../types/recipes-sidebar-menu.types";
 
 import { Cuisine, DietaryPreference, HealthGoal, MealType, SpecialOccasion } from "@/__generated__/graphql";
 

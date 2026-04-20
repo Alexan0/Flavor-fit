@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 
 import type { CarouselApi } from "@/shared/components/ui/carousel";

@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { memo, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 
 import { HeadingWithIcon } from "@/shared/components/custom-ui/heading-with-icon/HeadingWithIcon";
@@ -21,7 +23,15 @@ interface Props {
   onLoadMore?: () => void | Promise<void>;
 }
 
-export function RecipeCarousel({ Icon, title, size, recipes, hasMore, isFetchingMore = false, onLoadMore }: Props) {
+export const RecipeCarousel = memo(function RecipeCarousel({
+  Icon,
+  title,
+  size,
+  recipes,
+  hasMore,
+  isFetchingMore = false,
+  onLoadMore
+}: Props) {
   const [api, setApi] = useState<CarouselApi>();
 
   useCarouselInfiniteScroll({
@@ -57,4 +67,4 @@ export function RecipeCarousel({ Icon, title, size, recipes, hasMore, isFetching
       )}
     </div>
   );
-}
+});
