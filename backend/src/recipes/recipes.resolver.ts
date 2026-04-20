@@ -7,6 +7,7 @@ import { RecipeCreateInput } from './inputs/recipe.input';
 import { RecipeModel } from './models/recipe.model';
 import { CurrentUser } from '@auth/decorators/current-user-decorator';
 import { RecipesQueryInput } from './inputs/get-recipes-query.input';
+import { GetAllRecipesModel } from './models/get-all-recipes.model';
 
 @Resolver()
 export class RecipesResolver {
@@ -15,7 +16,7 @@ export class RecipesResolver {
     private readonly adminRecipesService: AdminRecipesService,
   ) {}
 
-  @Query(() => [RecipeModel], { name: 'recipes' })
+  @Query(() => GetAllRecipesModel, { name: 'recipes' })
   getAll(@Args('input') input: RecipesQueryInput) {
     return this.recipesService.getAll(input);
   }
