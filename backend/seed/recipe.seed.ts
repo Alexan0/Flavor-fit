@@ -14,6 +14,17 @@ const adapter = new PrismaPg({
 
 const prisma = new PrismaClient({ adapter, log: ['error', 'warn'] });
 
+async function cleanupData() {
+  await prisma.$transaction([
+    prisma.like.deleteMany(),
+    prisma.recipeStep.deleteMany(),
+    prisma.recipeIngredient.deleteMany(),
+    prisma.nutritionFact.deleteMany(),
+    prisma.recipe.deleteMany(),
+    prisma.ingredient.deleteMany(),
+  ]);
+}
+
 async function ensureLikerPool(maxLikesCount: number) {
   const likerEmails = Array.from({ length: maxLikesCount }, (_, index) => ({
     email: `seed.liker.${index + 1}@flavorfit.com`,
@@ -53,16 +64,11 @@ async function ensureLikerPool(maxLikesCount: number) {
 function buildIngredientCreateData(
   item: ISeedRecipe['recipeIngredients'][number],
 ) {
-  const slug = item.name
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-
   return {
     name: item.name,
     content: `${item.name} ingredient`,
-    iconUrl: `/images/ingredients/${slug}.png`,
-    price: 1.99,
+    iconUrl: `images/ingredients/${item.icon}`,
+    price: item.priceUsd,
   };
 }
 
@@ -155,6 +161,7 @@ async function upsertRecipe(recipe: ISeedRecipe, authorId: string) {
           order: step.order,
           title: step.title,
           description: step.description,
+          image: step.image,
         })),
       },
 
@@ -200,6 +207,7 @@ async function upsertRecipe(recipe: ISeedRecipe, authorId: string) {
           order: step.order,
           title: step.title,
           description: step.description,
+          image: step.image,
         })),
       },
 
@@ -275,6 +283,8 @@ async function main() {
   const allRecipes = [...recommendedRecipes, ...popularRecipes];
   const maxLikesCount = Math.max(...allRecipes.map((r) => r.likesCount));
   const likerIds = await ensureLikerPool(maxLikesCount);
+
+  await cleanupData();
   await seedRecipes(authorId, likerIds);
 }
 

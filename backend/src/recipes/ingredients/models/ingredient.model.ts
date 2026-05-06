@@ -1,5 +1,4 @@
-import { Field, ObjectType, ID } from '@nestjs/graphql';
-import { Unit } from '@src/recipes/recipes.enums';
+import { Field, ObjectType, ID, Float } from '@nestjs/graphql';
 
 @ObjectType()
 export class IngredientModel {
@@ -9,8 +8,11 @@ export class IngredientModel {
   @Field(() => String, { nullable: false })
   name!: string;
 
-  @Field(() => Unit, { nullable: false })
-  defaultUnit!: `${Unit}`;
+  @Field(() => String, { nullable: false })
+  iconUrl!: string;
+
+  @Field(() => Float, { nullable: false })
+  price!: number;
 
   @Field(() => Date, { nullable: false })
   createdAt!: Date;

@@ -23,7 +23,7 @@ interface Props {
   onLoadMore?: () => void | Promise<void>;
 }
 
-export const RecipeCarousel = memo(function RecipeCarousel({
+export const RecipesCarousel = memo(function RecipeCarousel({
   Icon,
   title,
   size,

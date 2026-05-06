@@ -1,6 +1,6 @@
 import { BookHeart, Star } from "lucide-react";
 
-import { RecipeCarousel } from "@/features/recipes/ui/RecipesCarousel";
+import { RecipesCarousel } from "@/features/recipes/ui/RecipesCarousel";
 
 import { type GetRecipesQuery } from "@/__generated__/graphql";
 
@@ -27,7 +27,7 @@ export function RecipesCatalog({
 }: Props) {
   return (
     <div className="mt-4 h-[calc(100%-155px)] overflow-auto">
-      <RecipeCarousel
+      <RecipesCarousel
         Icon={BookHeart}
         title="Recommended"
         size="default"
@@ -36,7 +36,7 @@ export function RecipesCatalog({
         isFetchingMore={isRecommendedFetchingMore}
         onLoadMore={onLoadMoreRecommended}
       />
-      <RecipeCarousel
+      <RecipesCarousel
         Icon={Star}
         title="Popular"
         size="sm"

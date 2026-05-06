@@ -66,7 +66,7 @@ export class RecipeModel {
   @Field(() => Date, { nullable: false })
   updatedAt!: Date;
 
-  @Field(() => UserModel, { nullable: false })
+  @Field(() => UserModel, { nullable: true })
   author?: UserModel;
 
   @Field(() => [RecipeIngredientModel], { nullable: true })

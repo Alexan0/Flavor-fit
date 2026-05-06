@@ -59,6 +59,7 @@ model RecipeStep {
 	order Int
 	title String
 	description String
+	image String @default("")
 
 	recipe Recipe @relation(fields: [recipeId], references: [id])
 	recipeId String @map("recipe_id")
@@ -66,7 +67,7 @@ model RecipeStep {
 	createdAt DateTime @default(now()) @map("created_at")
 	updatedAt DateTime @updatedAt @map("updated_at")
 	
-	@@map("recipe_step")
+	@@map("recipe_steps")
 }
 
 model NutritionFact{

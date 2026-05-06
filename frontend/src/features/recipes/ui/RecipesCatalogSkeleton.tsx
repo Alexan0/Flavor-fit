@@ -3,7 +3,7 @@ import { BookHeart, Star } from "lucide-react";
 import { HeadingWithIcon } from "@/shared/components/custom-ui/heading-with-icon/HeadingWithIcon";
 import { SkeletonLoader } from "@/shared/components/custom-ui/skeleton-loader/SkeletonLoader";
 
-export function RecipeCatalogSkeleton() {
+export function RecipesCatalogSkeleton() {
   return (
     <div className="mt-4 h-[calc(100%-155px)] overflow-auto">
       <div>

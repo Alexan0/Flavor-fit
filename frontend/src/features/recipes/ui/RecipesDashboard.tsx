@@ -10,7 +10,7 @@ import { useFetchMoreRecipes } from "../hooks/useFetchMoreRecipes";
 
 import { RecipesBanners } from "./RecipesBanners";
 import { RecipesCatalog } from "./RecipesCatalog";
-import { RecipeCatalogSkeleton } from "./RecipesCatalogSkeleton";
+import { RecipesCatalogSkeleton } from "./RecipesCatalogSkeleton";
 import { RecipesSidebar } from "./RecipesSidebar";
 
 import {
@@ -101,7 +101,7 @@ export function RecipesDashboard() {
       <main className="w-full">
         <RecipesBanners />
         {isInitialLoading ? (
-          <RecipeCatalogSkeleton />
+          <RecipesCatalogSkeleton />
         ) : (
           <RecipesCatalog
             recommended={recommended?.recipes.items || []}
