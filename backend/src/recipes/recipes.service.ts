@@ -70,6 +70,13 @@ export class RecipesService {
     const recipe = await this.prisma.recipe.findUnique({
       where: { slug },
       include: {
+        author: {
+          include: {
+            profile: true,
+          },
+        },
+        nutritionFacts: true,
+        tags: true,
         recipeSteps: true,
         recipeIngredients: {
           include: {

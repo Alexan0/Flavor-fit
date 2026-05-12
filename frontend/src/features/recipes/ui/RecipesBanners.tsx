@@ -50,7 +50,14 @@ export function RecipesBanners() {
           <div className="flex items-center">
             {Array.from({ length: 5 }).map((_, i) => (
               <div key={i} className="-ml-4 cursor-pointer">
-                <Image width={36} height={36} src="/images/burger.png" alt="burger" />
+                <Image
+                  width={36}
+                  height={36}
+                  src="/images/burger.png"
+                  alt="burger"
+                  className="select-none"
+                  draggable={false}
+                />
               </div>
             ))}
           </div>

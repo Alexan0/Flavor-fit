@@ -13,7 +13,13 @@ export function UserInfo({ avatarUrl = "", name, email }: Props) {
   return (
     <div className="flex items-center gap-2">
       <Link href={PAGES.PROFILE} className="h-10 w-10">
-        <Image src={avatarUrl} alt={name} width={40} height={40} className="h-full w-full rounded-full object-cover" />
+        <Image
+          src={avatarUrl}
+          alt={name}
+          width={40}
+          height={40}
+          className="h-full w-full rounded-full object-cover select-none"
+        />
       </Link>
       <div>
         <Link href={PAGES.PROFILE} className="font-medium">

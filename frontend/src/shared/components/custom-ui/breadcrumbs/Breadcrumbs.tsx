@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowLeftIcon } from "lucide-react";
 
 interface Props {
-  title: string;
+  title?: string;
   href: string;
 }
 

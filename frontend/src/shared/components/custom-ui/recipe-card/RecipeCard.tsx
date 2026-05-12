@@ -17,7 +17,7 @@ import { RecipeCardImage } from "./ui/RecipeCardImage";
 import type { GetRecipesQuery } from "@/__generated__/graphql";
 
 interface Props {
-  recipe: GetRecipesQuery["recipes"][number];
+  recipe: GetRecipesQuery["recipes"]["items"][number];
   size: TRecipeCardSize;
 }
 

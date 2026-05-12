@@ -23,6 +23,7 @@ export function BodyMeasurementsForm() {
         height={250}
         src={gender === "MALE" ? "/images/male.svg" : "/images/female.svg"}
         alt={gender || "gender"}
+        className="select-none"
         draggable={false}
       />
       <div className="w-full space-y-2.5">

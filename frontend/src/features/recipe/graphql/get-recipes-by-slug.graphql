@@ -15,18 +15,21 @@ query GetRecipeBySlug($slug: String!) {
       }
     }
     tags {
+      id
       name
     }
     recipeIngredients {
       quantity
       unit
       ingredient {
+        id
         name
         iconUrl
         price
       }
     }
     recipeSteps {
+      id
       title
       description
       image
