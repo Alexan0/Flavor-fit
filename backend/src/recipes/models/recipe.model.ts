@@ -12,6 +12,7 @@ import { NutritionFactModel } from './nutrition-fact.model';
 import { RecipeTagModel } from './recipe-tag.model';
 import { RecipeStepModel } from './recipe-step.model';
 import { RecipeIngredientModel } from './recipe-ingredient.model';
+import { CommentModel } from '../reaction/models/comment.model';
 
 @ObjectType()
 export class RecipeModel {
@@ -81,8 +82,8 @@ export class RecipeModel {
   @Field(() => NutritionFactModel, { nullable: true })
   nutritionFacts?: NutritionFactModel | null;
 
-  // @Field(() => [Comment], { nullable: true })
-  // comments?: Array<Comment>;
+  @Field(() => [CommentModel], { nullable: true })
+  comments?: Array<CommentModel>;
 
   @Field(() => Int, { nullable: true })
   likes?: number;

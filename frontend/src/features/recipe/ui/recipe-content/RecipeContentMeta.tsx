@@ -28,7 +28,7 @@ export function RecipeContentMeta({ recipe }: Props) {
             width={22}
             height={22}
             src={recipe?.author?.avatarUrl || "/images/avatar-placeholder.png"}
-            alt={recipe?.author?.profile?.fullName || "author"}
+            alt={recipe?.author?.profile?.fullName || "Anonymous"}
             className="rounded-full select-none"
             draggable={false}
           />

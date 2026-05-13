@@ -23,11 +23,11 @@ export function RecipeCardFooter({ views, likes, difficultyLevel, size }: Props)
       <div className="flex items-center gap-2">
         <div className={recipeCardFooterTextVariants({ size })}>
           <Heart className={size === "sm" ? "size-3.5" : "size-4"} />
-          <span className="capitalize">{formatCompactNumber(likes)}</span>
+          <span>{formatCompactNumber(likes)}</span>
         </div>
         <div className={recipeCardFooterTextVariants({ size })}>
           <Eye className={size === "sm" ? "size-3.5" : "size-4"} />
-          <span className="capitalize">{formatCompactNumber(views)}</span>
+          <span>{formatCompactNumber(views)}</span>
         </div>
       </div>
     </div>

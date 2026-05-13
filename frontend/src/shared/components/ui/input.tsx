@@ -10,7 +10,7 @@ interface InputProps extends React.ComponentProps<"input"> {
 
 function Input({ className, type, errorMessage, ...props }: InputProps) {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <input
         type={type}
         data-slot="input"

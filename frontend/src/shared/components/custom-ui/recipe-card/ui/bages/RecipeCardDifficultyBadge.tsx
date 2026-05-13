@@ -21,7 +21,7 @@ export function RecipeCardDifficultyBadge({ difficultyLevel, size = "default" }:
         {Array.from({ length: hatCount }).map((_, index) => (
           <ChefHat key={index} className="size-3.5" />
         ))}
-        {size !== "sm" && <span className="capitalize">{capitalizeFirstLetter(difficultyLevel)}</span>}
+        {size !== "sm" && <span>{capitalizeFirstLetter(difficultyLevel)}</span>}
       </span>
     </div>
   );

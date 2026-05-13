@@ -83,6 +83,15 @@ export class RecipesService {
             ingredient: true,
           },
         },
+        comments: {
+          include: {
+            author: {
+              include: {
+                profile: true,
+              },
+            },
+          },
+        },
       },
     });
 

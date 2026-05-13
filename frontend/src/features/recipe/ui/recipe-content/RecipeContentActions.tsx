@@ -2,11 +2,16 @@ import toast from "react-hot-toast";
 import { Heart, Share, ShoppingCart } from "lucide-react";
 
 import { Button } from "@/shared/components/ui/button";
+import { DURATION } from "@/shared/constants/toast.constants";
 
 export function RecipeContentActions() {
   const handleCopyLink = () => {
     navigator.clipboard.writeText(window.location.href);
-    toast.success("Link copied successfully");
+
+    toast.success("Link copied successfully", {
+      id: "link-copy-success",
+      duration: DURATION
+    });
   };
 
   return (
