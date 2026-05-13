@@ -20,7 +20,7 @@ export function RecipeComments({ comments, likes, views, recipeId }: Props) {
     <div className="flex h-full flex-col overflow-hidden rounded-3xl bg-white px-6 py-4">
       <div className="flex items-center gap-2">
         <MessageCircleMore className="opacity-30" />
-        <h3 className={"text-lg font-semibold"}>Comments:</h3>
+        <h3 className="text-lg font-semibold">Comments:</h3>
         <span className="min-w-8 rounded-md bg-gray-200 px-1.5 py-1 text-center text-xs text-gray-600">
           {comments?.length}
         </span>

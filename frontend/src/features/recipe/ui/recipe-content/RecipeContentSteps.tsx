@@ -12,7 +12,7 @@ export function RecipeContentSteps({ steps }: Props) {
     <div>
       <div className="flex items-center gap-2">
         <CookingPot className="opacity-60" />
-        <h3 className={"text-lg font-semibold"}>Step-by-step preparation instruction:</h3>
+        <h3 className="text-lg font-semibold">Step-by-step preparation instruction:</h3>
       </div>
       <div className="mt-4 flex flex-wrap gap-4">
         {steps?.map((step, index) => (
