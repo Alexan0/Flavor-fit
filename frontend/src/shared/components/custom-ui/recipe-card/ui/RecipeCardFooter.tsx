@@ -1,11 +1,7 @@
-import { Eye, Heart } from "lucide-react";
-
-import { formatCompactNumber } from "@/shared/utils/format-compact-number.utils";
-
-import { recipeCardFooterTextVariants } from "../styles/recipe-card.styles";
 import type { TRecipeCardSize } from "../types/recipe-card.types";
 
 import { RecipeCardDifficultyBadge } from "./bages/RecipeCardDifficultyBadge";
+import { RecipeCardFooterStats } from "./RecipeCardFooterStats";
 
 import { Difficulty } from "@/__generated__/graphql";
 
@@ -21,14 +17,7 @@ export function RecipeCardFooter({ views, likes, difficultyLevel, size }: Props)
     <div className="mt-2.5 flex items-center justify-between">
       <RecipeCardDifficultyBadge size={size} difficultyLevel={difficultyLevel} />
       <div className="flex items-center gap-2">
-        <div className={recipeCardFooterTextVariants({ size })}>
-          <Heart className={size === "sm" ? "size-3.5" : "size-4"} />
-          <span>{formatCompactNumber(likes)}</span>
-        </div>
-        <div className={recipeCardFooterTextVariants({ size })}>
-          <Eye className={size === "sm" ? "size-3.5" : "size-4"} />
-          <span>{formatCompactNumber(views)}</span>
-        </div>
+        <RecipeCardFooterStats likes={likes} views={views} size={size} />
       </div>
     </div>
   );

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Bell, Headset } from "lucide-react";
 
-import { useAuth } from "@/features/auth/hooks/useAuth";
 import { Logout } from "@/features/auth/ui/Logout";
 
 import { NavMenu } from "@/shared/components/custom-ui/nav-menu/NavMenu";
@@ -11,6 +10,7 @@ import { SkeletonLoader } from "@/shared/components/custom-ui/skeleton-loader/Sk
 import { UserInfo } from "@/shared/components/custom-ui/user-info/UserInfo";
 import { Button } from "@/shared/components/ui/button";
 import { PAGES } from "@/shared/config/page.config";
+import { useAuth } from "@/shared/hooks/useAuth";
 
 import { HEADER_MENU } from "./nav-menu.data";
 

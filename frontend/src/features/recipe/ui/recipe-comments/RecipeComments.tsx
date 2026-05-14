@@ -1,7 +1,6 @@
-import { Eye, Heart, MessageCircleMore } from "lucide-react";
+import { MessageCircleMore } from "lucide-react";
 
-import { recipeCardFooterTextVariants } from "@/shared/components/custom-ui/recipe-card/styles/recipe-card.styles";
-import { formatCompactNumber } from "@/shared/utils/format-compact-number.utils";
+import { RecipeCardFooterStats } from "@/shared/components/custom-ui/recipe-card/ui/RecipeCardFooterStats";
 
 import { RecipeAddComment } from "./RecipeAddComment";
 import { RecipeCardComment } from "./RecipeCardComment";
@@ -26,14 +25,7 @@ export function RecipeComments({ comments, likes, views, recipeId }: Props) {
         </span>
       </div>
       <div className="mt-2 ml-8 flex items-center gap-2">
-        <div className={recipeCardFooterTextVariants({ size: "default" })}>
-          <Heart className="size-4" />
-          <span>{formatCompactNumber(likes)}</span>
-        </div>
-        <div className={recipeCardFooterTextVariants({ size: "default" })}>
-          <Eye className="size-4" />
-          <span>{formatCompactNumber(views)}</span>
-        </div>
+        <RecipeCardFooterStats likes={likes} views={views} />
       </div>
       <div className="mt-4 h-auto flex-1 overflow-auto">
         {comments?.map((comment) => (

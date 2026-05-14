@@ -27,6 +27,7 @@ export function RecipesSidebar({ searchTerm, setSearchTerm, filters, setFilters 
   return (
     <div className="flex-[0_0_256px] space-y-6 rounded-2xl bg-white p-4">
       <InputLabel
+        name="recipe sidebar search"
         Icon={Search}
         placeholder="Search by recipes"
         className="bg-gray-100"

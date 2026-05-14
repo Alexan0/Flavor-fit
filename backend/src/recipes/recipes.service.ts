@@ -102,6 +102,27 @@ export class RecipesService {
     return recipe;
   }
 
+  async getRandom() {
+    const recipes = await this.prisma.recipe.findMany({
+      take: 20,
+      orderBy: { createdAt: Prisma.SortOrder.desc },
+      include: {
+        recipeIngredients: {
+          include: {
+            ingredient: true,
+          },
+        },
+      },
+    });
+
+    if (recipes.length === 0) {
+      throw new NotFoundException('No recipes found');
+    }
+
+    const randomIndex = Math.floor(Math.random() * recipes.length);
+    return recipes[randomIndex];
+  }
+
   private getOrderBy(sort?: SortOrder) {
     switch (sort) {
       case SortOrder.RECOMMENDED:

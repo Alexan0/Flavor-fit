@@ -22,6 +22,7 @@ type Documents = {
     "mutation RequestPasswordReset($data: RequestPasswordResetInput!) {\n  requestPasswordReset(data: $data)\n}": typeof types.RequestPasswordResetDocument,
     "mutation ResetPassword($data: ResetPasswordInput!) {\n  resetPassword(data: $data)\n}": typeof types.ResetPasswordDocument,
     "mutation VerifyEmail($token: String!) {\n  verifyEmail(token: $token)\n}": typeof types.VerifyEmailDocument,
+    "query GetRandomRecipe {\n  randomRecipe {\n    title\n    slug\n    description\n    image\n    calories\n    cookingTime\n    mealType\n    likes\n    views\n    difficulty\n    recipeIngredients {\n      quantity\n      unit\n      ingredient {\n        id\n        name\n        iconUrl\n        price\n      }\n    }\n  }\n}": typeof types.GetRandomRecipeDocument,
     "query GetProfile {\n  profile {\n    id\n    email\n    avatarUrl\n    profile {\n      fullName\n      gender\n      age\n      bio\n    }\n    measurements {\n      heightCm\n      weightKg\n      goalWeightKg\n      chestCm\n      waistCm\n      thighCm\n      armCm\n      activityLevel\n      nutritionGoal\n    }\n  }\n}": typeof types.GetProfileDocument,
     "mutation UpdateProfile($data: UserUpdateInput!) {\n  updateProfile(data: $data) {\n    id\n    email\n    avatarUrl\n    profile {\n      fullName\n      gender\n      age\n      bio\n    }\n    measurements {\n      heightCm\n      weightKg\n      goalWeightKg\n      chestCm\n      waistCm\n      thighCm\n      armCm\n      activityLevel\n      nutritionGoal\n    }\n  }\n}": typeof types.UpdateProfileDocument,
     "mutation CreateNewComment($data: CommentCreateInput!) {\n  createComment(input: $data) {\n    id\n    content\n    createdAt\n    author {\n      avatarUrl\n      profile {\n        fullName\n      }\n    }\n  }\n}": typeof types.CreateNewCommentDocument,
@@ -37,6 +38,7 @@ const documents: Documents = {
     "mutation RequestPasswordReset($data: RequestPasswordResetInput!) {\n  requestPasswordReset(data: $data)\n}": types.RequestPasswordResetDocument,
     "mutation ResetPassword($data: ResetPasswordInput!) {\n  resetPassword(data: $data)\n}": types.ResetPasswordDocument,
     "mutation VerifyEmail($token: String!) {\n  verifyEmail(token: $token)\n}": types.VerifyEmailDocument,
+    "query GetRandomRecipe {\n  randomRecipe {\n    title\n    slug\n    description\n    image\n    calories\n    cookingTime\n    mealType\n    likes\n    views\n    difficulty\n    recipeIngredients {\n      quantity\n      unit\n      ingredient {\n        id\n        name\n        iconUrl\n        price\n      }\n    }\n  }\n}": types.GetRandomRecipeDocument,
     "query GetProfile {\n  profile {\n    id\n    email\n    avatarUrl\n    profile {\n      fullName\n      gender\n      age\n      bio\n    }\n    measurements {\n      heightCm\n      weightKg\n      goalWeightKg\n      chestCm\n      waistCm\n      thighCm\n      armCm\n      activityLevel\n      nutritionGoal\n    }\n  }\n}": types.GetProfileDocument,
     "mutation UpdateProfile($data: UserUpdateInput!) {\n  updateProfile(data: $data) {\n    id\n    email\n    avatarUrl\n    profile {\n      fullName\n      gender\n      age\n      bio\n    }\n    measurements {\n      heightCm\n      weightKg\n      goalWeightKg\n      chestCm\n      waistCm\n      thighCm\n      armCm\n      activityLevel\n      nutritionGoal\n    }\n  }\n}": types.UpdateProfileDocument,
     "mutation CreateNewComment($data: CommentCreateInput!) {\n  createComment(input: $data) {\n    id\n    content\n    createdAt\n    author {\n      avatarUrl\n      profile {\n        fullName\n      }\n    }\n  }\n}": types.CreateNewCommentDocument,
@@ -90,6 +92,10 @@ export function graphql(source: "mutation ResetPassword($data: ResetPasswordInpu
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation VerifyEmail($token: String!) {\n  verifyEmail(token: $token)\n}"): (typeof documents)["mutation VerifyEmail($token: String!) {\n  verifyEmail(token: $token)\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query GetRandomRecipe {\n  randomRecipe {\n    title\n    slug\n    description\n    image\n    calories\n    cookingTime\n    mealType\n    likes\n    views\n    difficulty\n    recipeIngredients {\n      quantity\n      unit\n      ingredient {\n        id\n        name\n        iconUrl\n        price\n      }\n    }\n  }\n}"): (typeof documents)["query GetRandomRecipe {\n  randomRecipe {\n    title\n    slug\n    description\n    image\n    calories\n    cookingTime\n    mealType\n    likes\n    views\n    difficulty\n    recipeIngredients {\n      quantity\n      unit\n      ingredient {\n        id\n        name\n        iconUrl\n        price\n      }\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

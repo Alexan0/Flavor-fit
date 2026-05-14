@@ -28,7 +28,7 @@ export function RecipeDetails() {
   return (
     <>
       <Breadcrumbs title={recipe?.recipeBySlug.title} href={PAGES.RECIPES} />
-      <div className="grid h-[calc(100%-44px)] grid-cols-[3.5fr_1fr] gap-5">
+      <main className="grid h-[calc(100%-44px)] grid-cols-[4.5fr_1fr] gap-5">
         <RecipeContent recipe={recipe?.recipeBySlug} />
         <RecipeComments
           comments={recipe?.recipeBySlug.comments}
@@ -36,7 +36,7 @@ export function RecipeDetails() {
           views={recipe?.recipeBySlug.views}
           recipeId={recipe?.recipeBySlug.id}
         />
-      </div>
+      </main>
     </>
   );
 }
