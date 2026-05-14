@@ -18,7 +18,7 @@ interface Props {
   recipe?: GetRandomRecipeQuery["randomRecipe"];
 }
 
-export function RandomRecipe({ recipe }: Props) {
+export function RecipeVerticalCard({ recipe }: Props) {
   const { push } = useRouter();
 
   return (

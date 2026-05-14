@@ -2,8 +2,9 @@
 
 import { useQuery } from "@apollo/client/react";
 
+import { RecipeVerticalCard } from "./recipe-vertical-card/RecipeVerticalCard";
+import { RecipeVerticalCardSkeleton } from "./recipe-vertical-card/RecipeVerticalCardSkeleton";
 import { DashboardTopSide } from "./DashboardTopSide";
-import { RandomRecipe } from "./RandomRecipe";
 
 import { GetRandomRecipeDocument } from "@/__generated__/graphql";
 
@@ -16,7 +17,7 @@ export function Dashboard() {
         <DashboardTopSide />
       </div>
 
-      <RandomRecipe recipe={randomRecipe?.randomRecipe} />
+      {loading ? <RecipeVerticalCardSkeleton /> : <RecipeVerticalCard recipe={randomRecipe?.randomRecipe} />}
     </main>
   );
 }

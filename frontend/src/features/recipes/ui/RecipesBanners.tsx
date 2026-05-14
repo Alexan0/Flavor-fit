@@ -4,7 +4,7 @@ import { Plus, Utensils } from "lucide-react";
 import { HeadingWithIcon } from "@/shared/components/custom-ui/heading-with-icon/HeadingWithIcon";
 import { Button } from "@/shared/components/ui/button";
 
-import { RECIPES_HEADING } from "../data/recipes-danners.data";
+import { RECIPE_BANNER_BADGES } from "../data/recipes-danners.data";
 
 export function RecipesBanners() {
   return (
@@ -25,7 +25,7 @@ export function RecipesBanners() {
               Share It & Shine! Your recipe might just become the big hit!
             </span>
             <div className="mt-4 flex items-center gap-2">
-              {RECIPES_HEADING.map((item) => (
+              {RECIPE_BANNER_BADGES.map((item) => (
                 <span key={item.label} className="rounded-sm bg-[#9C84F9] px-2 py-1 text-xs text-white">
                   {item.label}
                 </span>

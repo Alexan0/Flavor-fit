@@ -8,7 +8,7 @@ import { PAGES } from "@/shared/config/page.config";
 
 import { RecipeComments } from "./recipe-comments/RecipeComments";
 import { RecipeContent } from "./recipe-content/RecipeContent";
-import { RecipeSkeleton } from "./RecipeSkeleton";
+import { RecipeDetailsSkeleton } from "./RecipeDetailsSkeleton";
 
 import { GetRecipeBySlugDocument } from "@/__generated__/graphql";
 
@@ -22,7 +22,7 @@ export function RecipeDetails() {
   });
 
   if (loading) {
-    return <RecipeSkeleton />;
+    return <RecipeDetailsSkeleton />;
   }
 
   return (

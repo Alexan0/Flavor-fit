@@ -11,11 +11,12 @@ interface Props extends ComponentProps<"input"> {
   label?: string;
   Icon?: LucideIcon;
   errorMessage?: string;
+  parentClassName?: string;
 }
 
-export function InputLabel({ label, Icon, errorMessage, className, ...props }: Props) {
+export function InputLabel({ label, Icon, errorMessage, className, parentClassName, ...props }: Props) {
   return (
-    <label className="relative block">
+    <label className={cn("relative block", parentClassName)}>
       <LabelIcon label={label} Icon={Icon} />
       <Input
         className={cn("mb-0 rounded-xl bg-[#f1f1f1]", Icon && "pl-9", className)}

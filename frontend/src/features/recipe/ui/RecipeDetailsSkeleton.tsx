@@ -2,7 +2,7 @@ import { CookingPot, MessageCircleMore } from "lucide-react";
 
 import { SkeletonLoader } from "@/shared/components/custom-ui/skeleton-loader/SkeletonLoader";
 
-export function RecipeSkeleton() {
+export function RecipeDetailsSkeleton() {
   return (
     <>
       <SkeletonLoader className="mb-5 h-8 w-90" />
