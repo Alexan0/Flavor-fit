@@ -16,43 +16,31 @@ export function RecipeSkeleton() {
               <div className="flex items-start justify-between gap-6">
                 <SkeletonLoader className="mb-0" />
                 <div className="flex items-center gap-2">
-                  {Array.from({ length: 3 }).map((_, idx) => (
-                    <SkeletonLoader key={idx} className="mb-0 w-10" />
-                  ))}
+                  <SkeletonLoader count={3} className="mb-0 w-10" />
                 </div>
               </div>
               <div className="mt-6 flex items-center justify-between gap-2">
                 <div className="flex items-center gap-1">
-                  {Array.from({ length: 4 }).map((_, idx) => (
-                    <SkeletonLoader key={idx} className="mb-0 h-8 w-16" />
-                  ))}
+                  <SkeletonLoader count={4} className="mb-0 h-8 w-16" />
                 </div>
                 <div className="flex items-center gap-2">
-                  {Array.from({ length: 2 }).map((_, idx) => (
-                    <SkeletonLoader key={idx} className="mb-0 h-8 w-24" />
-                  ))}
+                  <SkeletonLoader count={2} className="mb-0 h-8 w-24" />
                 </div>
               </div>
               <div className="mt-6">
                 <span className="font-semibold">Description:</span>
                 <SkeletonLoader className="mt-1 mb-0 h-16" />
                 <div className="mt-1 flex flex-wrap items-center gap-1">
-                  {Array.from({ length: 4 }).map((_, idx) => (
-                    <SkeletonLoader key={idx} className="mb-0 h-4 w-16" />
-                  ))}
+                  <SkeletonLoader count={4} className="mb-0 h-4 w-16" />
                 </div>
                 <div className="mt-4 flex items-center gap-2">
-                  {Array.from({ length: 4 }).map((_, idx) => (
-                    <SkeletonLoader key={idx} className="mb-0 h-8 w-24" />
-                  ))}
+                  <SkeletonLoader count={4} className="mb-0 h-8 w-24" />
                 </div>
               </div>
               <div className="mt-6">
                 <span className="font-semibold">Ingredients:</span>
                 <div className="mt-2 flex flex-wrap items-center gap-2">
-                  {Array.from({ length: 4 }).map((_, idx) => (
-                    <SkeletonLoader key={idx} className="mb-0 h-18 w-18" />
-                  ))}
+                  <SkeletonLoader count={4} className="mb-0 h-18 w-18" />
                 </div>
               </div>
             </div>
@@ -85,9 +73,7 @@ export function RecipeSkeleton() {
             <SkeletonLoader className="mb-0 h-6 w-10" />
           </div>
           <div className="mt-4 h-auto flex-1 overflow-auto">
-            {Array.from({ length: 5 }).map((_, inx) => (
-              <SkeletonLoader key={inx} className="mb-2.5 h-24 last:mb-0" />
-            ))}
+            <SkeletonLoader count={5} className="mb-2.5 h-24 last:mb-0" />
           </div>
           <SkeletonLoader className="mt-6 h-13" />
         </div>

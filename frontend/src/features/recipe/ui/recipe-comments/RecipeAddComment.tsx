@@ -1,3 +1,5 @@
+"use client";
+
 import { type SyntheticEvent, useState } from "react";
 import toast from "react-hot-toast";
 import type { Reference } from "@apollo/client";
