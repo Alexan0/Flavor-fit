@@ -33,7 +33,7 @@ export function RecipesBanners() {
             </div>
           </div>
         </div>
-        <Button variant="soft" className="bg-white text-black hover:bg-white/90">
+        <Button variant="soft" className="rounded-3xl bg-white py-5 text-black hover:bg-white/90">
           <Plus />
           Add Recipe
         </Button>

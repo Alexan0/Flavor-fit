@@ -1,0 +1,27 @@
+<svg width="200" height="150" viewBox="0 10 300 250" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M 50,15 
+       C 10,15 0,25 0,65 
+       L 0,165 
+       C 0,205 10,215 50,215 
+       L 90,215 
+       L 80,255 
+       L 130,215 
+       L 250,215 
+       C 290,215 300,205 300,165 
+       L 300,65 
+       C 300,25 290,15 250,15 
+       Z"
+          fill="none"
+          stroke="white"
+          stroke-width="8"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+        />
+        <g fill="none" stroke="white" stroke-width="6" stroke-linejoin="round">
+          <path d="M 50,95 l 10,25 25,0 -20,15 8,25 -23,-15 -23,15 8,-25 -20,-15 25,0 z" />
+          <path d="M 115,95 l 10,25 25,0 -20,15 8,25 -23,-15 -23,15 8,-25 -20,-15 25,0 z" />
+          <path d="M 180,95 l 10,25 25,0 -20,15 8,25 -23,-15 -23,15 8,-25 -20,-15 25,0 z" />
+          <path d="M 245,95 l 10,25 25,0 -20,15 8,25 -23,-15 -23,15 8,-25 -20,-15 25,0 z" />
+        </g>
+      </svg>

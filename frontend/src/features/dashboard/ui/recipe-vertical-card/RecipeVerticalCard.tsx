@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ArrowUpRight, Clock4, Flame } from "lucide-react";
 
@@ -24,17 +25,21 @@ export function RecipeVerticalCard({ recipe }: Props) {
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-3xl bg-white px-6 py-4">
       <div className="h-60">
-        <Image
-          src={recipe?.image || ""}
-          alt={recipe?.title || ""}
-          width={200}
-          height={200}
-          className="h-full w-full rounded-3xl object-cover select-none"
-          draggable={false}
-        />
+        <Link href={PAGES.RECIPE_DETAIL(recipe?.slug)}>
+          <Image
+            src={recipe?.image || ""}
+            alt={recipe?.title || ""}
+            width={200}
+            height={200}
+            className="h-full w-full rounded-3xl object-cover select-none"
+            draggable={false}
+          />
+        </Link>
       </div>
       <div className="flex-1 overflow-auto">
-        <h2 className="mt-4 text-3xl font-bold italic">{recipe?.title}</h2>
+        <Link href={PAGES.RECIPE_DETAIL(recipe?.slug)}>
+          <h2 className="mt-4 text-3xl font-bold italic">{recipe?.title}</h2>
+        </Link>
         <p className="mt-3 text-sm opacity-60">{recipe?.description}</p>
         <div className="mt-2 flex items-center gap-1">
           <RecipeCardBadge>{capitalizeFirstLetter(recipe?.mealType)}</RecipeCardBadge>
